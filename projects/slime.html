@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Slime Defense | 안병찬 Portfolio</title>
+  <meta name="description" content="Unity ECS(DOTS) 기반 모바일 디펜스 프로젝트 Slime Defense의 포트폴리오 페이지입니다.">
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-soft: #121933;
+      --card: rgba(255,255,255,0.06);
+      --card-border: rgba(255,255,255,0.10);
+      --text: #eef2ff;
+      --text-soft: #b7c0e0;
+      --accent: #7aa2ff;
+      --accent-2: #8ef0d0;
+      --shadow: 0 20px 50px rgba(0,0,0,0.28);
+      --max: 1040px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Noto Sans KR", "Malgun Gothic", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(122,162,255,0.16), transparent 28%),
+        linear-gradient(180deg, #09101f 0%, #0b1020 100%);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(11,16,32,0.72);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav-inner {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand { font-weight: 800; }
+    .menu { display: flex; gap: 16px; flex-wrap: wrap; color: var(--text-soft); }
+    .menu a:hover { color: var(--text); }
+
+    .hero { padding: 76px 0 34px; }
+    .hero-card, .card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card { padding: 36px; }
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.92rem;
+      background: rgba(122,162,255,0.14);
+      border: 1px solid rgba(122,162,255,0.28);
+      margin-bottom: 18px;
+    }
+
+    h1, h2, h3 { margin: 0 0 12px; line-height: 1.2; }
+    h1 { font-size: clamp(2rem, 4vw, 3rem); }
+    h2 { font-size: clamp(1.35rem, 2.4vw, 2rem); }
+    h3 { font-size: 1.08rem; }
+
+    .lead, .muted { color: var(--text-soft); }
+    .lead { font-size: 1.04rem; max-width: 50rem; }
+
+    .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+    .btn {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+      font-weight: 600;
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, var(--accent), #5e7dff);
+      border-color: transparent;
+    }
+
+    .meta {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .meta-item {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .meta-item strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 0.96rem;
+    }
+
+    .section { padding: 18px 0; }
+    .section-head { margin-bottom: 18px; }
+    .card { padding: 26px; }
+
+    .grid-2, .grid-3 { display: grid; gap: 18px; }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+
+    .chip-wrap { display: flex; flex-wrap: wrap; gap: 10px; }
+    .chip {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #d8def4;
+      font-size: 0.92rem;
+    }
+
+    .list { margin: 0; padding-left: 18px; color: var(--text-soft); }
+    .list li + li { margin-top: 8px; }
+
+    .flow { display: grid; gap: 14px; }
+    .flow-item {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .footer {
+      padding: 24px 0 54px;
+      color: var(--text-soft);
+      font-size: 0.94rem;
+    }
+
+    @media (max-width: 920px) {
+      .meta, .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../index.html">안병찬 Portfolio</a>
+      <nav class="menu">
+        <a href="../index.html">메인으로</a>
+        <a href="#overview">개요</a>
+        <a href="#tech">기술 포인트</a>
+        <a href="#growth">배운 점</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-card">
+          <div class="eyebrow">Project Detail</div>
+          <h1>Slime Defense</h1>
+          <p class="lead">
+            Unity ECS(DOTS) 기반으로 제작 중인 모바일 디펜스 프로젝트입니다. 고정된 플레이어를 중심으로 몰려오는 적을 상대하며,
+            전투와 성장 선택지를 반복하는 짧고 밀도 높은 플레이 루프를 목표로 설계했습니다.
+          </p>
+          <div class="cta">
+            <a class="btn primary" href="#tech">기술 포인트 보기</a>
+            <a class="btn" href="https://github.com/eggmoney1073/Slime_Defense" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="btn" href="../index.html">메인 페이지</a>
+          </div>
+
+          <div class="meta">
+            <div class="meta-item">
+              <strong>장르</strong>
+              <span class="muted">모바일 디펜스 + 서바이벌 성장형</span>
+            </div>
+            <div class="meta-item">
+              <strong>엔진</strong>
+              <span class="muted">Unity</span>
+            </div>
+            <div class="meta-item">
+              <strong>핵심 기술</strong>
+              <span class="muted">ECS(DOTS), Addressables, UI 시스템</span>
+            </div>
+            <div class="meta-item">
+              <strong>개발 형태</strong>
+              <span class="muted">1인 개발</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="overview" class="section">
+      <div class="wrap grid-2">
+        <article class="card">
+          <h2>프로젝트 개요</h2>
+          <p class="muted">
+            플레이어는 화면 중앙에 고정된 상태로, 터치 입력으로 조준 방향을 제어하며 적을 처치합니다.
+            전투를 통해 경험치를 획득하고, 레벨업 시 3지선다 선택지를 통해 무기를 강화하는 루프를 반복합니다.
+          </p>
+          <ul class="list">
+            <li>한 판 플레이 타임이 짧고 반복이 빠른 모바일 루프 지향</li>
+            <li>전투 → 경험치 획득 → 레벨업 → 강화 → 재전투 흐름 중심</li>
+            <li>터치 조작 기반 조준과 피드백이 핵심인 구조</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h2>내가 집중한 부분</h2>
+          <ul class="list">
+            <li>시스템 업데이트 순서를 그룹 단위로 정리해 흐름을 명확히 구성</li>
+            <li>레벨업 선택지와 강화 수치를 데이터 형태로 관리할 수 있게 구조화</li>
+            <li>입력, UI, 전투 판정이 서로 꼬이지 않도록 책임을 분리</li>
+            <li>모바일 환경에서 간단하고 즉각적인 조작감을 유지하는 방향으로 설계</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="tech" class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>기술 포인트</h2>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <h3>ECS 기반 시스템 그룹 구성</h3>
+            <p class="muted">
+              관리, 생성, 이동, 판정, 계산 단계를 그룹으로 나누고 각 시스템의 순서를 명시해,
+              프레임마다 어떤 처리가 어느 단계에서 일어나는지 명확히 보이도록 구성했습니다.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>레벨업 선택지 데이터 설계</h3>
+            <p class="muted">
+              무기 강화 선택지를 레어도, 강화 타입, 수치로 분리해 데이터 중심으로 관리하고,
+              이후 선택지 추가나 수치 조정이 쉽게 이어지도록 구조를 잡았습니다.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Addressables 기반 리소스 관리</h3>
+            <p class="muted">
+              UI 프리팹과 리소스를 직접 경로 문자열에 의존하지 않는 방향으로 정리하며,
+              로딩 흐름과 참조 방식을 점차 관리 가능한 구조로 바꾸고 있습니다.
+            </p>
+          </article>
+        </div>
+
+        <div class="grid-2" style="margin-top:18px;">
+          <article class="card">
+            <h3>게임 루프 설계</h3>
+            <div class="flow">
+              <div class="flow-item">
+                <strong>1. 전투 시작</strong>
+                <div class="muted">적이 경로를 따라 등장하고 플레이어는 터치 조작으로 조준을 제어합니다.</div>
+              </div>
+              <div class="flow-item">
+                <strong>2. 처치 및 경험치 획득</strong>
+                <div class="muted">적 처치 결과가 경험치로 환산되고 플레이어 성장 조건을 채웁니다.</div>
+              </div>
+              <div class="flow-item">
+                <strong>3. 레벨업 3지선다</strong>
+                <div class="muted">강화 선택지를 제시하고, 플레이어는 플레이 스타일에 맞게 성장 방향을 고릅니다.</div>
+              </div>
+              <div class="flow-item">
+                <strong>4. 강화 반영</strong>
+                <div class="muted">공격력, 발사 속도, 관통, 투사체 수 등 전투 성능이 즉시 반영됩니다.</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>입력과 UI</h3>
+            <ul class="list">
+              <li>모바일 환경을 고려한 터치 조이스틱 및 조준 방향 제어 방식 구현</li>
+              <li>경험치, 타이머, 사격 방향 표시 UI를 전투 흐름에 맞춰 배치</li>
+              <li>터치가 유효한 영역을 제한하고, 범위를 벗어날 때 즉시 종료되는 입력 처리 고민</li>
+              <li>실제 플레이 감각을 기준으로 UI 피드백과 조작 응답성을 조정</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="growth" class="section">
+      <div class="wrap grid-2">
+        <article class="card">
+          <h2>문제 해결 경험</h2>
+          <ul class="list">
+            <li>ECS 구조에서 시스템 순서가 꼬일 때 그룹 책임을 다시 나누는 방식으로 흐름을 재정리</li>
+            <li>Addressables 사용 시 하드코딩 경로 의존도를 줄일 방법을 고민하고 구조를 개선</li>
+            <li>레벨업 선택지 설계에서 초기 구간과 후반 구간의 성장 체감 차이를 수치 밸런스로 조정</li>
+            <li>모바일 입력 처리에서 범위를 벗어난 터치 종료 같은 세부 UX까지 직접 다듬음</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h2>배운 점</h2>
+          <ul class="list">
+            <li>기능을 빠르게 추가하는 것보다, 시스템 흐름을 먼저 정리하는 편이 전체 개발 효율이 높다는 점</li>
+            <li>데이터 기반 구조를 먼저 잡아두면 이후 밸런스 조정과 기능 확장이 훨씬 쉬워진다는 점</li>
+            <li>모바일 게임에서는 작은 조작 지연이나 UI 응답 차이도 플레이 체감에 크게 영향을 준다는 점</li>
+            <li>구조, 입력, UI, 성장 루프는 따로가 아니라 함께 맞물려야 플레이가 자연스럽게 나온다는 점</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="card">
+          <h2>사용 기술</h2>
+          <div class="chip-wrap">
+            <span class="chip">Unity</span>
+            <span class="chip">C#</span>
+            <span class="chip">ECS / DOTS</span>
+            <span class="chip">Addressables</span>
+            <span class="chip">ScriptableObject</span>
+            <span class="chip">모바일 UI</span>
+            <span class="chip">게임플레이 설계</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">© 2026 Slime Defense Project Page</div>
+  </footer>
+</body>
+</html>
