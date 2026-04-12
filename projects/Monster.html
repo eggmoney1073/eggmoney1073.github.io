@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Monster World | 안병찬 Portfolio</title>
+  <meta name="description" content="Monster World 프로젝트의 포트폴리오 상세 페이지입니다. 몬스터 AI, 스킬, 풀링, JSON 데이터 구조, Shader Graph 작업을 정리했습니다.">
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-soft: #121933;
+      --card: rgba(255,255,255,0.06);
+      --card-border: rgba(255,255,255,0.10);
+      --text: #eef2ff;
+      --text-soft: #b7c0e0;
+      --accent: #7aa2ff;
+      --accent-2: #8ef0d0;
+      --shadow: 0 20px 50px rgba(0,0,0,0.28);
+      --max: 1040px;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Noto Sans KR", "Malgun Gothic", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(142,240,208,0.12), transparent 26%),
+        radial-gradient(circle at top right, rgba(122,162,255,0.16), transparent 24%),
+        linear-gradient(180deg, #09101f 0%, #0b1020 100%);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(11,16,32,0.72);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav-inner {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand { font-weight: 800; }
+    .menu { display: flex; gap: 16px; flex-wrap: wrap; color: var(--text-soft); }
+    .menu a:hover { color: var(--text); }
+
+    .hero { padding: 76px 0 34px; }
+    .hero-card, .card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card { padding: 36px; }
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.92rem;
+      background: rgba(142,240,208,0.12);
+      border: 1px solid rgba(142,240,208,0.24);
+      margin-bottom: 18px;
+    }
+
+    h1, h2, h3 { margin: 0 0 12px; line-height: 1.2; }
+    h1 { font-size: clamp(2rem, 4vw, 3rem); }
+    h2 { font-size: clamp(1.35rem, 2.4vw, 2rem); }
+    h3 { font-size: 1.08rem; }
+
+    .lead, .muted { color: var(--text-soft); }
+    .lead { font-size: 1.04rem; max-width: 50rem; }
+
+    .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+    .btn {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+      font-weight: 600;
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, var(--accent), #5e7dff);
+      border-color: transparent;
+    }
+
+    .meta {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .meta-item {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .meta-item strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 0.96rem;
+    }
+
+    .section { padding: 18px 0; }
+    .section-head { margin-bottom: 18px; }
+    .card { padding: 26px; }
+
+    .grid-2, .grid-3 { display: grid; gap: 18px; }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+
+    .chip-wrap { display: flex; flex-wrap: wrap; gap: 10px; }
+    .chip {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #d8def4;
+      font-size: 0.92rem;
+    }
+
+    .list { margin: 0; padding-left: 18px; color: var(--text-soft); }
+    .list li + li { margin-top: 8px; }
+
+    .feature { display: grid; gap: 14px; }
+    .feature-item {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .footer { padding: 24px 0 54px; color: var(--text-soft); font-size: 0.94rem; }
+
+    @media (max-width: 920px) {
+      .meta, .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../index.html">안병찬 Portfolio</a>
+      <nav class="menu">
+        <a href="../index.html">메인으로</a>
+        <a href="#overview">개요</a>
+        <a href="#tech">기술 포인트</a>
+        <a href="#learned">배운 점</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-card">
+          <div class="eyebrow">Project Detail</div>
+          <h1>Monster World</h1>
+          <p class="lead">
+            오픈월드 몬스터 수집형 RPG를 목표로 제작한 프로젝트입니다. 플레이어 전투와 몬스터 포획, 아군 몬스터 운용,
+            상태 기반 AI, 스킬 시스템, 데이터 테이블 구조, Shader Graph 활용까지 폭넓게 경험한 작업입니다.
+          </p>
+          <div class="cta">
+            <a class="btn primary" href="#tech">기술 포인트 보기</a>
+            <a class="btn" href="https://github.com/eggmoney1073/MonsterWolrd" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="btn" href="https://youtu.be/qKAZKSrnOBg" target="_blank" rel="noreferrer">시연 영상</a>
+          </div>
+
+          <div class="meta">
+            <div class="meta-item">
+              <strong>장르</strong>
+              <span class="muted">오픈월드 몬스터 수집형 RPG</span>
+            </div>
+            <div class="meta-item">
+              <strong>개발 기간</strong>
+              <span class="muted">2025.01 ~ 2025.03</span>
+            </div>
+            <div class="meta-item">
+              <strong>핵심 목표</strong>
+              <span class="muted">오브젝트 재사용, 상태머신, 데이터 관리</span>
+            </div>
+            <div class="meta-item">
+              <strong>개발 형태</strong>
+              <span class="muted">개인 프로젝트</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="overview" class="section">
+      <div class="wrap grid-2">
+        <article class="card">
+          <h2>프로젝트 개요</h2>
+          <p class="muted">
+            전투를 통해 몬스터를 사냥하고, 포획한 몬스터를 저장 및 소환하여 함께 전투할 수 있는 구조의 프로젝트입니다.
+            단순한 전투 구현을 넘어서, 적과 아군이 같은 몬스터 오브젝트를 공유할 수 있도록 재사용성을 고려해 설계했습니다.
+          </p>
+          <ul class="list">
+            <li>몬스터 사냥과 포획을 모두 성장 루프에 연결</li>
+            <li>도감, 저장 슬롯, 재소환 등 운용 요소까지 포함</li>
+            <li>아군과 적군 몬스터가 동일한 기본 구조를 공유하도록 설계</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h2>핵심 목표</h2>
+          <ul class="list">
+            <li>몬스터와 스킬 오브젝트를 재사용 가능한 구조로 제작</li>
+            <li>Custom State Machine을 이용해 AI와 스킬 흐름을 일관되게 관리</li>
+            <li>JSON 기반 데이터 로딩으로 수치와 테이블을 코드에서 분리</li>
+            <li>Object Pooling과 Shader Graph를 통해 성능과 표현을 동시에 개선</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="tech" class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>기술 포인트</h2>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <h3>Custom State Machine</h3>
+            <p class="muted">
+              상태의 Enter, Update, Exit를 Dictionary에 저장하는 방식으로 범용 상태머신을 만들고,
+              몬스터와 스킬 모두에 재사용했습니다. enum과 delegate를 결합해 여러 클래스에서 동일한 패턴으로 사용할 수 있게 구성했습니다.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Monster AI</h3>
+            <p class="muted">
+              적 몬스터는 순찰, 발견, 전투, 복귀 흐름을 따르며, 아군 몬스터는 플레이어와 전투 중인 적의 유무를 기준으로 행동을 변경합니다.
+              같은 몬스터 오브젝트가 아군과 적군 역할을 모두 수행하도록 설계했습니다.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Skill 시스템</h3>
+            <p class="muted">
+              스킬은 Init, Charge, Attack, Finish의 4단계 상태로 동작하며, SkillManager를 통해 요청되고 풀링된 오브젝트로 재사용됩니다.
+              Target과 Caster를 인자로 받아 아군과 적군 모두 같은 구조로 사용할 수 있게 만들었습니다.
+            </p>
+          </article>
+        </div>
+
+        <div class="grid-2" style="margin-top:18px;">
+          <article class="card">
+            <h3>데이터 기반 구조</h3>
+            <div class="feature">
+              <div class="feature-item">
+                <strong>테이블 분리</strong>
+                <div class="muted">MonsterLevelTable, MonsterTable, PlayerLevelTable, PlayerWeaponTable, SkillTable 등 역할별 테이블로 데이터 분리</div>
+              </div>
+              <div class="feature-item">
+                <strong>Excel → JSON 변환</strong>
+                <div class="muted">협업과 데이터 수정 편의성을 고려해 Excel 데이터를 JSON으로 변환하는 별도 프로그램 제작</div>
+              </div>
+              <div class="feature-item">
+                <strong>코드와 수치 분리</strong>
+                <div class="muted">레벨 수치, 몬스터 스탯, 스킬 정보 같은 핵심 데이터를 외부 파일로 관리해 수정 효율 확보</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>최적화와 렌더링</h3>
+            <ul class="list">
+              <li>Monster, Skill, Projectile, Effect에 Object Pooling 적용</li>
+              <li>실시간 생성/삭제를 줄여 런타임 부담 감소</li>
+              <li>Shader Graph로 Toon Shader를 직접 제작해 캐주얼한 분위기 표현</li>
+              <li>Dithering 효과를 추가해 플레이어를 가리는 오브젝트 표현 개선</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap grid-2">
+        <article class="card">
+          <h2>구현한 주요 기능</h2>
+          <ul class="list">
+            <li>New Game / Load Game / 세이브 슬롯 선택 구조</li>
+            <li>전투를 통한 경험치 획득 및 레벨업 성장</li>
+            <li>몬스터 포획, 저장, 소환 시스템</li>
+            <li>도감 오픈 및 전체 포획 시 클리어 처리</li>
+            <li>NavMeshAgent 기반 이동과 장애물 회피</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h2>내가 강조하고 싶은 부분</h2>
+          <ul class="list">
+            <li>단순히 기능을 구현한 것이 아니라, 아군과 적군이 같은 구조를 공유하도록 재사용성까지 고려한 점</li>
+            <li>상태머신, 스킬, 풀링, 데이터 테이블을 각각 따로 구현하는 데서 끝내지 않고 시스템적으로 연결한 점</li>
+            <li>게임플레이 로직, 데이터 구조, 렌더링 표현을 한 프로젝트 안에서 모두 경험한 점</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="learned" class="section">
+      <div class="wrap grid-2">
+        <article class="card">
+          <h2>성과</h2>
+          <ul class="list">
+            <li>복잡한 게임 로직을 모듈화된 C# 스크립트로 설계하고 구현하는 경험 축적</li>
+            <li>데이터 기반 개발 흐름을 직접 구축하며 수치 조정과 테이블 관리 경험 확보</li>
+            <li>Object Pooling과 Shader Graph를 통해 성능과 시각 표현을 함께 다룬 경험 획득</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h2>배운 점</h2>
+          <ul class="list">
+            <li>프로젝트 초기에 시스템 구조를 명확히 설계하는 것이 유지보수성과 개발 효율에 큰 영향을 준다는 점</li>
+            <li>모듈화와 재사용성이 가독성, 확장성, 생산성을 동시에 끌어올린다는 점</li>
+            <li>핵심 데이터를 코드에서 분리하는 데이터 기반 개발 방식이 장기적으로 훨씬 유연하다는 점</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="card">
+          <h2>사용 기술</h2>
+          <div class="chip-wrap">
+            <span class="chip">Unity</span>
+            <span class="chip">C#</span>
+            <span class="chip">Custom State Machine</span>
+            <span class="chip">NavMeshAgent</span>
+            <span class="chip">Object Pooling</span>
+            <span class="chip">Excel / JSON Data</span>
+            <span class="chip">Shader Graph</span>
+            <span class="chip">Toon Shader</span>
+            <span class="chip">Dithering</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">© 2026 Monster World Project Page</div>
+  </footer>
+</body>
+</html>
