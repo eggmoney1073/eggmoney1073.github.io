@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Slime Defense | 안병찬 포트폴리오</title>
+    <title>Slime Defense | Project Detail</title>
     <link rel="stylesheet" href="../style.css" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-highlight/prism-line-highlight.min.css">
 </head>
 <body>
     <div class="sky-bg">
@@ -21,9 +25,10 @@
         <div class="container nav">
             <a href="../index.html" class="logo">Byeongchan Ahn</a>
             <nav>
-                <a href="../index.html#about">소개</a>
-                <a href="../index.html#projects">프로젝트</a>
-                <a href="../index.html#contact">연락처</a>
+                <a href="../index.html">홈</a>
+                <a href="#overview">개요</a>
+                <a href="#capture">인게임 화면</a>
+                <a href="#core-code">핵심 코드</a>
             </nav>
         </div>
     </header>
@@ -31,183 +36,113 @@
     <main>
         <section class="page-hero container">
             <div class="page-hero-inner">
-                <div class="hero-panel glass-card">
+                <article class="glass-card hero-panel">
                     <p class="eyebrow">Project Detail</p>
                     <h1>Slime Defense</h1>
                     <p>
-                        Unity ECS 기반으로 제작한 모바일 디펜스 프로젝트입니다.
-                        플레이어가 끊기지 않고 몰입할 수 있는 전투 흐름을 만드는 것을 목표로 했으며,
-                        이를 위해 시스템 실행 순서를 그룹으로 분리하고 Grid 기반 충돌 판정을 구성해
-                        최적화와 확장성을 고려한 전투 루프를 설계했습니다.
+                        Unity ECS 기반으로 제작한 세로형 디펜스 프로젝트입니다.
+                        시스템 그룹 단위로 게임 흐름을 나누고,
+                        Grid 기반 충돌 판정과 LiveTag 기반 생명주기 관리로
+                        대량 엔티티 처리에 맞는 구조를 설계했습니다.
                     </p>
-                    <a class="back-link" href="../index.html#projects">← 프로젝트 목록으로</a>
-                </div>
+                </article>
 
                 <div class="image-frame">
-                    <img src="../images/slime-main.png" alt="슬라임 디펜스 메인 화면" />
+                    <img src="../images/slime-main.png" alt="Slime Defense 대표 이미지" />
                 </div>
             </div>
         </section>
 
-        <section class="container section">
-            <div class="info-grid">
-                <article class="metric-card">
-                    <span class="mini-label">엔진</span>
-                    <h3>Unity</h3>
-                    <p>ECS 기반 구조 설계</p>
-                </article>
-                <article class="metric-card">
-                    <span class="mini-label">핵심 기술</span>
-                    <h3>DOTS / Burst</h3>
-                    <p>데이터 중심 전투 루프</p>
-                </article>
-                <article class="metric-card">
-                    <span class="mini-label">핵심 포인트</span>
-                    <h3>시스템 흐름</h3>
-                    <p>Spawn → Move → Judgement → Calculate → Destroy</p>
-                </article>
-            </div>
-        </section>
-        
-        <section class="container section">
-            <div class="game-slider mobile-slider">
-                <div class="slider-track">
-                    <div class="slide-card">
-                        <img src="../images/slime1.png">
-                    </div>
-                    <div class="slide-card">
-                        <img src="../images/slime2.png">
-                    </div>
-                    <div class="slide-card">
-                        <img src="../images/slime3.png">
-                    </div>
-                </div>
-            </div>
-        </section>        
-
-        <section class="container section">
+        <section id="overview" class="container page-section">
             <div class="section-title-wrap">
                 <p class="eyebrow">Overview</p>
                 <h2>프로젝트 개요</h2>
             </div>
 
-            <div class="grid-2">
-                <article class="glass-card">
-                    <h3>무엇을 만들었는가</h3>
-                    <p>
-                        플레이어는 중앙에서 조준 방향만 제어하고, 적은 경로를 따라 이동하며,
-                        투사체는 ECS 시스템에서 생성되고 이동합니다.
-                        충돌 판정과 대미지 누적, 삭제 처리까지 모두 시스템 단위로 분리해 전투 루프를 구성했습니다.
-                    </p>
+            <div class="metric-grid detail-metric-grid">
+                <article class="metric-card">
+                    <span class="mini-label">장르</span>
+                    <h3>모바일 세로형 디펜스</h3>
+                    <p>대량 적과 투사체를 효율적으로 처리하는 전투 흐름을 설계했습니다.</p>
                 </article>
+                <article class="metric-card">
+                    <span class="mini-label">핵심 구조</span>
+                    <h3>ECS System Flow</h3>
+                    <p>관리, 생성, 이동, 판정, 계산, 삭제 단계를 시스템 그룹으로 분리했습니다.</p>
+                </article>
+                <article class="metric-card">
+                    <span class="mini-label">충돌 처리</span>
+                    <h3>Grid Collision</h3>
+                    <p>전수 비교가 아닌 주변 셀 탐색 방식으로 판정 비용을 줄였습니다.</p>
+                </article>
+                <article class="metric-card">
+                    <span class="mini-label">생명주기 관리</span>
+                    <h3>LiveTag</h3>
+                    <p>죽음 판정과 실제 삭제를 분리해 안정적인 흐름을 만들었습니다.</p>
+                </article>
+            </div>
 
-                <article class="glass-card">
-                    <h3>왜 중요한가</h3>
+            <div class="detail-block" style="margin-top: 18px;">
+                <article class="detail-card">
+                    <h3>설계 방향</h3>
                     <p>
-                        저는 전투의 몰입감을 유지하려면 먼저 안정적인 성능이 필요하다고 생각합니다.
-                        그래서 스폰, 이동, 판정, 계산, 삭제를 분리해 처리 비용과 책임 범위를 명확히 나눴고,
-                        새로운 무기나 적 타입이 추가되어도 쉽게 확장할 수 있는 구조를 만들었습니다.
+                        ECS에서는 시스템 실행 순서와 데이터 흐름이 매우 중요하기 때문에,
+                        스폰, 이동, 판정, 계산, 삭제를 그룹으로 명확히 나눴습니다.
+                        또한 적과 투사체 수가 늘어나는 상황을 고려해 Grid 기반 충돌 판정을 적용했고,
+                        LiveTag 기반 비활성화 흐름으로 삭제 타이밍 충돌을 줄였습니다.
                     </p>
                 </article>
             </div>
         </section>
 
-        <section class="container section">
+        <section id="capture" class="container page-section">
             <div class="section-title-wrap">
-                <p class="eyebrow">Architecture</p>
-                <h2>핵심 구조 분석</h2>
+                <p class="eyebrow">Gameplay</p>
+                <h2>인게임 화면</h2>
             </div>
 
-            <div class="arch-grid">
-                <article class="arch-card">
-                    <h3>1. 시스템 그룹으로 전투 흐름을 분리</h3>
-                    <p>
-                        이 프로젝트의 가장 핵심은 업데이트 순서를 명확히 고정한 점입니다.
-                        관리, 생성, 이동, 판정, 계산, 삭제를 별도 그룹으로 두어
-                        한 프레임 안에서도 어떤 작업이 먼저 실행되는지 구조적으로 보장했습니다.
-                    </p>
-                </article>
-
-                <article class="arch-card">
-                    <h3>2. Grid 기반 충돌 판정</h3>
-                    <p>
-                        모든 적을 매 프레임 전수 조사하지 않고,
-                        적을 Grid 해시에 넣은 뒤 투사체 주변 셀만 검사하는 방식으로 충돌 대상을 좁혔습니다.
-                        ECS에서 많은 개체를 다룰 때 중요한 구조입니다.
-                    </p>
-                </article>
-
-                <article class="arch-card">
-                    <h3>3. 브리지 구조로 MonoBehaviour와 ECS 연결</h3>
-                    <p>
-                        조준 방향 같은 입력값은 MonoBehaviour 쪽에서 받아도,
-                        실제 발사는 ECS 시스템에서 이 값을 읽어 처리합니다.
-                        UI와 입력은 익숙한 방식으로 유지하면서,
-                        핵심 전투 로직만 ECS에 실은 구조입니다.
-                    </p>
-                </article>
-
-                <article class="arch-card">
-                    <h3>4. 단계별 후처리 분리</h3>
-                    <p>
-                        충돌에서 바로 삭제하지 않고,
-                        충돌 기록 → 대미지 누적 → 생존 판정 → 삭제로 분리했습니다.
-                        이 방식은 ECS에서 병렬성과 안정성을 유지하는 데 유리합니다.
-                    </p>
-                </article>
+            <div class="capture-fade-wrap">
+                <div class="capture-fade-slider portrait" data-interval="2500">
+                    <img src="../images/slime-main-1.png" alt="Slime Defense 이미지 1" class="active">
+                    <img src="../images/slime-main-2.png" alt="Slime Defense 이미지 2">
+                    <img src="../images/slime-main-3.png" alt="Slime Defense 이미지 3">
+                </div>
+                <div class="capture-caption">
+                    세로형 전투 화면과 주요 UI 구성을 자동으로 순환하면서 보여줍니다.
+                    이미지를 더 넣고 싶으면 이 영역 안에 img 태그만 추가하면 됩니다.
+                </div>
             </div>
         </section>
 
-        <section class="container section">
-            <div class="section-title-wrap">
-                <p class="eyebrow">Flow</p>
-                <h2>프레임 처리 흐름</h2>
-            </div>
-
-            <div class="timeline-list">
-                <article class="timeline-item">
-                    <h3>Manage</h3>
-                    <p>TimeScaleData를 갱신해 전체 시스템이 사용할 공통 시간값을 먼저 정리합니다.</p>
-                </article>
-                <article class="timeline-item">
-                    <h3>Spawn</h3>
-                    <p>적을 경로 시작점에 생성하고, 무기는 조준 방향을 기준으로 투사체를 발사합니다.</p>
-                </article>
-                <article class="timeline-item">
-                    <h3>Move</h3>
-                    <p>적은 웨이포인트를 따라 이동하고, 투사체는 방향 벡터를 따라 직선 이동합니다.</p>
-                </article>
-                <article class="timeline-item">
-                    <h3>Judgement</h3>
-                    <p>Grid를 구축한 뒤 투사체 주변 셀만 검사해서 충돌 여부를 판단합니다.</p>
-                </article>
-                <article class="timeline-item">
-                    <h3>Calculate</h3>
-                    <p>적이 받은 대미지 버퍼를 합산해 체력을 깎고, 관통 수나 생존 여부를 계산합니다.</p>
-                </article>
-                <article class="timeline-item">
-                    <h3>Destroy</h3>
-                    <p>죽은 엔티티나 수명이 끝난 엔티티를 마지막 단계에서 정리합니다.</p>
-                </article>
-            </div>
-        </section>
-
-        <section class="container section">
+        <section id="core-code" class="container page-section">
             <div class="section-title-wrap">
                 <p class="eyebrow">Core Code</p>
-                <h2>핵심 코드와 설명</h2>
+                <h2>핵심 코드</h2>
             </div>
 
-            <div class="code-grid">
-                <article class="code-card">
-                    <span class="code-label">System Flow</span>
-                    <h3>시스템 그룹 순서 고정</h3>
-                    <p>
-                        전투 흐름의 뼈대다.
-                        어떤 시스템이 어느 순서로 실행되는지 코드 레벨에서 고정해,
-                        프레임 처리 순서를 예측 가능하게 만든다.
-                    </p>
-<pre><code>[UpdateInGroup(typeof(SimulationSystemGroup))]
+            <div class="code-detail-grid">
+                <article class="code-detail-card">
+                    <div class="code-detail-header">
+                        <p class="code-label">System Flow</p>
+                        <h3>ECS System Flow</h3>
+                        <p>
+                            게임 전체 흐름을 관리, 생성, 이동, 판정, 계산, 삭제 순서로 고정한 시스템 그룹 구조입니다.
+                        </p>
+                    </div>
+                    <div class="code-detail-body">
+                        <div class="reason-box">
+                            <strong>왜 이렇게 설계했는가?</strong><br>
+                            ECS에서는 시스템 수가 늘어날수록 무엇이 먼저 실행되는지가 매우 중요합니다.
+                            그래서 스폰 이후 이동, 이동 이후 판정, 판정 이후 계산처럼 흐름을 그룹으로 고정해
+                            로직 충돌을 줄이고 디버깅하기 쉽게 설계했습니다.
+                        </div>
+                        <div class="summary-box">
+                            <strong>핵심 포인트</strong><br>
+                            UpdateAfter를 사용해 시스템 실행 순서를 명시적으로 연결한 구조입니다.
+                        </div>
+<pre class="line-numbers" data-line="3-4,6-7,9-11,13-15,17-19,21-23,25-27"><code class="language-csharp">using Unity.Entities;
+
+[UpdateInGroup(typeof(SimulationSystemGroup))]
 public partial class SlimeDefenseSystemGroup : ComponentSystemGroup { }
 
 [UpdateInGroup(typeof(SlimeDefenseSystemGroup))]
@@ -223,168 +158,337 @@ public partial class MoveSystemGroup : ComponentSystemGroup { }
 
 [UpdateInGroup(typeof(SlimeDefenseSystemGroup))]
 [UpdateAfter(typeof(MoveSystemGroup))]
-public partial class JudgementSystemGroup : ComponentSystemGroup { }</code></pre>
+public partial class JudgementSystemGroup : ComponentSystemGroup { }
+
+[UpdateInGroup(typeof(SlimeDefenseSystemGroup))]
+[UpdateAfter(typeof(JudgementSystemGroup))]
+public partial class CalculateSystemGroup : ComponentSystemGroup { }
+
+[UpdateInGroup(typeof(SlimeDefenseSystemGroup))]
+[UpdateAfter(typeof(CalculateSystemGroup))]
+public partial class DestroySystemGroup : ComponentSystemGroup { }</code></pre>
+                    </div>
                 </article>
 
-                <article class="code-card">
-                    <span class="code-label">Spawn</span>
-                    <h3>경로 기반 적 생성</h3>
-                    <p>
-                        적 생성 시 웨이포인트 시작 위치를 가져오고,
-                        Path 참조와 체력 데이터를 함께 부여한다.
-                        단순 Instantiate가 아니라 전투에 필요한 상태를 한 번에 세팅한다.
-                    </p>
-<pre><code>Entity enemy = ecb.Instantiate(spawner.ValueRO.enemyPrefab);
+                <article class="code-detail-card">
+                    <div class="code-detail-header">
+                        <p class="code-label">Collision</p>
+                        <h3>Grid 기반 충돌 판정</h3>
+                        <p>
+                            투사체와 적의 충돌을 전체 비교가 아닌 Grid 셀 기반으로 판정하는 구조입니다.
+                        </p>
+                    </div>
+                    <div class="code-detail-body">
+                        <div class="reason-box">
+                            <strong>왜 이렇게 설계했는가?</strong><br>
+                            적과 투사체 수가 늘어나는 디펜스 게임에서 모든 엔티티를 전수 비교하면 비용이 빠르게 커집니다.
+                            그래서 먼저 Grid에 엔티티를 배치하고, 충돌 검사 시 현재 셀과 주변 셀만 탐색하도록 설계해
+                            충돌 판정 범위를 줄였습니다.
+                        </div>
+                        <div class="summary-box">
+                            <strong>핵심 포인트</strong><br>
+                            GridBuild 단계에서 맵을 채우고, Collision 단계에서 주변 3x3 셀만 검사하는 구조가 핵심입니다.
+                        </div>
+<pre class="line-numbers" data-line="8-9,19-25,30-36,53-59,64-74"><code class="language-csharp">using Unity.Burst;
+using Unity.Collections;
+using Unity.Entities;
+using Unity.Mathematics;
+using Unity.Transforms;
 
-float3 spawnPos = waypoints[0].nodePosition;
-spawnPos.z += _spawnIndex * 0.001f;
-
-ecb.SetComponent(enemy, LocalTransform.FromPosition(spawnPos));
-
-ecb.AddComponent(enemy, new EntityIndex
+[BurstCompile]
+[WithAll(typeof(ProjectileTag))]
+public partial struct Collision_Job : IJobEntity
 {
-    index = _spawnIndex
-});
+    public int _gridWidth;
+    public float _cellSize;
 
-ecb.AddComponent(enemy, new ECS_PathReference
-{
-    path = pathEntity
-});
+    [ReadOnly]
+    public NativeParallelMultiHashMap&lt;int, Entity&gt; _gridMap;
 
-ecb.AddComponent(enemy, new EnemyHealth
-{
-    health = 100f + (_spawnIndex * 100f * spawner.ValueRO.enemyHealthSale)
-});</code></pre>
-                </article>
+    [ReadOnly]
+    public ComponentLookup&lt;LocalTransform&gt; _transformLookup;
+    [ReadOnly]
+    public ComponentLookup&lt;Collision&gt; _radiusLookup;
 
-                <article class="code-card">
-                    <span class="code-label">Bridge + Fire</span>
-                    <h3>입력과 ECS 발사를 연결</h3>
-                    <p>
-                        조준 방향은 브리지에서 저장하고,
-                        무기 발사 시스템은 그 값을 읽어 투사체를 생성한다.
-                        UI 입력과 ECS 전투 로직을 깔끔하게 분리한 구조다.
-                    </p>
-<pre><code>float3 dir = AimDirectionBridge.AimDirection;
-float angle = math.atan2(dir.y, dir.x);
+    [NativeDisableParallelForRestriction]
+    public BufferLookup&lt;HitEnemyBufferElement&gt; _hitBufferLookup;
 
-Entity projectileEntity = ecb.Instantiate(projectile.ValueRO.projectileEntity);
+    [NativeDisableParallelForRestriction]
+    public BufferLookup&lt;Damaged&gt; _damagedBufferLookup;
 
-ecb.SetComponent(
-    projectileEntity,
-    LocalTransform.FromPositionRotationScale(
-        new float3(0, 0, _spawnIndex * -0.001f),
-        quaternion.RotateZ(angle),
-        1f
-    )
-);
-
-ecb.AddComponent(projectileEntity, new Direction
-{
-    moveDirection = dir
-});</code></pre>
-                </article>
-
-                <article class="code-card">
-                    <span class="code-label">Grid Collision</span>
-                    <h3>Grid 구축 후 주변 셀만 검사</h3>
-                    <p>
-                        충돌 판정의 성능 포인트다.
-                        적을 Grid에 넣고, 투사체는 중심 셀 기준 3x3 범위만 조회해서 충돌 후보를 찾는다.
-                    </p>
-<pre><code>GridBuild_Job gridJob = new GridBuild_Job
-{
-    cellSize = cellSize,
-    gridWidth = gridWidth,
-    gridMap = _gridMap.AsParallelWriter()
-};
-
-Collision_Job collisionJob = new Collision_Job
-{
-    _cellSize = cellSize,
-    _gridWidth = gridWidth,
-    _gridMap = _gridMap,
-    _hitBufferLookup = SystemAPI.GetBufferLookup&lt;HitEnemyBufferElement&gt;(false),
-    _transformLookup = SystemAPI.GetComponentLookup&lt;LocalTransform&gt;(true),
-    _radiusLookup = SystemAPI.GetComponentLookup&lt;Collision&gt;(true),
-    _damagedBufferLookup = SystemAPI.GetBufferLookup&lt;Damaged&gt;(false)
-};</code></pre>
-                </article>
-
-                <article class="code-card">
-                    <span class="code-label">Damage</span>
-                    <h3>충돌과 체력 계산 분리</h3>
-                    <p>
-                        충돌 시 바로 체력을 깎지 않고 Damaged 버퍼에 기록한 뒤,
-                        다음 계산 단계에서 한 번에 처리한다.
-                        단계 분리 덕분에 병렬 작업 구조를 유지하기 좋다.
-                    </p>
-<pre><code>public void Execute(
-    Entity enemy,
-    ref DynamicBuffer&lt;Damaged&gt; damage,
-    ref EnemyHealth health,
-    EnabledRefRW&lt;LiveTag&gt; liveTag)
-{
-    for (int i = 0; i &lt; damage.Length; i++)
+    public void Execute(Entity projectileEntity, in LocalTransform transform, in Collision collider, in ProjectileDamage projectileDamage)
     {
-        health.health -= damage[i].damage;
+        float3 position = transform.Position;
+
+        int centerX = (int)math.floor(position.x / _cellSize) + (_gridWidth / 2);
+        int centerY = (int)math.floor(position.z / _cellSize) + (_gridWidth / 2);
+
+        int offsetY = -1;
+        while (offsetY &lt;= 1)
+        {
+            int offsetX = -1;
+            while (offsetX &lt;= 1)
+            {
+                int axisX = centerX + offsetX;
+                int axisY = centerY + offsetY;
+                int index = axisX + _gridWidth * axisY;
+
+                NativeParallelMultiHashMapIterator&lt;int&gt; iterator;
+                Entity other;
+
+                bool found = _gridMap.TryGetFirstValue(index, out other, out iterator);
+
+                if (found)
+                {
+                    do
+                    {
+                        float distanceSq = math.lengthsq(position - _transformLookup[other].Position);
+                        float sumRadius = collider.radius + _radiusLookup[other].radius;
+
+                        if (distanceSq &lt;= sumRadius * sumRadius)
+                        {
+                            DynamicBuffer&lt;HitEnemyBufferElement&gt; hitBuffer = _hitBufferLookup[projectileEntity];
+                            DynamicBuffer&lt;Damaged&gt; damagedBuffer = _damagedBufferLookup[other];
+
+                            hitBuffer.Add(new HitEnemyBufferElement { enemy = other });
+                            damagedBuffer.Add(new Damaged { damage = projectileDamage.damage });
+                        }
+                    }
+                    while (_gridMap.TryGetNextValue(out other, ref iterator));
+                }
+
+                offsetX++;
+            }
+
+            offsetY++;
+        }
+    }
+}</code></pre>
+                    </div>
+                </article>
+
+                <article class="code-detail-card">
+                    <div class="code-detail-header">
+                        <p class="code-label">Fire System</p>
+                        <h3>무기 발사와 투사체 생성</h3>
+                        <p>
+                            TimeScale을 반영해 발사 쿨다운을 누적하고,
+                            조건이 맞으면 ECS에서 투사체를 생성하는 발사 시스템입니다.
+                        </p>
+                    </div>
+                    <div class="code-detail-body">
+                        <div class="reason-box">
+                            <strong>왜 이렇게 설계했는가?</strong><br>
+                            발사 로직을 MonoBehaviour에 두면 ECS 엔티티 흐름과 분리되어 관리 포인트가 늘어납니다.
+                            그래서 무기 상태, 발사 간격, 데미지, 관통 수치까지 ECS 데이터로 처리하고,
+                            발사 순간에 필요한 컴포넌트만 붙여 투사체를 생성하도록 설계했습니다.
+                        </div>
+                        <div class="summary-box">
+                            <strong>핵심 포인트</strong><br>
+                            scaledDeltaTime을 사용해 시간 배속 영향을 반영하고,
+                            발사 시 방향, 데미지, 관통 정보, 피격 버퍼를 함께 세팅하는 구조입니다.
+                        </div>
+<pre class="line-numbers" data-line="7-10,17-21,29-34,36-49,51-55"><code class="language-csharp">using Unity.Burst;
+using Unity.Entities;
+using Unity.Mathematics;
+using Unity.Transforms;
+
+[BurstCompile]
+[UpdateInGroup(typeof(SpawnSystemGroup))]
+partial struct MainFire_System : ISystem
+{
+    EntityQuery _projectileQuery;
+    int _spawnIndex;
+
+    public void OnCreate(ref SystemState state)
+    {
+        _projectileQuery = state.GetEntityQuery(ComponentType.ReadOnly&lt;ProjectileTag&gt;());
+        _spawnIndex = 0;
     }
 
-    damage.Clear();
+    public void OnUpdate(ref SystemState state)
+    {
+        EntityCommandBuffer ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
+        TimeScaleData timeData = SystemAPI.GetSingleton&lt;TimeScaleData&gt;();
+        float deltaTime = timeData.scaledDeltaTime;
+
+        foreach ((RefRW&lt;FireRate&gt; fireData, RefRW&lt;ProjectilePrefab&gt; projectile, RefRO&lt;WeaponDamage&gt; weaponDamage, RefRO&lt;WeaponPierce&gt; pierce, Entity entity)
+            in SystemAPI.Query&lt;RefRW&lt;FireRate&gt;, RefRW&lt;ProjectilePrefab&gt;, RefRO&lt;WeaponDamage&gt;, RefRO&lt;WeaponPierce&gt;&gt;().WithAll&lt;WeaponTag&gt;().WithEntityAccess())
+        {
+            fireData.ValueRW.timer += deltaTime;
+
+            if (fireData.ValueRO.timer &gt;= fireData.ValueRO.coolDown)
+            {
+                fireData.ValueRW.timer = 0f;
+
+                Entity projectileEntity = ecb.Instantiate(projectile.ValueRO.projectileEntity);
+
+                float3 dir = AimDirectionBridge.AimDirection;
+                float angle = math.atan2(dir.y, dir.x);
+                float3 spawnPosition = new float3(0, 0, _spawnIndex * -0.001f);
+                _spawnIndex++;
+
+                ecb.SetComponent(projectileEntity, LocalTransform.FromPositionRotationScale(spawnPosition, quaternion.RotateZ(angle), 1f));
+                ecb.AddComponent(projectileEntity, new Direction { moveDirection = dir });
+                ecb.AddComponent(projectileEntity, new ProjectileDamage { damage = weaponDamage.ValueRO.damage });
+                ecb.AddComponent(projectileEntity, new PierceData { maxPierceCount = pierce.ValueRO.pierceCount });
+                ecb.AddBuffer&lt;HitEnemyBufferElement&gt;(projectileEntity);
+            }
+        }
+
+        ecb.Playback(state.EntityManager);
+        ecb.Dispose();
+    }
 }</code></pre>
+                    </div>
                 </article>
 
-                <article class="code-card">
-                    <span class="code-label">Destroy</span>
-                    <h3>마지막 단계에서 엔티티 정리</h3>
-                    <p>
-                        삭제를 별도 그룹으로 미뤄서 프레임 중간의 참조 꼬임을 줄였다.
-                        ECS에서 안전한 후처리 흐름을 만들기 위한 선택이다.
-                    </p>
-<pre><code>EntityCommandBuffer entityCommandBuffer =
-    new EntityCommandBuffer(Allocator.TempJob);
+                <article class="code-detail-card">
+                    <div class="code-detail-header">
+                        <p class="code-label">Lifecycle</p>
+                        <h3>LiveTag 기반 생명주기 관리</h3>
+                        <p>
+                            체력이 0 이하가 된 적을 즉시 Destroy하지 않고,
+                            LiveTag를 비활성화한 뒤 삭제 시스템에서 정리하는 구조입니다.
+                        </p>
+                    </div>
+                    <div class="code-detail-body">
+                        <div class="reason-box">
+                            <strong>왜 이렇게 설계했는가?</strong><br>
+                            판정 중간에 즉시 삭제하면 같은 프레임 안에서 다른 시스템과 충돌할 수 있습니다.
+                            그래서 죽음 판정과 실제 삭제를 분리해,
+                            먼저 비활성 상태로 전환하고 마지막 단계에서 안전하게 제거하도록 설계했습니다.
+                        </div>
+                        <div class="summary-box">
+                            <strong>핵심 포인트</strong><br>
+                            LiveTag를 끄는 단계와, WithDisabled 조건으로 엔티티를 정리하는 단계를 나눈 구조입니다.
+                        </div>
+<pre class="line-numbers" data-line="3,8-18,21-27"><code class="language-csharp">using Unity.Entities;
 
-EntityDestroy_Job destroyJob = new EntityDestroy_Job
+public struct LiveTag : IComponentData, IEnableableComponent { }
+
+[WithAll(typeof(EnemyTag))]
+partial struct EnemyDead_System : ISystem
 {
-    ecbWriter = entityCommandBuffer.AsParallelWriter()
-};
+    public void OnUpdate(ref SystemState state)
+    {
+        foreach ((RefRO&lt;EnemyHealth&gt; enemyHealth, EnabledRefRW&lt;LiveTag&gt; liveTag, Entity entity)
+            in SystemAPI.Query&lt;RefRO&lt;EnemyHealth&gt;, EnabledRefRW&lt;LiveTag&gt;&gt;().WithEntityAccess())
+        {
+            if (enemyHealth.ValueRO.health &lt;= 0)
+            {
+                liveTag.ValueRW = false;
 
-state.Dependency = destroyJob.ScheduleParallel(state.Dependency);
-state.Dependency.Complete();
+                RefRW&lt;GameProgress&gt; progress = SystemAPI.GetSingletonRW&lt;GameProgress&gt;();
+                progress.ValueRW.kill += 1;
+            }
+        }
+    }
+}
 
-entityCommandBuffer.Playback(state.EntityManager);
-entityCommandBuffer.Dispose();</code></pre>
+[WithDisabled(typeof(LiveTag))]
+public partial struct EntityDestroy_Job : IJobEntity
+{
+    public EntityCommandBuffer.ParallelWriter ecbWriter;
+}</code></pre>
+                    </div>
+                </article>
+
+                <article class="code-detail-card">
+                    <div class="code-detail-header">
+                        <p class="code-label">Time Management</p>
+                        <h3>TimeScale 관리 시스템</h3>
+                        <p>
+                            일반 DeltaTime이 아니라 게임 시간 배속을 반영한 scaledDeltaTime을 만들어
+                            전체 시스템이 같은 기준으로 시간을 사용하도록 만든 구조입니다.
+                        </p>
+                    </div>
+                    <div class="code-detail-body">
+                        <div class="reason-box">
+                            <strong>왜 이렇게 설계했는가?</strong><br>
+                            일시정지, 슬로우 모션, 배속 같은 기능을 later 넣을 때,
+                            각 시스템이 제각각 시간을 계산하면 관리가 어려워집니다.
+                            그래서 공용 TimeScaleData를 두고 모든 시스템이 같은 시간 기준을 보도록 설계했습니다.
+                        </div>
+                        <div class="summary-box">
+                            <strong>핵심 포인트</strong><br>
+                            timeScale, scaledDeltaTime, unscaledDeltaTime을 함께 관리하는 공용 시간 구조입니다.
+                        </div>
+<pre class="line-numbers" data-line="8-18,21-28,30-34"><code class="language-csharp">using Unity.Burst;
+using Unity.Entities;
+
+[BurstCompile]
+[UpdateInGroup(typeof(ManageSystemGroup))]
+partial struct TimeManager_System : ISystem
+{
+    [BurstCompile]
+    public void OnCreate(ref SystemState state)
+    {
+        if (SystemAPI.HasSingleton&lt;TimeScaleData&gt;() == false)
+        {
+            Entity entity = state.EntityManager.CreateEntity();
+
+            state.EntityManager.AddComponentData(entity, new TimeScaleData
+            {
+                timeScale = 1f,
+                scaledDeltaTime = 0f,
+                time = 0f,
+                unscaledDeltaTime = 0f
+            });
+        }
+    }
+
+    [BurstCompile]
+    public void OnUpdate(ref SystemState state)
+    {
+        float deltaTime = SystemAPI.Time.DeltaTime;
+        RefRW&lt;TimeScaleData&gt; timeData = SystemAPI.GetSingletonRW&lt;TimeScaleData&gt;();
+
+        timeData.ValueRW.scaledDeltaTime = deltaTime * timeData.ValueRO.timeScale;
+        timeData.ValueRW.unscaledDeltaTime = deltaTime;
+        timeData.ValueRW.time += deltaTime * timeData.ValueRO.timeScale;
+    }
+}</code></pre>
+                    </div>
                 </article>
             </div>
+
+            <a class="back-link" href="../index.html">← 홈으로 돌아가기</a>
         </section>
 
-        <section class="container section">
-            <div class="section-title-wrap">
-                <p class="eyebrow">What I Learned</p>
-                <h2>이 프로젝트에서 보여줄 수 있는 역량</h2>
-            </div>
-
-            <div class="grid-2">
-                <article class="glass-card">
-                    <h3>ECS 구조 설계 능력</h3>
-                    <p>
-                        단순히 ECS 문법을 사용한 것이 아니라,
-                        실제 전투 루프를 시스템 그룹 단위로 나눠 설계했습니다.
-                        이 점이 프로젝트의 가장 큰 기술 포인트입니다.
-                    </p>
-                </article>
-
-                <article class="glass-card">
-                    <h3>성능을 고려한 판정 구조</h3>
-                    <p>
-                        Grid 해시를 도입해 충돌 후보를 줄였고,
-                        충돌과 계산을 분리해 다수 개체 처리에 맞는 구조를 잡았습니다.
-                    </p>
-                </article>
-            </div>
-
-            <a class="back-link" href="../index.html#projects">← 프로젝트 목록으로</a>
-        </section>
+        <div class="footer-spacer"></div>
     </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-csharp.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-highlight/prism-line-highlight.min.js"></script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const sliders = document.querySelectorAll(".capture-fade-slider");
+
+        sliders.forEach(function (slider) {
+            const images = slider.querySelectorAll("img");
+            const interval = Number(slider.dataset.interval) || 2500;
+
+            if (images.length <= 1) {
+                if (images.length === 1) {
+                    images[0].classList.add("active");
+                }
+                return;
+            }
+
+            let currentIndex = 0;
+            images[currentIndex].classList.add("active");
+
+            setInterval(function () {
+                images[currentIndex].classList.remove("active");
+                currentIndex = (currentIndex + 1) % images.length;
+                images[currentIndex].classList.add("active");
+            }, interval);
+        });
+    });
+    </script>
 </body>
 </html>
