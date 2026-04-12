@@ -565,10 +565,14 @@ ul {
 
 .capture-fade-slider.landscape {
     aspect-ratio: 16 / 9;
+    max-width: 720px;
+    margin: 0 auto;
 }
 
 .capture-fade-slider.portrait {
     aspect-ratio: 9 / 16;
+    max-width: 220px;
+    margin: 0 auto;
 }
 
 .capture-fade-slider img {
@@ -596,7 +600,7 @@ ul {
 .code-detail-grid {
     display: grid;
     gap: 18px;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
 }
 
 .code-detail-card {
@@ -649,9 +653,10 @@ ul {
     background: rgba(4, 8, 18, 0.88) !important;
     border: 1px solid rgba(255, 255, 255, 0.06);
     color: #dbe8ff;
-    font-size: 0.88rem;
-    line-height: 1.6;
+    font-size: 0.92rem;
+    line-height: 1.7;
     font-family: "Consolas", "D2Coding", monospace;
+    white-space: pre;
 }
 
 .code-detail-card code[class*="language-"],
