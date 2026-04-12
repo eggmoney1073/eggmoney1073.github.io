@@ -1,190 +1,107 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Monster World | 안병찬 Portfolio</title>
-  <meta name="description" content="Monster World 프로젝트 상세 페이지입니다. 몬스터 AI, 스킬, 데이터 구조, 최적화 경험을 정리했습니다.">
-  <link rel="stylesheet" href="../style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monster World | 안병찬 포트폴리오</title>
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
+    <div class="bg-grid"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
 
-<header>
-  <div class="wrap header-inner">
-    <a class="brand" href="../index.html">안병찬 Portfolio</a>
-    <nav class="nav">
-      <a href="../index.html">메인</a>
-      <a href="#overview">개요</a>
-      <a href="#tech">기술</a>
-      <a href="#learned">배운 점</a>
-    </nav>
-  </div>
-</header>
-
-<main>
-  <section class="hero">
-    <div class="wrap">
-      <div class="hero-box">
-        <div class="detail-hero-image">
-          <img src="../images/monster-world-title.png" alt="몬스터 월드 메인 화면">
+    <header class="site-header">
+        <div class="container nav">
+            <a href="../index.html" class="logo">BC<span>PORTFOLIO</span></a>
+            <nav class="nav-links">
+                <a href="../index.html#projects">Projects</a>
+                <a href="../index.html#about">About</a>
+            </nav>
         </div>
+    </header>
 
-        <div class="eyebrow">Project Detail</div>
-        <h1>Monster World</h1>
-        <p class="lead">
-          오픈월드 몬스터 수집형 RPG를 목표로 제작한 프로젝트입니다.
-          플레이어 전투, 몬스터 포획과 소환, 상태 기반 AI, 데이터 테이블 구조, Shader Graph 활용까지 폭넓게 경험한 작업입니다.
-        </p>
+    <main>
+        <section class="project-hero container">
+            <a href="../index.html" class="back-link">← 메인으로 돌아가기</a>
 
-        <div class="button-row">
-          <a class="btn primary" href="https://github.com/eggmoney1073/MonsterWolrd" target="_blank">GitHub</a>
-          <a class="btn" href="https://youtu.be/qKAZKSrnOBg" target="_blank">시연 영상</a>
-          <a class="btn" href="../index.html">메인으로</a>
+            <div class="project-hero-box">
+                <p class="eyebrow">PROJECT 02</p>
+                <h1>Monster World</h1>
+                <p>
+                    몬스터 포획, 전투, 성장, 저장 구조를 갖춘 3D 액션 RPG 프로젝트입니다.
+                    단순 전투 구현이 아니라, 몬스터 재사용 구조와 데이터 관리, 상태 제어까지 포함해 시스템 중심으로 설계했습니다.
+                </p>
+
+                <div class="project-meta">
+                    <span>Unity</span>
+                    <span>C#</span>
+                    <span>State Machine</span>
+                    <span>Object Pooling</span>
+                    <span>JSON Data</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-cover container">
+            <img src="../images/monster-main.png" alt="몬스터 월드 메인 화면">
+        </section>
+
+        <section class="container content-grid">
+            <div>
+                <div class="info-card">
+                    <h2>프로젝트 개요</h2>
+                    <p>
+                        플레이어는 몬스터와 전투하고, 포획한 몬스터를 저장 및 소환하여 함께 전투할 수 있습니다.
+                        전투 경험치, 성장, 도감, 저장 슬롯까지 연결되는 구조를 하나의 게임 흐름으로 구현했습니다.
+                    </p>
+                </div>
+
+                <div class="info-card">
+                    <h3>핵심 기능</h3>
+                    <ul>
+                        <li>몬스터 포획 및 소환 시스템</li>
+                        <li>상태 전환 기반 몬스터 AI</li>
+                        <li>스킬 사용 구조와 오브젝트 재사용</li>
+                        <li>JSON 기반 데이터 로드 및 관리</li>
+                        <li>Shader Graph를 활용한 연출 제작</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="highlight-list">
+                <div class="highlight-item">
+                    <h3>State Machine 기반 AI</h3>
+                    <p>
+                        몬스터의 행동을 상태 단위로 분리해 순찰, 추적, 전투, 복귀 흐름을 제어했습니다.
+                        아군과 적군이 같은 오브젝트 구조를 공유하면서도 상황에 따라 다른 행동을 하도록 설계했습니다.
+                    </p>
+                </div>
+
+                <div class="highlight-item">
+                    <h3>Object Pooling 최적화</h3>
+                    <p>
+                        몬스터, 스킬, 투사체, 이펙트 등을 풀링 구조로 관리해 런타임에서의 생성과 삭제 비용을 줄이고
+                        보다 안정적인 플레이 환경을 목표로 했습니다.
+                    </p>
+                </div>
+
+                <div class="highlight-item">
+                    <h3>데이터 기반 개발</h3>
+                    <p>
+                        Excel 데이터를 JSON으로 변환해 게임 수치와 테이블을 관리했습니다.
+                        하드코딩을 줄이고, 밸런스 조정과 데이터 수정이 편한 구조를 만드는 데 집중했습니다.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <p>© 2026 안병찬 Portfolio</p>
+            <p>Monster World Showcase</p>
         </div>
-
-        <div class="meta-row">
-          <div class="meta-box">
-            <strong>장르</strong>
-            <span class="sub">오픈월드 몬스터 수집형 RPG</span>
-          </div>
-          <div class="meta-box">
-            <strong>개발 기간</strong>
-            <span class="sub">2025.01 ~ 2025.03</span>
-          </div>
-          <div class="meta-box">
-            <strong>핵심 목표</strong>
-            <span class="sub">재사용 구조, 상태머신, 데이터 관리</span>
-          </div>
-          <div class="meta-box">
-            <strong>개발 형태</strong>
-            <span class="sub">개인 프로젝트</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="overview">
-    <div class="wrap grid-2">
-      <div class="card">
-        <h2>프로젝트 개요</h2>
-        <p class="sub">
-          전투를 통해 몬스터를 사냥하고, 포획한 몬스터를 저장 및 소환하여 함께 전투할 수 있는 구조의 프로젝트입니다.
-          단순 전투 구현을 넘어서, 적과 아군이 같은 몬스터 오브젝트를 공유할 수 있도록 재사용성을 고려해 설계했습니다.
-        </p>
-      </div>
-
-      <div class="card">
-        <h2>핵심 목표</h2>
-        <ul class="sub">
-          <li>몬스터와 스킬 오브젝트를 재사용 가능한 구조로 제작</li>
-          <li>Custom State Machine으로 AI와 스킬 흐름을 일관되게 관리</li>
-          <li>JSON 기반 데이터 로딩으로 수치와 테이블을 코드에서 분리</li>
-          <li>Object Pooling과 Shader Graph로 성능과 표현을 동시에 개선</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section id="tech">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>기술 포인트</h2>
-      </div>
-
-      <div class="grid-3">
-        <div class="card">
-          <h3>Custom State Machine</h3>
-          <p class="sub">
-            상태의 Enter, Update, Exit를 Dictionary에 저장하는 방식으로 범용 상태머신을 만들고,
-            몬스터와 스킬 모두에 재사용했습니다.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Monster AI</h3>
-          <p class="sub">
-            적 몬스터는 순찰, 발견, 전투, 복귀 흐름을 따르며, 아군 몬스터는 플레이어와 전투 중인 적 유무를 기준으로 행동을 변경합니다.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Skill 시스템</h3>
-          <p class="sub">
-            Init, Charge, Attack, Finish의 4단계 상태 구조로 스킬을 만들고,
-            SkillManager와 풀링 구조를 통해 재사용 가능한 형태로 구성했습니다.
-          </p>
-        </div>
-      </div>
-
-      <div class="grid-2" style="margin-top:20px;">
-        <div class="card">
-          <h3>데이터 기반 구조</h3>
-          <ul class="sub">
-            <li>MonsterLevelTable, MonsterTable, PlayerLevelTable, SkillTable 등 역할별 테이블 분리</li>
-            <li>Excel 데이터를 JSON으로 변환하는 별도 프로그램 제작</li>
-            <li>레벨 수치, 몬스터 스탯, 스킬 정보를 외부 파일로 관리</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h3>최적화와 표현</h3>
-          <ul class="sub">
-            <li>Monster, Skill, Projectile, Effect에 Object Pooling 적용</li>
-            <li>런타임 생성과 삭제를 줄여 성능 부담 완화</li>
-            <li>Shader Graph로 Toon Shader 직접 제작</li>
-            <li>Dithering 효과로 시야 가림 문제를 개선</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="learned">
-    <div class="wrap grid-2">
-      <div class="card">
-        <h2>성과</h2>
-        <ul class="sub">
-          <li>복잡한 게임 로직을 모듈화된 C# 구조로 설계하고 구현하는 경험 축적</li>
-          <li>데이터 기반 개발 흐름을 직접 구축하며 수치 조정과 테이블 관리 경험 확보</li>
-          <li>Object Pooling과 Shader Graph를 통해 성능과 시각 표현을 함께 다룬 경험 획득</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h2>배운 점</h2>
-        <ul class="sub">
-          <li>프로젝트 초기에 시스템 구조를 명확히 설계하는 것이 유지보수성과 개발 효율에 큰 영향을 준다는 점</li>
-          <li>모듈화와 재사용성이 가독성, 확장성, 생산성을 동시에 끌어올린다는 점</li>
-          <li>핵심 데이터를 코드에서 분리하는 방식이 장기적으로 훨씬 유연하다는 점</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="card">
-        <h2>사용 기술</h2>
-        <div class="chips">
-          <span class="chip">Unity</span>
-          <span class="chip">C#</span>
-          <span class="chip">Custom State Machine</span>
-          <span class="chip">NavMeshAgent</span>
-          <span class="chip">Object Pooling</span>
-          <span class="chip">Excel / JSON</span>
-          <span class="chip">Shader Graph</span>
-          <span class="chip">Toon Shader</span>
-          <span class="chip">Dithering</span>
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer class="footer">
-  <div class="wrap">© 2026 Monster World Project Page</div>
-</footer>
-
+    </footer>
 </body>
 </html>
