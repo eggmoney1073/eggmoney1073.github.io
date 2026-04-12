@@ -512,6 +512,165 @@ ul {
     }
 }
 
+/* ===== 상세페이지 전용 추가 ===== */
+
+.page-section {
+    position: relative;
+    z-index: 2;
+    padding: 22px 0 90px;
+}
+
+.detail-block {
+    display: grid;
+    gap: 18px;
+}
+
+.detail-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(14px);
+    padding: 24px;
+}
+
+.detail-card p,
+.detail-card li {
+    color: var(--muted);
+}
+
+.detail-list {
+    margin-top: 12px;
+}
+
+.detail-list li + li {
+    margin-top: 6px;
+}
+
+.capture-fade-wrap {
+    overflow: hidden;
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(14px);
+}
+
+.capture-fade-slider {
+    position: relative;
+    width: 100%;
+    background: rgba(4, 8, 18, 0.6);
+    overflow: hidden;
+}
+
+.capture-fade-slider.landscape {
+    aspect-ratio: 16 / 9;
+}
+
+.capture-fade-slider.portrait {
+    aspect-ratio: 9 / 16;
+}
+
+.capture-fade-slider img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    pointer-events: none;
+}
+
+.capture-fade-slider img.active {
+    opacity: 1;
+    z-index: 1;
+}
+
+.capture-caption {
+    padding: 18px 22px;
+    color: var(--muted);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.code-detail-grid {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.code-detail-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(14px);
+    overflow: hidden;
+}
+
+.code-detail-header {
+    padding: 22px 22px 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.code-detail-header p {
+    color: var(--muted);
+}
+
+.code-detail-body {
+    padding: 20px 22px 22px;
+}
+
+.reason-box,
+.summary-box {
+    padding: 14px 16px;
+    border-radius: 16px;
+    margin-bottom: 14px;
+    font-size: 0.95rem;
+}
+
+.reason-box {
+    background: rgba(136, 184, 255, 0.08);
+    border: 1px solid rgba(136, 184, 255, 0.14);
+    color: #dbe8ff;
+}
+
+.summary-box {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: #dbe8ff;
+}
+
+.code-detail-card pre[class*="language-"] {
+    margin: 0;
+    padding: 18px;
+    border-radius: 16px;
+    overflow-x: auto;
+    background: rgba(4, 8, 18, 0.88) !important;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: #dbe8ff;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    font-family: "Consolas", "D2Coding", monospace;
+}
+
+.code-detail-card code[class*="language-"],
+.code-detail-card pre[class*="language-"] {
+    font-family: "Consolas", "D2Coding", monospace;
+}
+
+.code-detail-card .line-numbers .line-numbers-rows {
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.metric-grid.detail-metric-grid {
+    margin-top: 10px;
+}
+
+.footer-spacer {
+    height: 24px;
+}
+
 @media (max-width: 980px) {
     .hero-highlights,
     .project-grid,
@@ -520,7 +679,8 @@ ul {
     .arch-grid,
     .code-grid,
     .metric-grid,
-    .page-hero-inner {
+    .page-hero-inner,
+    .code-detail-grid {
         grid-template-columns: 1fr;
     }
 
@@ -553,7 +713,10 @@ ul {
     .glass-card,
     .code-card,
     .metric-card,
-    .arch-card {
+    .arch-card,
+    .detail-card,
+    .code-detail-header,
+    .code-detail-body {
         padding: 20px;
     }
 
@@ -569,84 +732,5 @@ ul {
     .moon {
         right: 24px;
         top: 66px;
-    }
-}
-
-/* ===== 슬라이드 전체 ===== */
-.game-slider {
-    width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-    margin: 48px 0 64px;
-
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-
-    cursor: grab;
-}
-
-.game-slider:active {
-    cursor: grabbing;
-}
-
-.slider-track {
-    display: flex;
-    gap: 24px;
-    padding: 0 50vw; /* 🔥 핵심: 중앙 정렬 */
-}
-
-/* 카드 */
-.slide-card {
-    flex: 0 0 auto;
-
-    scroll-snap-align: center; /* 🔥 중앙 고정 */
-
-    opacity: 0.4;
-    transform: scale(0.85);
-    transition: all 0.3s ease;
-
-    border-radius: 20px;
-    overflow: hidden;
-}
-
-/* hover 시 강조 (JS 없이 중앙 느낌 강화) */
-.slide-card:hover {
-    opacity: 1;
-    transform: scale(1);
-}
-
-.slide-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* Slime Defense: 세로 캡처 */
-.mobile-slider .slide-card {
-    width: 220px;
-    height: 440px;
-}
-
-/* Monster World: 가로 캡처 */
-.pc-slider .slide-card {
-    width: 640px;
-    height: 360px;
-}
-
-/* 모바일 화면 대응 */
-@media (max-width: 768px) {
-    .slider-track {
-        gap: 16px;
-        padding: 0 24px;
-    }
-
-    .mobile-slider .slide-card {
-        width: 180px;
-        height: 360px;
-    }
-
-    .pc-slider .slide-card {
-        width: 320px;
-        height: 180px;
     }
 }
