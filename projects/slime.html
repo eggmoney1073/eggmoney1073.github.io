@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,8 +9,10 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-highlight/prism-line-highlight.min.css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-highlight/prism-line-highlight.min.css">
 </head>
+
 <body>
     <div class="sky-bg">
         <div class="moon-glow"></div>
@@ -45,13 +48,10 @@
                         Grid 기반 충돌 판정과 LiveTag 기반 생명주기 관리로
                         대량 엔티티 처리에 맞는 구조를 설계했습니다.
                     </p>
+                    <p>개발기간 : 2026.03 ~ 진행 중</p>
                     <div class="link-actions">
-                        <a
-                            class="btn btn-primary"
-                            href="https://github.com/eggmoney1073/Slime_Defense"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
+                        <a class="btn btn-primary" href="https://github.com/eggmoney1073/Slime_Defense" target="_blank"
+                            rel="noopener noreferrer">
                             GitHub 바로가기
                         </a>
                     </div>
@@ -149,7 +149,7 @@
                             <strong>핵심 포인트</strong><br>
                             UpdateAfter를 사용해 시스템 실행 순서를 명시적으로 연결한 구조입니다.
                         </div>
-<pre class="line-numbers" data-line="3-4,6-7,9-11,13-15,17-19,21-23,25-27"><code class="language-csharp">using Unity.Entities;
+                        <pre class="line-numbers" data-line="3-4,6-7,9-11,13-15,17-19,21-23,25-27"><code class="language-csharp">using Unity.Entities;
 
 [UpdateInGroup(typeof(SimulationSystemGroup))]
 public partial class SlimeDefenseSystemGroup : ComponentSystemGroup { }
@@ -198,7 +198,7 @@ public partial class DestroySystemGroup : ComponentSystemGroup { }</code></pre>
                             <strong>핵심 포인트</strong><br>
                             GridBuild 단계에서 맵을 채우고, Collision 단계에서 주변 3x3 셀만 검사하는 구조가 핵심입니다.
                         </div>
-<pre class="line-numbers" data-line="8-9,19-25,30-36,53-59,64-74"><code class="language-csharp">using Unity.Burst;
+                        <pre class="line-numbers" data-line="8-9,19-25,30-36,53-59,64-74"><code class="language-csharp">using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -297,7 +297,7 @@ public partial struct Collision_Job : IJobEntity
                             scaledDeltaTime을 사용해 시간 배속 영향을 반영하고,
                             발사 시 방향, 데미지, 관통 정보, 피격 버퍼를 함께 세팅하는 구조입니다.
                         </div>
-<pre class="line-numbers" data-line="7-10,17-21,29-34,36-49,51-55"><code class="language-csharp">using Unity.Burst;
+                        <pre class="line-numbers" data-line="7-10,17-21,29-34,36-49,51-55"><code class="language-csharp">using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
@@ -372,7 +372,7 @@ partial struct MainFire_System : ISystem
                             <strong>핵심 포인트</strong><br>
                             LiveTag를 끄는 단계와, WithDisabled 조건으로 엔티티를 정리하는 단계를 나눈 구조입니다.
                         </div>
-<pre class="line-numbers" data-line="3,8-18,21-27"><code class="language-csharp">using Unity.Entities;
+                        <pre class="line-numbers" data-line="3,8-18,21-27"><code class="language-csharp">using Unity.Entities;
 
 public struct LiveTag : IComponentData, IEnableableComponent { }
 
@@ -423,7 +423,7 @@ public partial struct EntityDestroy_Job : IJobEntity
                             <strong>핵심 포인트</strong><br>
                             timeScale, scaledDeltaTime, unscaledDeltaTime을 함께 관리하는 공용 시간 구조입니다.
                         </div>
-<pre class="line-numbers" data-line="8-18,21-28,30-34"><code class="language-csharp">using Unity.Burst;
+                        <pre class="line-numbers" data-line="8-18,21-28,30-34"><code class="language-csharp">using Unity.Burst;
 using Unity.Entities;
 
 [BurstCompile]
@@ -474,30 +474,31 @@ partial struct TimeManager_System : ISystem
     <script src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-highlight/prism-line-highlight.min.js"></script>
 
     <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const sliders = document.querySelectorAll(".capture-fade-slider");
+        document.addEventListener("DOMContentLoaded", function () {
+            const sliders = document.querySelectorAll(".capture-fade-slider");
 
-        sliders.forEach(function (slider) {
-            const images = slider.querySelectorAll("img");
-            const interval = Number(slider.dataset.interval) || 2500;
+            sliders.forEach(function (slider) {
+                const images = slider.querySelectorAll("img");
+                const interval = Number(slider.dataset.interval) || 2500;
 
-            if (images.length <= 1) {
-                if (images.length === 1) {
-                    images[0].classList.add("active");
+                if (images.length <= 1) {
+                    if (images.length === 1) {
+                        images[0].classList.add("active");
+                    }
+                    return;
                 }
-                return;
-            }
 
-            let currentIndex = 0;
-            images[currentIndex].classList.add("active");
-
-            setInterval(function () {
-                images[currentIndex].classList.remove("active");
-                currentIndex = (currentIndex + 1) % images.length;
+                let currentIndex = 0;
                 images[currentIndex].classList.add("active");
-            }, interval);
+
+                setInterval(function () {
+                    images[currentIndex].classList.remove("active");
+                    currentIndex = (currentIndex + 1) % images.length;
+                    images[currentIndex].classList.add("active");
+                }, interval);
+            });
         });
-    });
     </script>
 </body>
+
 </html>

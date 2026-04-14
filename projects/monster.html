@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,8 +9,10 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-highlight/prism-line-highlight.min.css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-highlight/prism-line-highlight.min.css">
 </head>
+
 <body>
     <div class="sky-bg">
         <div class="moon-glow"></div>
@@ -44,21 +47,14 @@
                         몬스터 전투, 포획과 소환, 성장과 저장 시스템을 직접 구현했으며,
                         재사용 가능한 구조 설계와 데이터 기반 개발, 런타임 최적화를 중심으로 프로젝트를 진행했습니다.
                     </p>
+                    <p>개발기간 : 2025.01 ~ 2025.03</p>
                     <div class="link-actions">
-                        <a
-                            class="btn btn-primary"
-                            href="https://github.com/eggmoney1073/MonsterWolrd"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
+                        <a class="btn btn-primary" href="https://github.com/eggmoney1073/MonsterWolrd" target="_blank"
+                            rel="noopener noreferrer">
                             GitHub 바로가기
                         </a>
-                        <a
-                            class="btn btn-secondary"
-                            href="https://youtu.be/qKAZKSrnOBg"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
+                        <a class="btn btn-secondary" href="https://youtu.be/qKAZKSrnOBg" target="_blank"
+                            rel="noopener noreferrer">
                             영상 바로가기
                         </a>
                     </div>
@@ -157,7 +153,7 @@
                             <strong>핵심 포인트</strong><br>
                             상태별 함수를 Dictionary에 저장하고, ChangeState에서 이전 상태 종료와 다음 상태 진입을 분리한 구조입니다.
                         </div>
-<pre class="line-numbers" data-line="5-7,12-16,18-29,31-37"><code class="language-csharp">using System;
+                        <pre class="line-numbers" data-line="5-7,12-16,18-29,31-37"><code class="language-csharp">using System;
 using System.Collections.Generic;
 
 public class StateMachine&lt;T&gt; where T : Enum
@@ -221,7 +217,7 @@ public class StateMachine&lt;T&gt; where T : Enum
                             <strong>핵심 포인트</strong><br>
                             스킬 사용 시 Type, Target, Caster를 전달받도록 만들어 하나의 구조를 양쪽 진영에서 공용으로 사용합니다.
                         </div>
-<pre class="line-numbers" data-line="5-8,10-20,22-28"><code class="language-csharp">public enum SkillType
+                        <pre class="line-numbers" data-line="5-8,10-20,22-28"><code class="language-csharp">public enum SkillType
 {
     Slash,
     Bite
@@ -273,7 +269,7 @@ public class SkillManager : MonoBehaviour
                             <strong>핵심 포인트</strong><br>
                             Queue에 객체를 저장해 두고, 필요할 때 꺼내 쓰고, 끝나면 다시 반환하는 단순하고 확장성 좋은 구조입니다.
                         </div>
-<pre class="line-numbers" data-line="6,8-15,17-25,27-31"><code class="language-csharp">using System;
+                        <pre class="line-numbers" data-line="6,8-15,17-25,27-31"><code class="language-csharp">using System;
 using System.Collections.Generic;
 
 public class ObjectPool&lt;T&gt;
@@ -327,7 +323,7 @@ public class ObjectPool&lt;T&gt;
                             <strong>핵심 포인트</strong><br>
                             JSON 파일을 읽어 테이블 배열로 바꾼 뒤, 타입이나 레벨 기준으로 참조하는 데이터 기반 구조입니다.
                         </div>
-<pre class="line-numbers" data-line="3-8,12-15,17-23"><code class="language-csharp">using UnityEngine;
+                        <pre class="line-numbers" data-line="3-8,12-15,17-23"><code class="language-csharp">using UnityEngine;
 
 [System.Serializable]
 public class MonsterTableData
@@ -369,30 +365,31 @@ public class MonsterTableLoader : MonoBehaviour
     <script src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-highlight/prism-line-highlight.min.js"></script>
 
     <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const sliders = document.querySelectorAll(".capture-fade-slider");
+        document.addEventListener("DOMContentLoaded", function () {
+            const sliders = document.querySelectorAll(".capture-fade-slider");
 
-        sliders.forEach(function (slider) {
-            const images = slider.querySelectorAll("img");
-            const interval = Number(slider.dataset.interval) || 2500;
+            sliders.forEach(function (slider) {
+                const images = slider.querySelectorAll("img");
+                const interval = Number(slider.dataset.interval) || 2500;
 
-            if (images.length <= 1) {
-                if (images.length === 1) {
-                    images[0].classList.add("active");
+                if (images.length <= 1) {
+                    if (images.length === 1) {
+                        images[0].classList.add("active");
+                    }
+                    return;
                 }
-                return;
-            }
 
-            let currentIndex = 0;
-            images[currentIndex].classList.add("active");
-
-            setInterval(function () {
-                images[currentIndex].classList.remove("active");
-                currentIndex = (currentIndex + 1) % images.length;
+                let currentIndex = 0;
                 images[currentIndex].classList.add("active");
-            }, interval);
+
+                setInterval(function () {
+                    images[currentIndex].classList.remove("active");
+                    currentIndex = (currentIndex + 1) % images.length;
+                    images[currentIndex].classList.add("active");
+                }, interval);
+            });
         });
-    });
     </script>
 </body>
+
 </html>
