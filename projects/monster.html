@@ -22,8 +22,8 @@
             visibility: visible !important;
         }
 
-        .tab-panel + .tab-panel,
-        .detail-section + .detail-section {
+        .tab-panel+.tab-panel,
+        .detail-section+.detail-section {
             margin-top: 64px;
         }
 
@@ -63,7 +63,6 @@
                     <li>C#</li>
                     <li>NavMesh</li>
                     <li>JSON</li>
-                    <li>CSV</li>
                     <li>UGUI</li>
                 </ul>
             </div>
@@ -332,7 +331,7 @@ protected override void ChangeState(MonsterState state)
         </main>
     </div>
 
-    
+
     <script>
         (function () {
             const navLinks = Array.from(document.querySelectorAll('.project-sidebar .nav-link'));
