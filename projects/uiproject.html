@@ -7,6 +7,38 @@
     <title>UI Project | Project Detail</title>
     <meta name="description" content="게임 시작 전 UX 흐름과 UI 시스템 구조를 중심으로 한 UI Project 상세 설명" />
     <link rel="stylesheet" href="../style.css" />
+
+    <style>
+        .section-block {
+            overflow: visible;
+        }
+
+        .tab-panel,
+        .tab-panel.active,
+        .detail-section,
+        .detail-section.active {
+            display: block !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        .tab-panel + .tab-panel,
+        .detail-section + .detail-section {
+            margin-top: 64px;
+        }
+
+        .tab-panel,
+        .detail-section {
+            scroll-margin-top: 24px;
+        }
+
+        .code-block {
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -17,11 +49,11 @@
 
             <nav class="nav-section">
                 <p class="nav-title">CONTENTS</p>
-                <a href="#overview" class="nav-link active" data-tab="overview">개요</a>
-                <a href="#architecture" class="nav-link" data-tab="architecture">설계 포인트</a>
-                <a href="#problem-solving" class="nav-link" data-tab="problem-solving">문제 해결</a>
-                <a href="#core-code" class="nav-link" data-tab="core-code">핵심 코드</a>
-                <a href="#retrospective" class="nav-link" data-tab="retrospective">배운 점</a>
+                <a href="#overview" class="nav-link active" data-target="overview">개요</a>
+                <a href="#architecture" class="nav-link" data-target="architecture">설계 포인트</a>
+                <a href="#problem-solving" class="nav-link" data-target="problem-solving">문제 해결</a>
+                <a href="#core-code" class="nav-link" data-target="core-code">핵심 코드</a>
+                <a href="#retrospective" class="nav-link" data-target="retrospective">배운 점</a>
             </nav>
 
             <div class="nav-section">
@@ -49,7 +81,7 @@
 
                 <div class="section-block">
 
-                    <div id="overview" class="tab-panel active">
+                    <div id="overview" class="tab-panel detail-section active">
                         <div class="tab-section-title">
                             <h2>프로젝트 설명</h2>
                         </div>
@@ -99,7 +131,7 @@
                         </div>
                     </div>
 
-                    <div id="architecture" class="tab-panel">
+                    <div id="architecture" class="tab-panel detail-section">
                         <div class="tab-section-title">
                             <h2>설계 포인트</h2>
                         </div>
@@ -128,7 +160,7 @@
                         </div>
                     </div>
 
-                    <div id="problem-solving" class="tab-panel">
+                    <div id="problem-solving" class="tab-panel detail-section">
                         <div class="tab-section-title">
                             <h2>문제 해결</h2>
                         </div>
@@ -156,7 +188,7 @@
                         </div>
                     </div>
 
-                    <div id="core-code" class="tab-panel">
+                    <div id="core-code" class="tab-panel detail-section">
                         <div class="tab-section-title">
                             <h2>핵심 코드</h2>
                         </div>
@@ -225,7 +257,7 @@ public class PopupManager : MonoBehaviour
                         </div>
                     </div>
 
-                    <div id="retrospective" class="tab-panel">
+                    <div id="retrospective" class="tab-panel detail-section">
                         <div class="tab-section-title">
                             <h2>배운 점</h2>
                         </div>
@@ -249,53 +281,155 @@ public class PopupManager : MonoBehaviour
         </main>
     </div>
 
+    
     <script>
         (function () {
             const navLinks = Array.from(document.querySelectorAll('.project-sidebar .nav-link'));
-            const panels = Array.from(document.querySelectorAll('.tab-panel'));
+            const sections = navLinks
+                .map(function (link) {
+                    const targetId = link.getAttribute('data-target') || link.getAttribute('data-tab') || link.getAttribute('href').replace('#', '');
+                    const section = document.getElementById(targetId);
 
-            const showPanel = function (panelId) {
-                panels.forEach(function (panel) {
-                    panel.classList.toggle('active', panel.id === panelId);
+                    if (!section) {
+                        return null;
+                    }
+
+                    return {
+                        link: link,
+                        id: targetId,
+                        section: section
+                    };
+                })
+                .filter(function (item) {
+                    return item !== null;
                 });
 
+            const setActiveLink = function (activeId) {
                 navLinks.forEach(function (link) {
-                    const isActive = link.getAttribute('data-tab') === panelId;
-                    link.classList.toggle('active', isActive);
+                    const targetId = link.getAttribute('data-target') || link.getAttribute('data-tab') || link.getAttribute('href').replace('#', '');
+                    link.classList.toggle('active', targetId === activeId);
                 });
 
-                if (window.location.hash !== '#' + panelId) {
-                    history.replaceState(null, '', '#' + panelId);
+                if (activeId && window.location.hash !== '#' + activeId) {
+                    history.replaceState(null, '', '#' + activeId);
+                }
+            };
+
+            const getCurrentSectionId = function () {
+                if (sections.length === 0) {
+                    return '';
+                }
+
+                const activationLine = window.innerHeight * 0.28;
+                let currentId = sections[0].id;
+                let bestPassedTop = Number.NEGATIVE_INFINITY;
+
+                sections.forEach(function (item) {
+                    const rect = item.section.getBoundingClientRect();
+
+                    if (rect.top <= activationLine && rect.top > bestPassedTop) {
+                        bestPassedTop = rect.top;
+                        currentId = item.id;
+                    }
+                });
+
+                const documentBottom = window.scrollY + window.innerHeight;
+                const maxBottom = document.documentElement.scrollHeight;
+
+                if (maxBottom - documentBottom <= 4) {
+                    currentId = sections[sections.length - 1].id;
+                }
+
+                return currentId;
+            };
+
+            const updateActiveOnScroll = function () {
+                const currentId = getCurrentSectionId();
+
+                if (currentId) {
+                    setActiveLink(currentId);
                 }
             };
 
             navLinks.forEach(function (link) {
                 link.addEventListener('click', function (event) {
                     event.preventDefault();
-                    const panelId = link.getAttribute('data-tab');
-                    showPanel(panelId);
+
+                    const targetId = link.getAttribute('data-target') || link.getAttribute('data-tab') || link.getAttribute('href').replace('#', '');
+                    const targetSection = document.getElementById(targetId);
+
+                    if (!targetSection) {
+                        return;
+                    }
+
+                    const targetTop = targetSection.getBoundingClientRect().top + window.scrollY - 24;
+
+                    window.scrollTo({
+                        top: targetTop,
+                        behavior: 'smooth'
+                    });
+
+                    setActiveLink(targetId);
                 });
             });
 
-            const initialHash = window.location.hash ? window.location.hash.substring(1) : 'overview';
-            const hasInitialPanel = panels.some(function (panel) {
-                return panel.id === initialHash;
-            });
+            let ticking = false;
 
-            showPanel(hasInitialPanel ? initialHash : 'overview');
+            window.addEventListener('scroll', function () {
+                if (ticking) {
+                    return;
+                }
+
+                ticking = true;
+
+                window.requestAnimationFrame(function () {
+                    updateActiveOnScroll();
+                    ticking = false;
+                });
+            }, { passive: true });
+
+            window.addEventListener('resize', updateActiveOnScroll);
 
             window.addEventListener('hashchange', function () {
-                const panelId = window.location.hash ? window.location.hash.substring(1) : 'overview';
-                const exists = panels.some(function (panel) {
-                    return panel.id === panelId;
+                const sectionId = window.location.hash ? window.location.hash.substring(1) : '';
+                const section = sectionId ? document.getElementById(sectionId) : null;
+
+                if (!section) {
+                    updateActiveOnScroll();
+                    return;
+                }
+
+                const targetTop = section.getBoundingClientRect().top + window.scrollY - 24;
+
+                window.scrollTo({
+                    top: targetTop,
+                    behavior: 'auto'
                 });
 
-                if (exists) {
-                    showPanel(panelId);
-                }
+                setActiveLink(sectionId);
             });
+
+            const initialHash = window.location.hash ? window.location.hash.substring(1) : '';
+            const initialSection = initialHash ? document.getElementById(initialHash) : null;
+
+            if (initialSection) {
+                window.setTimeout(function () {
+                    const targetTop = initialSection.getBoundingClientRect().top + window.scrollY - 24;
+
+                    window.scrollTo({
+                        top: targetTop,
+                        behavior: 'auto'
+                    });
+
+                    setActiveLink(initialHash);
+                    updateActiveOnScroll();
+                }, 0);
+            } else {
+                updateActiveOnScroll();
+            }
         }());
     </script>
+
 </body>
 
 </html>
