@@ -48,9 +48,11 @@
                 </div>
 
                 <div class="section-block">
+                    
                     <div id="overview" class="tab-panel active">
-                        <div class="tab-section-title"><h2>프로젝트 설명</h2></div>
-<div class="detail-intro">
+<div class="tab-section-title"><h2>프로젝트 설명</h2></div>
+
+                        <div class="detail-intro">
                             <h1>Slime Defense</h1>
                             <p>
                                 Unity ECS/DOTS 기반으로 다수의 적과 투사체를 효율적으로 처리하기 위해
@@ -59,34 +61,33 @@
                                 대량 엔티티 처리 상황에서도 안정적으로 동작하는 구조를 구현했습니다.
                             </p>
 
-                            <div class="kv-list">
-                                <div class="kv-item">
-                                    <strong>개발기간</strong>
-                                    2026.03 ~ 진행 중
+                            <div class="overview-card-layout">
+                                <div class="overview-image-box">
+                                    <img src="../images/slime-main.png" alt="Slime Defense 메인 화면" />
                                 </div>
-                                <div class="kv-item">
-                                    <strong>장르</strong>
-                                    세로형 디펜스
-                                </div>
-                                <div class="kv-item">
-                                    <strong>개발 형태</strong>
-                                    1인 개발
-                                </div>
-                                <div class="kv-item">
-                                    <strong>핵심 구조</strong>
-                                    ECS 전투 파이프라인 / Grid + LiveTag
-                                </div>
-                            </div>
 
-                            <div class="mini-tags">
-                                <span>Spawn → Move → Judgement → Calculate → Destroy</span>
-                                <span>Grid 기반 충돌 최적화</span>
-                                <span>LiveTag 생명주기 분리</span>
+                                <div class="overview-side-list kv-list compact">
+                                    <div class="kv-item">
+                                        <strong>개발기간</strong>
+                                        2026.03 ~ 진행 중
+                                    </div>
+                                    <div class="kv-item">
+                                        <strong>장르</strong>
+                                        세로형 디펜스
+                                    </div>
+                                    <div class="kv-item">
+                                        <strong>개발 형태</strong>
+                                        1인 개발
+                                    </div>
+                                    <div class="kv-item">
+                                        <strong>핵심 구조</strong>
+                                        ECS 전투 파이프라인 / Grid + LiveTag
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
                         <div class="article-card">
-                            <h2>프로젝트 목표</h2>
                             <p>
                                 이 프로젝트의 목표는 단순히 게임을 완성하는 것이 아니라,
                                 다수의 적과 투사체가 동시에 존재하는 상황에서 전투 로직을 어떻게 안정적으로 설계할지 검증하는 것이었습니다.
