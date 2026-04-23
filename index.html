@@ -1,59 +1,269 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
-    <meta charset="UTF-8">
-    <title>Portfolio - Unity Developer</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>안병찬 | Unity Game Developer Portfolio</title>
+    <meta name="description" content="Unity ECS 기반 구조 설계와 최적화를 중심으로 개발하는 게임 개발자 안병찬의 포트폴리오" />
+    <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-
-    <div class="layout">
-
-        <!-- 좌측 메뉴 -->
+    <div class="shell">
         <aside class="sidebar">
-            <h1 class="logo">My Portfolio</h1>
+            <div class="sidebar-top">
+                <a class="brand" href="#home">Byeongchan Ahn</a>
+                <p class="brand-role">Unity Game Developer</p>
+            </div>
 
-            <nav>
-                <a href="#about">About</a>
-                <a href="#projects">Projects</a>
-                <a href="#skills">Skills</a>
-                <a href="#contact">Contact</a>
+            <nav class="nav-section">
+                <p class="nav-title">NAVIGATION</p>
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#strength" class="nav-link">Strength</a>
+                <a href="#contact" class="nav-link">Contact</a>
             </nav>
+
+            <div class="nav-section">
+                <p class="nav-title">TECH STACK</p>
+                <ul class="stack-list">
+                    <li>Unity</li>
+                    <li>C#</li>
+                    <li>ECS / DOTS</li>
+                    <li>Burst</li>
+                    <li>Addressables</li>
+                    <li>Input System</li>
+                    <li>URP</li>
+                </ul>
+            </div>
+
+            <div class="nav-section sidebar-note">
+                <p class="nav-title">FOCUS</p>
+                <p>최적화</p>
+                <p>확장성</p>
+                <p>전투 시스템 구조 설계</p>
+            </div>
         </aside>
 
-        <!-- 우측 내용 -->
-        <main class="content">
-
-            <section id="about">
-                <h2>About</h2>
-                <p>Unity ECS 기반으로 성능 최적화를 중심으로 개발하는 게임 개발자입니다.</p>
-            </section>
-
-            <section id="projects">
-                <h2>Projects</h2>
-
-                <div class="card" onclick="location.href='slime.html'">
-                    <h3>Slime Defense</h3>
-                    <p>Unity ECS 기반 디펜스 게임</p>
+        <main class="main-panel">
+            <header id="home" class="panel hero-panel">
+                <div class="panel-header">
+                    <span class="window-dot red"></span>
+                    <span class="window-dot yellow"></span>
+                    <span class="window-dot green"></span>
+                    <span class="panel-label">Overview</span>
                 </div>
 
+                <div class="hero-grid">
+                    <div>
+                        <p class="eyebrow">UNITY GAME DEVELOPER PORTFOLIO</p>
+                        <h1>몰입감 있는 플레이 경험을 위해<br>최적화와 확장성을 설계하는 개발자</h1>
+                        <p class="hero-text">
+                            저는 게이머가 몰입할 수 있는 재미있는 게임 경험을 만드는 것을 중요하게 생각합니다.
+                            조작감, UX/UI, 최적화를 핵심 요소로 보고 개발하며, 시스템을 설계할 때는 현재의 완성도뿐 아니라
+                            이후 기능 추가까지 고려한 구조를 지향합니다.
+                        </p>
+
+                        <div class="hero-actions">
+                            <a class="button primary" href="#projects">프로젝트 보기</a>
+                            <a class="button" href="#contact">연락처 보기</a>
+                        </div>
+                    </div>
+
+                    <div class="summary-box">
+                        <div class="summary-row">
+                            <span class="summary-key">주요 기술</span>
+                            <span class="summary-value">Unity, C#, ECS, JSON, Addressables</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="summary-key">강점</span>
+                            <span class="summary-value">구조 설계, 시스템 흐름, 실제 구현</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="summary-key">핵심 가치</span>
+                            <span class="summary-value">최적화, 확장성, 몰입감 있는 플레이</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="summary-key">상태</span>
+                            <span class="summary-value accent">신입 포트폴리오 정리 중</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <section id="about" class="panel">
+                <div class="panel-header">
+                    <span class="window-dot red"></span>
+                    <span class="window-dot yellow"></span>
+                    <span class="window-dot green"></span>
+                    <span class="panel-label">About</span>
+                </div>
+
+                <div class="section-block">
+                    <h2>소개</h2>
+                    <div class="info-grid two-col">
+                        <article class="info-card">
+                            <h3>개발 성향</h3>
+                            <p>
+                                저는 게이머가 자연스럽게 몰입할 수 있는 플레이 경험을 중요하게 생각합니다.
+                                그래서 조작감과 UX/UI를 세심하게 다듬는 편이며, 시스템 설계에서는 안정적인 성능을 위한 최적화와
+                                이후 기능 추가를 고려한 확장성을 가장 중요하게 봅니다.
+                            </p>
+                        </article>
+
+                        <article class="info-card">
+                            <h3>기술 포인트</h3>
+                            <p>
+                                조작감과 플레이 흐름을 해치지 않도록 전투 구조와 시스템 흐름을 설계했으며,
+                                OOP 기반 전투 구조, 커스텀 상태머신, 오브젝트 풀링, JSON 저장 구조,
+                                Unity ECS 시스템 그룹 설계와 Grid 충돌 구조를 프로젝트에 적용했습니다.
+                            </p>
+                        </article>
+                    </div>
+                </div>
             </section>
 
-            <section id="skills">
-                <h2>Skills</h2>
-                <p>Unity, C#, ECS, Burst, Addressables</p>
+            <section id="projects" class="panel">
+                <div class="panel-header">
+                    <span class="window-dot red"></span>
+                    <span class="window-dot yellow"></span>
+                    <span class="window-dot green"></span>
+                    <span class="panel-label">Projects</span>
+                </div>
+
+                <div class="section-block">
+                    <h2>프로젝트</h2>
+                    <div class="project-list">
+                        <a class="project-card project-card-main" href="projects/slime.html">
+                            <div class="project-topline">
+                                <span class="project-type">Unity ECS / DOTS / Mobile</span>
+                                <span class="project-period">2026.03 ~ 진행 중</span>
+                            </div>
+                            <h3>Slime Defense</h3>
+                            <p>
+                                Unity ECS 기반으로 제작한 모바일 디펜스 프로젝트입니다.
+                                시스템 그룹 흐름, Grid 기반 충돌 판정, 브리지 구조를 통해 ECS 방식으로 전투 루프를 구성했습니다.
+                            </p>
+                            <ul class="tag-list">
+                                <li>시스템 그룹 기반 업데이트 순서 분리</li>
+                                <li>Grid 해시 기반 충돌 판정</li>
+                                <li>브리지와 UI 연동 구조 구현</li>
+                            </ul>
+                            <span class="project-link">상세 보기 →</span>
+                        </a>
+
+                        <article class="project-card">
+                            <div class="project-topline">
+                                <span class="project-type">Unity / 3D RPG / OOP</span>
+                                <span class="project-period">2025.01 ~ 2025.03</span>
+                            </div>
+                            <h3>Monster World</h3>
+                            <p>
+                                몬스터 수집형 RPG 프로젝트입니다.
+                                몬스터와 스킬을 상태머신 기반으로 제어하고, 데이터와 저장 구조를 분리해 확장성을 고려했습니다.
+                            </p>
+                            <ul class="tag-list">
+                                <li>커스텀 상태머신 기반 몬스터 AI</li>
+                                <li>SkillManager와 풀링 구조</li>
+                                <li>JSON 저장 및 슬롯 데이터 관리</li>
+                            </ul>
+                        </article>
+
+                        <article class="project-card">
+                            <div class="project-topline">
+                                <span class="project-type">Unity / AI 협업 / Simulation</span>
+                                <span class="project-period">5일</span>
+                            </div>
+                            <h3>Prison Resource Tycoon</h3>
+                            <p>
+                                AI를 활용해 설계부터 구현까지 진행한 자동화 기반 시뮬레이션 프로젝트입니다.
+                                시스템 구조 설계와 요구사항 정의, 반복 개선 과정에 집중했습니다.
+                            </p>
+                            <ul class="tag-list">
+                                <li>AI 협업 기반 시스템 설계</li>
+                                <li>자동화 루프 구조 구현</li>
+                                <li>요구사항 정의 및 반복 개선</li>
+                            </ul>
+                        </article>
+
+                        <article class="project-card">
+                            <div class="project-topline">
+                                <span class="project-type">Unity 6 / UGUI / Input System</span>
+                                <span class="project-period">3일</span>
+                            </div>
+                            <h3>UI Project</h3>
+                            <p>
+                                게임 시작 이전 구간의 사용자 경험을 하나의 흐름으로 연결하는 데 집중한 UI 시스템 프로젝트입니다.
+                                UI 입력과 인게임 입력이 서로 충돌하지 않도록 구조를 분리해 설계했습니다.
+                            </p>
+                            <ul class="tag-list">
+                                <li>게임 시작 전 UX 흐름 분리 설계</li>
+                                <li>UI 입력과 인게임 입력 상태 분리</li>
+                                <li>팝업과 매니저 구조를 통한 확장성 확보</li>
+                            </ul>
+                        </article>
+                    </div>
+                </div>
             </section>
 
-            <section id="contact">
-                <h2>Contact</h2>
-                <p>Email: example@email.com</p>
+            <section id="strength" class="panel">
+                <div class="panel-header">
+                    <span class="window-dot red"></span>
+                    <span class="window-dot yellow"></span>
+                    <span class="window-dot green"></span>
+                    <span class="panel-label">Strength</span>
+                </div>
+
+                <div class="section-block">
+                    <h2>강점 정리</h2>
+                    <div class="info-grid three-col">
+                        <article class="info-card">
+                            <h3>구조 설계</h3>
+                            <p>전투 흐름과 UI 흐름을 기능 단위가 아니라 시스템 흐름 단위로 나누어 설계합니다.</p>
+                        </article>
+                        <article class="info-card">
+                            <h3>최적화 관점</h3>
+                            <p>대량 엔티티, 충돌 판정, 로딩 구조처럼 비용이 커지는 지점을 먼저 분리해서 다룹니다.</p>
+                        </article>
+                        <article class="info-card">
+                            <h3>설명 가능성</h3>
+                            <p>구현한 내용을 왜 그렇게 설계했는지 설명할 수 있는 개발자가 되는 것을 목표로 합니다.</p>
+                        </article>
+                    </div>
+                </div>
             </section>
 
+            <section id="contact" class="panel">
+                <div class="panel-header">
+                    <span class="window-dot red"></span>
+                    <span class="window-dot yellow"></span>
+                    <span class="window-dot green"></span>
+                    <span class="panel-label">Contact</span>
+                </div>
+
+                <div class="section-block">
+                    <h2>연락처</h2>
+                    <div class="contact-grid">
+                        <div class="contact-card">
+                            <span class="contact-label">이름</span>
+                            <strong>안병찬</strong>
+                        </div>
+                        <div class="contact-card">
+                            <span class="contact-label">Email</span>
+                            <a href="mailto:ahnhea0107@naver.com">ahnhea0107@naver.com</a>
+                        </div>
+                        <div class="contact-card">
+                            <span class="contact-label">GitHub</span>
+                            <a href="https://github.com/eggmoney1073" target="_blank" rel="noopener noreferrer">github.com/eggmoney1073</a>
+                        </div>
+                        <div class="contact-card">
+                            <span class="contact-label">메모</span>
+                            <p>전화번호는 공개 범위를 고려해 필요 시 별도로 전달하는 구성을 추천합니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </main>
     </div>
-
 </body>
-
 </html>

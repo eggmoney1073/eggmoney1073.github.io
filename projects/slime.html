@@ -1,73 +1,394 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
-    <meta charset="UTF-8">
-    <title>Slime Defense</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slime Defense | Project Detail</title>
+    <meta name="description" content="Unity ECS/DOTS 기반 Slime Defense 프로젝트 상세 설명" />
+    <link rel="stylesheet" href="../style.css" />
 </head>
-
 <body>
+    <div class="project-shell">
+        <aside class="project-sidebar">
+            <a class="brand" href="../index.html">Byeongchan Ahn</a>
+            <p class="brand-role">Slime Defense</p>
 
-    <div class="layout">
-
-        <!-- 좌측 목차 -->
-        <aside class="sidebar">
-            <h1 class="logo">Slime Defense</h1>
-
-            <nav>
-                <a href="#overview">Overview</a>
-                <a href="#architecture">Architecture</a>
-                <a href="#features">Features</a>
-                <a href="#code">Code</a>
+            <nav class="nav-section">
+                <p class="nav-title">CONTENTS</p>
+                <a href="#overview" class="nav-link">개요</a>
+                <a href="#architecture" class="nav-link">설계 포인트</a>
+                <a href="#problem-solving" class="nav-link">문제 해결</a>
+                <a href="#core-code" class="nav-link">핵심 코드</a>
+                <a href="#retrospective" class="nav-link">배운 점</a>
             </nav>
+
+            <div class="nav-section">
+                <p class="nav-title">STACK</p>
+                <ul class="stack-list">
+                    <li>Unity 6000</li>
+                    <li>C#</li>
+                    <li>ECS / DOTS</li>
+                    <li>Burst</li>
+                    <li>Addressables</li>
+                    <li>Input System</li>
+                    <li>URP</li>
+                </ul>
+            </div>
+
+            <a class="back-link" href="../index.html">← 홈으로 돌아가기</a>
         </aside>
 
-        <!-- 우측 -->
-        <main class="content">
+        <main class="project-main">
+            <div class="project-detail-layout">
+                <div class="detail-sticky">
+                    <section id="overview" class="panel">
+                        <div class="panel-header">
+                            <span class="window-dot red"></span>
+                            <span class="window-dot yellow"></span>
+                            <span class="window-dot green"></span>
+                            <span class="panel-label">Overview</span>
+                        </div>
 
-            <div class="project-layout">
+                        <div class="detail-panel-body">
+                            <h1>Slime Defense</h1>
+                            <p>
+                                Unity ECS/DOTS 기반으로 다수의 적과 투사체를 효율적으로 처리하기 위해
+                                전투 로직을 시스템 파이프라인으로 설계한 1인 디펜스 프로젝트입니다.
+                                Grid 기반 충돌 최적화와 LiveTag 기반 생명주기 분리를 적용해,
+                                대량 엔티티 처리 상황에서도 안정적으로 동작하는 구조를 구현했습니다.
+                            </p>
 
-                <!-- 설명 (sticky) -->
-                <div class="description">
-                    <section id="overview">
-                        <h2>Overview</h2>
-                        <p>ECS 기반 디펜스 게임</p>
+                            <div class="kv-list">
+                                <div class="kv-item">
+                                    <strong>개발기간</strong>
+                                    2026.03 ~ 진행 중
+                                </div>
+                                <div class="kv-item">
+                                    <strong>장르</strong>
+                                    세로형 디펜스
+                                </div>
+                                <div class="kv-item">
+                                    <strong>개발 형태</strong>
+                                    1인 개발
+                                </div>
+                                <div class="kv-item">
+                                    <strong>핵심 구조</strong>
+                                    ECS 전투 파이프라인 / Grid + LiveTag
+                                </div>
+                            </div>
+
+                            <div class="mini-tags">
+                                <span>Spawn → Move → Judgement → Calculate → Destroy</span>
+                                <span>Grid 기반 충돌 최적화</span>
+                                <span>LiveTag 생명주기 분리</span>
+                            </div>
+                        </div>
                     </section>
 
-                    <section id="architecture">
-                        <h2>Architecture</h2>
-                        <p>Entity + System 기반 구조 설계</p>
-                    </section>
-
-                    <section id="features">
-                        <h2>Features</h2>
-                        <ul>
-                            <li>ECS 구조</li>
-                            <li>Object Pooling</li>
-                            <li>Addressables</li>
-                        </ul>
+                    <section class="panel">
+                        <div class="panel-header">
+                            <span class="window-dot red"></span>
+                            <span class="window-dot yellow"></span>
+                            <span class="window-dot green"></span>
+                            <span class="panel-label">Goal</span>
+                        </div>
+                        <div class="detail-panel-body">
+                            <h2>프로젝트 목표</h2>
+                            <p>
+                                이 프로젝트의 목표는 단순히 게임을 완성하는 것이 아니라,
+                                다수의 적과 투사체가 동시에 존재하는 상황에서 전투 로직을 어떻게 안정적으로 설계할지 검증하는 것이었습니다.
+                                이를 위해 전투 흐름을 ECS 시스템 그룹으로 단계화했고,
+                                충돌 판정과 삭제 처리에서 발생할 수 있는 성능 문제와 타이밍 충돌 문제를 구조적으로 해결하는 데 집중했습니다.
+                            </p>
+                        </div>
                     </section>
                 </div>
 
-                <!-- 코드 영역 -->
-                <div class="code">
-                    <pre>
-public partial struct EnemyMoveSystem : ISystem
+                <div class="code-stack">
+                    <section id="architecture" class="panel">
+                        <div class="panel-header">
+                            <span class="window-dot red"></span>
+                            <span class="window-dot yellow"></span>
+                            <span class="window-dot green"></span>
+                            <span class="panel-label">Architecture</span>
+                        </div>
+
+                        <div class="detail-panel-body">
+                            <div class="article-card article-section">
+                                <h2>설계 포인트</h2>
+                                <h3>ECS 전투 파이프라인</h3>
+                                <p>
+                                    전투 로직을 하나의 거대한 Update에서 처리하지 않고,
+                                    관리, 생성, 이동, 판정, 계산, 삭제 단계로 분리했습니다.
+                                    이 구조를 통해 각 시스템이 담당하는 책임을 명확하게 나눌 수 있었고,
+                                    실행 순서를 고정해 디버깅과 유지보수가 쉬운 흐름을 만들었습니다.
+                                </p>
+                            </div>
+
+                            <div class="article-card article-section">
+                                <h3>Grid 기반 충돌 구조</h3>
+                                <p>
+                                    디펜스 게임에서는 적과 투사체 수가 증가할수록 충돌 비용이 급격히 커집니다.
+                                    이를 해결하기 위해 적 위치를 Grid에 배치하고,
+                                    투사체는 현재 위치 기준 주변 셀만 탐색하도록 설계해 충돌 후보군을 제한했습니다.
+                                </p>
+                            </div>
+
+                            <div class="article-card article-section">
+                                <h3>LiveTag 기반 생명주기 분리</h3>
+                                <p>
+                                    판정 중간에 엔티티를 즉시 제거하지 않고,
+                                    먼저 비활성 상태로 전환한 뒤 마지막 단계에서 일괄 삭제하도록 구성했습니다.
+                                    이 방식으로 같은 프레임 내 참조 충돌 가능성을 줄이고,
+                                    전투 파이프라인 전체를 더 안전하게 유지했습니다.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="problem-solving" class="panel">
+                        <div class="panel-header">
+                            <span class="window-dot red"></span>
+                            <span class="window-dot yellow"></span>
+                            <span class="window-dot green"></span>
+                            <span class="panel-label">Problem Solving</span>
+                        </div>
+
+                        <div class="detail-panel-body">
+                            <div class="article-card article-section">
+                                <h2>문제 해결</h2>
+                                <h3>문제 1. 충돌 판정 비용 증가</h3>
+                                <p>
+                                    적과 투사체 수가 늘어날수록 모든 엔티티를 직접 비교하는 구조는 빠르게 비효율적이 되었습니다.
+                                    이를 해결하기 위해 Grid 기반 공간 분할을 도입했고,
+                                    각 투사체가 자신의 주변 3x3 셀만 탐색하도록 변경하여 충돌 탐색 범위를 줄였습니다.
+                                </p>
+                            </div>
+
+                            <div class="article-card article-section">
+                                <h3>문제 2. 중복 피격 처리</h3>
+                                <p>
+                                    투사체가 같은 적을 한 프레임 안에서 여러 번 처리할 가능성이 있어,
+                                    피격 기록을 별도로 관리할 필요가 있었습니다.
+                                    이를 위해 HitEnemyBufferElement를 두어 이미 타격한 적을 기록하고,
+                                    Damaged 버퍼에 피해를 누적한 뒤 계산 단계에서 일괄 처리하도록 구성했습니다.
+                                </p>
+                            </div>
+
+                            <div class="article-card article-section">
+                                <h3>문제 3. 엔티티 삭제 타이밍 충돌</h3>
+                                <p>
+                                    충돌 판정 중간에 엔티티를 바로 Destroy하면 같은 프레임 내 다른 시스템과 충돌할 수 있습니다.
+                                    그래서 죽음 판정과 실제 삭제를 분리하고,
+                                    LiveTag를 비활성화한 후 Destroy 단계에서 EntityCommandBuffer로 일괄 제거하도록 설계했습니다.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="core-code" class="panel">
+                        <div class="panel-header">
+                            <span class="window-dot red"></span>
+                            <span class="window-dot yellow"></span>
+                            <span class="window-dot green"></span>
+                            <span class="panel-label">Core Code</span>
+                        </div>
+
+                        <div class="detail-panel-body">
+                            <div class="article-card article-section">
+                                <h2>ECS 전투 파이프라인</h2>
+                                <p>
+                                    전투 로직을 하나의 흐름으로 처리하지 않고,
+                                    스폰 → 이동 → 판정 → 계산 → 삭제 단계로 명확히 분리한 구조입니다.
+                                    ECS에서는 시스템 실행 순서가 보장되지 않으면
+                                    충돌 판정이나 삭제 타이밍에서 버그가 발생할 수 있기 때문에
+                                    UpdateAfter를 사용해 단계별 실행 순서를 고정했습니다.
+                                </p>
+
+                                <div class="code-block"><pre>using Unity.Entities;
+
+[UpdateInGroup(typeof(SimulationSystemGroup))]
+public partial class SlimeDefenseSystemGroup : ComponentSystemGroup { }
+
+[UpdateInGroup(typeof(SlimeDefenseSystemGroup))]
+public partial class ManageSystemGroup : ComponentSystemGroup { }
+
+[UpdateInGroup(typeof(SlimeDefenseSystemGroup))]
+[UpdateAfter(typeof(ManageSystemGroup))]
+public partial class SpawnSystemGroup : ComponentSystemGroup { }
+
+[UpdateInGroup(typeof(SlimeDefenseSystemGroup))]
+[UpdateAfter(typeof(SpawnSystemGroup))]
+public partial class MoveSystemGroup : ComponentSystemGroup { }
+
+[UpdateInGroup(typeof(SlimeDefenseSystemGroup))]
+[UpdateAfter(typeof(MoveSystemGroup))]
+public partial class JudgementSystemGroup : ComponentSystemGroup { }
+
+[UpdateInGroup(typeof(SlimeDefenseSystemGroup))]
+[UpdateAfter(typeof(JudgementSystemGroup))]
+public partial class CalculateSystemGroup : ComponentSystemGroup { }
+
+[UpdateInGroup(typeof(SlimeDefenseSystemGroup))]
+[UpdateAfter(typeof(CalculateSystemGroup))]
+public partial class DestroySystemGroup : ComponentSystemGroup { }</pre></div>
+                            </div>
+
+                            <div class="article-card article-section">
+                                <h2>Grid 기반 충돌 최적화</h2>
+                                <p>
+                                    모든 적과 투사체를 직접 비교하지 않고,
+                                    Grid 기반 공간 분할을 통해 충돌 후보군을 제한하는 구조입니다.
+                                    디펜스 게임에서는 적과 투사체 수가 늘어날수록 충돌 검사 비용이 급격히 증가하기 때문에,
+                                    위치를 Grid에 저장하고 투사체는 자신의 주변 3x3 셀만 탐색하도록 설계했습니다.
+                                </p>
+
+                                <div class="code-block"><pre>using Unity.Burst;
+using Unity.Collections;
+using Unity.Entities;
+using Unity.Mathematics;
+using Unity.Transforms;
+
+[BurstCompile]
+[WithAll(typeof(ProjectileTag))]
+public partial struct Collision_Job : IJobEntity
+{
+    public int _gridWidth;
+    public float _cellSize;
+
+    [ReadOnly]
+    public NativeParallelMultiHashMap&lt;int, Entity&gt; _gridMap;
+
+    [ReadOnly]
+    public ComponentLookup&lt;LocalTransform&gt; _transformLookup;
+    [ReadOnly]
+    public ComponentLookup&lt;Collision&gt; _radiusLookup;
+
+    [NativeDisableParallelForRestriction]
+    public BufferLookup&lt;HitEnemyBufferElement&gt; _hitBufferLookup;
+
+    [NativeDisableParallelForRestriction]
+    public BufferLookup&lt;Damaged&gt; _damagedBufferLookup;
+
+    public void Execute(Entity projectileEntity, in LocalTransform transform, in Collision collider, in ProjectileDamage projectileDamage)
+    {
+        float3 position = transform.Position;
+        int centerX = (int)math.floor(position.x / _cellSize) + (_gridWidth / 2);
+        int centerY = (int)math.floor(position.z / _cellSize) + (_gridWidth / 2);
+
+        int offsetY = -1;
+        while (offsetY &lt;= 1)
+        {
+            int offsetX = -1;
+            while (offsetX &lt;= 1)
+            {
+                int axisX = centerX + offsetX;
+                int axisY = centerY + offsetY;
+                int index = axisX + _gridWidth * axisY;
+                NativeParallelMultiHashMapIterator&lt;int&gt; iterator;
+                Entity other;
+
+                bool found = _gridMap.TryGetFirstValue(index, out other, out iterator);
+
+                if (found)
+                {
+                    do
+                    {
+                        float distanceSq = math.lengthsq(position - _transformLookup[other].Position);
+                        float sumRadius = collider.radius + _radiusLookup[other].radius;
+
+                        if (distanceSq &lt;= sumRadius * sumRadius)
+                        {
+                            DynamicBuffer&lt;HitEnemyBufferElement&gt; hitBuffer = _hitBufferLookup[projectileEntity];
+                            DynamicBuffer&lt;Damaged&gt; damagedBuffer = _damagedBufferLookup[other];
+                            hitBuffer.Add(new HitEnemyBufferElement { enemy = other });
+                            damagedBuffer.Add(new Damaged { damage = projectileDamage.damage });
+                        }
+                    }
+                    while (_gridMap.TryGetNextValue(out other, ref iterator));
+                }
+
+                offsetX++;
+            }
+
+            offsetY++;
+        }
+    }
+}</pre></div>
+                            </div>
+
+                            <div class="article-card article-section">
+                                <h2>LiveTag 기반 생명주기 관리</h2>
+                                <p>
+                                    엔티티를 즉시 제거하지 않고, 먼저 비활성화한 뒤 마지막 단계에서 정리하는 구조입니다.
+                                    충돌 판정 중간에 엔티티를 바로 삭제하면 같은 프레임 내 다른 시스템과 참조 충돌이 발생할 수 있기 때문에,
+                                    죽음 판정과 실제 삭제를 분리했고 Destroy 단계에서 일괄 제거하도록 설계했습니다.
+                                </p>
+
+                                <div class="code-block"><pre>using Unity.Entities;
+
+public struct LiveTag : IComponentData, IEnableableComponent { }
+
+[WithAll(typeof(EnemyTag))]
+partial struct EnemyDead_System : ISystem
 {
     public void OnUpdate(ref SystemState state)
     {
-        float deltaTime = SystemAPI.Time.DeltaTime;
+        foreach ((RefRO&lt;EnemyHealth&gt; enemyHealth, EnabledRefRW&lt;LiveTag&gt; liveTag, Entity entity)
+            in SystemAPI.Query&lt;RefRO&lt;EnemyHealth&gt;, EnabledRefRW&lt;LiveTag&gt;&gt;().WithEntityAccess())
+        {
+            if (enemyHealth.ValueRO.health &lt;= 0)
+            {
+                liveTag.ValueRW = false;
+                RefRW&lt;GameProgress&gt; progress = SystemAPI.GetSingletonRW&lt;GameProgress&gt;();
+                progress.ValueRW.kill += 1;
+            }
+        }
     }
 }
-</pre>
+
+[WithDisabled(typeof(LiveTag))]
+public partial struct EntityDestroy_Job : IJobEntity
+{
+    public EntityCommandBuffer.ParallelWriter ecbWriter;
+}</pre></div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="retrospective" class="panel">
+                        <div class="panel-header">
+                            <span class="window-dot red"></span>
+                            <span class="window-dot yellow"></span>
+                            <span class="window-dot green"></span>
+                            <span class="panel-label">Retrospective</span>
+                        </div>
+
+                        <div class="detail-panel-body">
+                            <div class="article-card article-section">
+                                <h2>배운 점</h2>
+                                <p>
+                                    이 프로젝트를 통해 ECS는 단순히 성능을 위한 기술이 아니라,
+                                    데이터 흐름과 실행 순서를 명확히 설계해야 효과를 발휘하는 구조라는 점을 배웠습니다.
+                                    특히 충돌 처리와 삭제 처리처럼 프레임 내 타이밍이 중요한 영역에서는
+                                    문제를 기능 단위가 아니라 시스템 흐름 단위로 바라보는 사고가 중요하다는 점을 확인했습니다.
+                                </p>
+                            </div>
+
+                            <div class="article-card article-section">
+                                <h2>개선 방향</h2>
+                                <p>
+                                    앞으로는 Grid 크기와 셀 크기를 데이터 기반으로 분리하고,
+                                    무기 및 적 패턴의 확장성을 높일 수 있도록 전투 데이터를 더 세분화할 계획입니다.
+                                    또한 UI와 게임 진행 상태 연결 구조를 더 일반화해,
+                                    실제 서비스형 프로젝트에 가까운 형태로 확장할 예정입니다.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
                 </div>
-
             </div>
-
         </main>
     </div>
-
 </body>
-
 </html>
