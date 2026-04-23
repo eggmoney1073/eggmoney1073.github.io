@@ -4,187 +4,333 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Prison Resource Tycoon | Project Detail</title>
+    <title>ADProject | Project Detail</title>
+    <meta name="description" content="채굴-가공-납품 루프와 모바일 입력 구조를 중심으로 한 ADProject 상세 설명" />
     <link rel="stylesheet" href="../style.css" />
 </head>
 
 <body>
-    <div class="sky-bg">
-        <div class="moon-glow"></div>
-        <div class="moon"></div>
-        <div class="stars stars-small"></div>
-        <div class="stars stars-medium"></div>
-        <div class="stars stars-large"></div>
-        <div class="nebula nebula-1"></div>
-        <div class="nebula nebula-2"></div>
+    <div class="project-shell">
+        <aside class="project-sidebar">
+            <a class="brand" href="../index.html">Byeongchan Ahn</a>
+            <p class="brand-role">ADProject</p>
+
+            <nav class="nav-section">
+                <p class="nav-title">CONTENTS</p>
+                <a href="#overview" class="nav-link active" data-tab="overview">개요</a>
+                <a href="#architecture" class="nav-link" data-tab="architecture">설계 포인트</a>
+                <a href="#problem-solving" class="nav-link" data-tab="problem-solving">문제 해결</a>
+                <a href="#core-code" class="nav-link" data-tab="core-code">핵심 코드</a>
+                <a href="#retrospective" class="nav-link" data-tab="retrospective">배운 점</a>
+            </nav>
+
+            <div class="nav-section">
+                <p class="nav-title">STACK</p>
+                <ul class="stack-list">
+                    <li>Unity 2022</li>
+                    <li>C#</li>
+                    <li>CharacterController</li>
+                    <li>UGUI</li>
+                    <li>URP</li>
+                </ul>
+            </div>
+
+            <a class="back-link" href="../index.html">← 홈으로 돌아가기</a>
+        </aside>
+
+        <main class="project-main">
+            <section class="panel project-layout-single">
+                <div class="panel-header">
+                    <span class="window-dot red"></span>
+                    <span class="window-dot yellow"></span>
+                    <span class="window-dot green"></span>
+                    <span class="panel-label">ADProject Detail</span>
+                </div>
+
+                <div class="section-block">
+
+                    <div id="overview" class="tab-panel active">
+                        <div class="tab-section-title">
+                            <h2>프로젝트 설명</h2>
+                        </div>
+
+                        <div class="detail-intro">
+                            <h1>ADProject</h1>
+                            <p>
+                                광물을 채굴하고, 자원을 운반해 가공한 뒤 납품과 확장을 반복하는
+                                하이퍼캐주얼 타이쿤 프로토타입 프로젝트입니다.
+                                모바일 세로 화면 기준의 플레이 흐름을 전제로,
+                                조이스틱 이동·자원 수집·가공·수용 인원 확장 루프를 기초 시스템으로 구현했습니다.
+                            </p>
+
+                            <div class="overview-card-layout">
+                                <div class="overview-image-box">
+                                    <img src="../images/adproject-main.png" alt="AD Project 메인 화면" />
+                                </div>
+
+                                <div class="overview-side-list kv-list compact">
+                                    <div class="kv-item">
+                                        <strong>개발기간</strong>
+                                        약 5일
+                                    </div>
+                                    <div class="kv-item">
+                                        <strong>장르</strong>
+                                        하이퍼캐주얼 타이쿤
+                                    </div>
+                                    <div class="kv-item">
+                                        <strong>개발 형태</strong>
+                                        1인 개발
+                                    </div>
+                                    <div class="kv-item">
+                                        <strong>핵심 구조</strong>
+                                        조이스틱 이동 / 런타임 광물 그리드 / 자원 인벤토리
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="article-card">
+                            <p>
+                                이 프로젝트의 목표는 단순한 프로토타입 제작이 아니라,
+                                하이퍼캐주얼 타이쿤 장르의 핵심 루프를 작은 단위 시스템으로 분리해 구현해보는 것이었습니다.
+                                플레이어 이동, 자원 수집, 운반, 가공, 납품, 확장 흐름을 각각 독립된 컴포넌트로 나누어,
+                                이후 기능이 추가되더라도 연결이 쉬운 구조를 만드는 데 집중했습니다.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div id="architecture" class="tab-panel">
+                        <div class="tab-section-title">
+                            <h2>설계 포인트</h2>
+                        </div>
+                        <div class="article-card">
+                            <h3>모바일 조이스틱 기반 이동 구조</h3>
+                            <p>
+                                플레이어 이동은 가상 조이스틱 입력을 기준으로 구성했고, CharacterController와 중력 처리까지 포함해 세로형 모바일 환경에서도 안정적으로
+                                이동하도록 만들었습니다. 방향 기준 Transform을 따로 두어 카메라 축과 이동 축 정렬도 가능하게 구성했습니다.
+                            </p>
+                        </div>
+
+                        <div class="article-card">
+                            <h3>런타임 광물 그리드 생성</h3>
+                            <p>
+                                광물 자원을 미리 수동 배치하지 않고, 광산 영역의 스케일을 바탕으로 런타임에 자동으로 그리드를 생성하도록 만들었습니다. 이를 통해 맵 크기가 달라져도 같은
+                                규칙으로 자원 필드를 만들 수 있도록 설계했습니다.
+                            </p>
+                        </div>
+
+                        <div class="article-card">
+                            <h3>자원 종류별 인벤토리 구조</h3>
+                            <p>
+                                광물, 수갑, 돈을 각각 다른 자원으로 구분하면서도 하나의 CarrierInventory에서 관리하도록 구성했습니다. 수용량, 허용 자원 종류, UI 갱신
+                                이벤트까지 함께 관리해 플레이 루프 전반에서 재사용할 수 있도록 했습니다.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div id="problem-solving" class="tab-panel">
+                        <div class="tab-section-title">
+                            <h2>문제 해결</h2>
+                        </div>
+                        <div class="article-card">
+                            <h3>문제 1. 광물 배치의 수작업 의존성</h3>
+                            <p>
+                                광산 규모가 달라질 때마다 자원을 수동으로 다시 배치하면 유지보수 비용이 커집니다. 이를 해결하기 위해 필드 스케일을 기준으로 좌표를 계산해 광물을 자동
+                                생성하는 구조를 도입했습니다.
+                            </p>
+                        </div>
+
+                        <div class="article-card">
+                            <h3>문제 2. 이동 입력과 중력 처리 단순화 필요</h3>
+                            <p>
+                                하이퍼캐주얼 장르라도 실제 지형 위를 자연스럽게 이동하려면 최소한의 중력 처리가 필요했습니다. 그래서 단순 transform 이동이 아니라
+                                CharacterController를 사용해 이동과 낙하를 함께 처리했습니다.
+                            </p>
+                        </div>
+
+                        <div class="article-card">
+                            <h3>문제 3. 자원 상태와 UI 동기화</h3>
+                            <p>
+                                수집량, 최대 용량, 자원 종류가 늘어나면 UI와 실제 데이터가 어긋날 수 있기 때문에, 인벤토리 변경 시 이벤트를 발생시켜 HUD나 시각 요소가 동일한
+                                타이밍에 갱신되도록 구성했습니다.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div id="core-code" class="tab-panel">
+                        <div class="tab-section-title">
+                            <h2>핵심 코드</h2>
+                        </div>
+                        <div class="article-card">
+                            <h2>모바일 조이스틱 이동</h2>
+                            <p>
+                                가상 조이스틱 입력을 읽어 이동 방향을 계산하고, CharacterController를 통해 실제 이동을 처리하는 구조입니다. 이동 방향과 시각 회전을 분리해
+                                캐릭터가 자연스럽게 이동 방향을 바라보도록 만들었습니다.
+                            </p>
+
+                            <div class="code-block">
+                                <pre>private Vector2 ReadMoveInput()
+{
+    Vector2 moveInput = _joystick != null ? _joystick.Direction : Vector2.zero;
+
+    if (moveInput.magnitude < _inputDeadZone)
+    {
+        moveInput = Vector2.zero;
+    }
+
+    return moveInput;
+}
+
+private void MoveCharacter(Vector3 moveDirection)
+{
+    UpdateVerticalVelocityFromGravity();
+
+    Vector3 currentVelocity = moveDirection * _moveSpeed;
+    currentVelocity.y = _verticalVelocity;
+    Vector3 moveDelta = currentVelocity * Time.deltaTime;
+
+    _characterController.Move(moveDelta);
+}</pre>
+                            </div>
+                        </div>
+
+                        <div class="article-card">
+                            <h2>런타임 광물 그리드 생성</h2>
+                            <p>
+                                광산 영역의 크기를 기준으로 X, Y, Z 축 반복문을 돌며 광물 위치를 자동 생성합니다. 덕분에 동일한 로직으로 다양한 크기의 광산 필드를 구성할 수
+                                있습니다.
+                            </p>
+
+                            <div class="code-block">
+                                <pre>for (int y = 0; y < gridCount.y; y++)
+{
+    for (int z = 0; z < gridCount.z; z++)
+    {
+        for (int x = 0; x < gridCount.x; x++)
+        {
+            Vector3 localPosition = localStart + new Vector3(x * spacing.x, y * spacing.y, z * spacing.z);
+            Vector3 worldPosition = transform.position + fieldRotation * localPosition;
+
+            OreSpawnSlot slot = new OreSpawnSlot
+            {
+                WorldPosition = worldPosition,
+                WorldRotation = worldRotation
+            };
+
+            _spawnSlots.Add(slot);
+            SpawnOrePickupAtSlot(_spawnSlots.Count - 1);
+        }
+    }
+}</pre>
+                            </div>
+                        </div>
+
+                        <div class="article-card">
+                            <h2>자원 인벤토리 관리</h2>
+                            <p>
+                                자원 종류별 수량과 용량을 하나의 인벤토리에서 관리하고, 값이 바뀔 때마다 이벤트를 발생시켜 UI와 시각 요소를 동기화하는 구조입니다.
+                            </p>
+
+                            <div class="code-block">
+                                <pre>public int AddResource(ResourceKind resourceKind, int amount)
+{
+    amount = Mathf.Max(0, amount);
+    if (amount == 0 || !CanAcceptResource(resourceKind))
+    {
+        return 0;
+    }
+
+    int remainingCapacity = GetRemainingCapacity(resourceKind);
+    if (remainingCapacity <= 0)
+    {
+        return 0;
+    }
+
+    int addAmount = resourceKind == ResourceKind.Ore
+        ? Mathf.Min(amount, remainingCapacity)
+        : amount;
+
+    if (resourceKind == ResourceKind.Ore)
+        _oreCount += addAmount;
+
+    RaiseInventoryChanged();
+    return addAmount;
+}</pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="retrospective" class="tab-panel">
+                        <div class="tab-section-title">
+                            <h2>배운 점</h2>
+                        </div>
+                        <div class="article-card">
+                            <p>
+                                이 프로젝트를 통해 하이퍼캐주얼 장르는 단순해 보이더라도 실제로는 이동, 수집, 운반, 납품, 확장이라는 반복 루프가 자연스럽게 이어지도록 구조를 설계해야
+                                한다는 점을 배웠습니다. 특히 작은 기능도 독립된 컴포넌트로 나누어야 이후 확장이 쉬워진다는 점이 인상적이었습니다.
+                            </p>
+                        </div>
+
+                        <div class="article-card">
+                            <h2>개선 방향</h2>
+                            <p>
+                                앞으로는 자동 광부 AI, 업그레이드 수치, 생산 속도 밸런싱처럼 타이쿤 구조를 더 강화하고, 현재의 컴포넌트 구조를 바탕으로 콘텐츠를 붙이기 쉬운 방향으로
+                                확장할 계획입니다. 또한 UI 피드백과 구매/해금 흐름을 더 직관적으로 개선하는 것도 다음 과제입니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
     </div>
 
-    <header class="site-header">
-        <div class="container nav">
-            <a href="../index.html" class="logo">Byeongchan Ahn</a>
-            <nav>
-                <a href="../index.html">홈</a>
-                <a href="#overview">개요</a>
-                <a href="#process">개발 과정</a>
-                <a href="#insight">핵심 역량</a>
-            </nav>
-        </div>
-    </header>
+    <script>
+        (function () {
+            const navLinks = Array.from(document.querySelectorAll('.project-sidebar .nav-link'));
+            const panels = Array.from(document.querySelectorAll('.tab-panel'));
 
-    <main>
+            const showPanel = function (panelId) {
+                panels.forEach(function (panel) {
+                    panel.classList.toggle('active', panel.id === panelId);
+                });
 
-        <!-- HERO -->
-        <section class="page-hero container">
-            <div class="page-hero-inner">
-                <article class="glass-card hero-panel">
-                    <p class="eyebrow">Project Detail</p>
-                    <h1>Prison Resource Tycoon</h1>
-                    <p>
-                        AI를 활용해 게임 시스템을 설계하고 구현까지 완성한 프로젝트입니다.
-                        단순 구현이 아닌 요구사항 정의, 구조 설계, 문제 해결 과정에 집중하여 개발했습니다.
-                    </p>
-                    <p>개발기간 : 5 일</p>
-                    <div class="link-actions">
-                        <a class="btn btn-primary" href="https://github.com/eggmoney1073/ADProject"
-                            target="_blank">GitHub</a>
+                navLinks.forEach(function (link) {
+                    const isActive = link.getAttribute('data-tab') === panelId;
+                    link.classList.toggle('active', isActive);
+                });
 
-                        <a class="btn btn-secondary" href="https://www.youtube.com/watch?v=R7jiuTQHv78"
-                            target="_blank">영상 보기</a>
-                    </div>
-                </article>
+                if (window.location.hash !== '#' + panelId) {
+                    history.replaceState(null, '', '#' + panelId);
+                }
+            };
 
-                <div class="image-frame">
-                    <img src="../images/prison-main.png" alt="프로젝트 이미지">
-                </div>
-            </div>
-        </section>
+            navLinks.forEach(function (link) {
+                link.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    const panelId = link.getAttribute('data-tab');
+                    showPanel(panelId);
+                });
+            });
 
-        <!-- OVERVIEW -->
-        <section id="overview" class="container page-section">
-            <div class="section-title-wrap">
-                <p class="eyebrow">Overview</p>
-                <h2>프로젝트 개요</h2>
-            </div>
+            const initialHash = window.location.hash ? window.location.hash.substring(1) : 'overview';
+            const hasInitialPanel = panels.some(function (panel) {
+                return panel.id === initialHash;
+            });
 
-            <div class="metric-grid detail-metric-grid">
-                <article class="metric-card">
-                    <span class="mini-label">개발 방식</span>
-                    <h3>AI 협업 개발</h3>
-                    <p>요구사항 정의와 구조 설계를 중심으로 AI를 활용해 구현</p>
-                </article>
+            showPanel(hasInitialPanel ? initialHash : 'overview');
 
-                <article class="metric-card">
-                    <span class="mini-label">핵심 구조</span>
-                    <h3>자동화 루프</h3>
-                    <p>수동 → 자동화로 확장되는 게임 구조 설계</p>
-                </article>
+            window.addEventListener('hashchange', function () {
+                const panelId = window.location.hash ? window.location.hash.substring(1) : 'overview';
+                const exists = panels.some(function (panel) {
+                    return panel.id === panelId;
+                });
 
-                <article class="metric-card">
-                    <span class="mini-label">플레이 흐름</span>
-                    <h3>상태 기반 구조</h3>
-                    <p>Start → Guide → Play → End 상태 설계</p>
-                </article>
-
-                <article class="metric-card">
-                    <span class="mini-label">개발 포인트</span>
-                    <h3>문제 해결 중심</h3>
-                    <p>구현보다 디버깅과 개선 과정에 집중</p>
-                </article>
-            </div>
-
-            <div class="detail-block" style="margin-top:18px;">
-                <article class="detail-card">
-                    <h3>핵심 게임 루프</h3>
-                    <p>
-                        자원 채굴 → 가공 → 납품 → 보상 → 업그레이드 → 자동화
-                        구조를 기반으로 플레이가 진행되며,
-                        플레이어의 행동이 점차 NPC로 대체되는 자동화 흐름을 설계했습니다.
-                    </p>
-                </article>
-            </div>
-        </section>
-
-        <!-- PROCESS -->
-        <section id="process" class="container page-section">
-            <div class="section-title-wrap">
-                <p class="eyebrow">Process</p>
-                <h2>개발 과정</h2>
-            </div>
-
-            <div class="timeline-list">
-
-                <div class="timeline-item">
-                    <strong>1. 시스템 설계</strong><br>
-                    게임 전체 흐름과 자원 이동 구조, NPC 역할을 먼저 정의
-                </div>
-
-                <div class="timeline-item">
-                    <strong>2. 요구사항 세분화</strong><br>
-                    채굴, 운송, 생산, 납품, UI 동작까지 상세 조건을 구체화
-                </div>
-
-                <div class="timeline-item">
-                    <strong>3. AI 협업 구현</strong><br>
-                    설계한 구조를 기반으로 단계적으로 기능 구현 요청
-                </div>
-
-                <div class="timeline-item">
-                    <strong>4. 반복 개선</strong><br>
-                    문제 발생 시 원인을 정의하고 구조 단위로 수정
-                </div>
-
-            </div>
-        </section>
-
-        <!-- INSIGHT -->
-        <section id="insight" class="container page-section">
-            <div class="section-title-wrap">
-                <p class="eyebrow">Insight</p>
-                <h2>핵심 역량</h2>
-            </div>
-
-            <div class="grid-2">
-
-                <article class="glass-card">
-                    <h3>요구사항 정의 능력</h3>
-                    <p>
-                        단순 기능 요청이 아닌 시스템 단위로 요구사항을 정의하고,
-                        게임의 전체 흐름을 먼저 설계한 뒤 구현을 진행했습니다.
-                    </p>
-                </article>
-
-                <article class="glass-card">
-                    <h3>문제 해결 능력</h3>
-                    <p>
-                        UI 가려짐, 이벤트 타이밍 문제, NPC 동작 오류 등
-                        실제 개발 과정에서 발생한 문제를 분석하고 해결했습니다.
-                    </p>
-                </article>
-
-                <article class="glass-card">
-                    <h3>AI 활용 능력</h3>
-                    <p>
-                        AI를 단순 코드 생성 도구로 사용하지 않고,
-                        반복적인 피드백을 통해 결과를 개선하는 방식으로 활용했습니다.
-                    </p>
-                </article>
-
-                <article class="glass-card">
-                    <h3>시스템 설계 능력</h3>
-                    <p>
-                        플레이어 → NPC → 자동화로 확장되는 구조를 설계하며
-                        확장성과 유지보수를 고려한 시스템을 구성했습니다.
-                    </p>
-                </article>
-
-            </div>
-        </section>
-
-        <a class="back-link" href="../index.html">← 홈으로 돌아가기</a>
-
-        <div class="footer-spacer"></div>
-
-    </main>
+                if (exists) {
+                    showPanel(panelId);
+                }
+            });
+        }());
+    </script>
 </body>
 
 </html>

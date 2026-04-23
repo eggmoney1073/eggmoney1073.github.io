@@ -5,386 +5,285 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>UI Project | Project Detail</title>
+    <meta name="description" content="게임 시작 전 UX 흐름과 UI 시스템 구조를 중심으로 한 UI Project 상세 설명" />
     <link rel="stylesheet" href="../style.css" />
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.css">
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-highlight/prism-line-highlight.min.css">
 </head>
 
 <body>
-    <div class="sky-bg">
-        <div class="moon-glow"></div>
-        <div class="moon"></div>
-        <div class="stars stars-small"></div>
-        <div class="stars stars-medium"></div>
-        <div class="stars stars-large"></div>
-        <div class="nebula nebula-1"></div>
-        <div class="nebula nebula-2"></div>
+    <div class="project-shell">
+        <aside class="project-sidebar">
+            <a class="brand" href="../index.html">Byeongchan Ahn</a>
+            <p class="brand-role">UI Project</p>
+
+            <nav class="nav-section">
+                <p class="nav-title">CONTENTS</p>
+                <a href="#overview" class="nav-link active" data-tab="overview">개요</a>
+                <a href="#architecture" class="nav-link" data-tab="architecture">설계 포인트</a>
+                <a href="#problem-solving" class="nav-link" data-tab="problem-solving">문제 해결</a>
+                <a href="#core-code" class="nav-link" data-tab="core-code">핵심 코드</a>
+                <a href="#retrospective" class="nav-link" data-tab="retrospective">배운 점</a>
+            </nav>
+
+            <div class="nav-section">
+                <p class="nav-title">STACK</p>
+                <ul class="stack-list">
+                    <li>Unity 6</li>
+                    <li>C#</li>
+                    <li>UGUI</li>
+                    <li>Input System</li>
+                    <li>URP</li>
+                </ul>
+            </div>
+
+            <a class="back-link" href="../index.html">← 홈으로 돌아가기</a>
+        </aside>
+
+        <main class="project-main">
+            <section class="panel project-layout-single">
+                <div class="panel-header">
+                    <span class="window-dot red"></span>
+                    <span class="window-dot yellow"></span>
+                    <span class="window-dot green"></span>
+                    <span class="panel-label">UI Project Detail</span>
+                </div>
+
+                <div class="section-block">
+
+                    <div id="overview" class="tab-panel active">
+                        <div class="tab-section-title">
+                            <h2>프로젝트 설명</h2>
+                        </div>
+
+                        <div class="detail-intro">
+                            <h1>UI Project</h1>
+                            <p>
+                                게임 플레이 이전 단계의 사용자 경험을 설계하고,
+                                이를 실제 게임 흐름으로 연결하는 UI 시스템 프로젝트입니다.
+                                타이틀 → 다운로드 확인 → 로딩 → 메인 메뉴 → 게임 진입까지의 과정을
+                                단순한 화면 전환이 아니라 하나의 UX 파이프라인으로 정리하는 데 집중했습니다.
+                            </p>
+
+                            <div class="overview-card-layout">
+                                <div class="overview-image-box">
+                                    <img src="../images/ui-project-main.png" alt="UI Project 메인 화면" />
+                                </div>
+
+                                <div class="overview-side-list kv-list compact">
+                                    <div class="kv-item">
+                                        <strong>개발기간</strong>
+                                        약 3일
+                                    </div>
+                                    <div class="kv-item">
+                                        <strong>장르</strong>
+                                        UI / UX 시스템 설계
+                                    </div>
+                                    <div class="kv-item">
+                                        <strong>개발 형태</strong>
+                                        1인 개발
+                                    </div>
+                                    <div class="kv-item">
+                                        <strong>핵심 구조</strong>
+                                        씬 기반 UX 흐름 / 입력 분리 / 팝업 공통 구조
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="article-card">
+                            <p>
+                                이 프로젝트의 목표는 UI를 단순한 배치 작업이 아니라
+                                게임 진입 전후의 흐름을 제어하는 시스템으로 설계해보는 것이었습니다.
+                                다운로드 여부 확인, 로딩 상태 표시, 메뉴 진입, 입력 상태 분리 같은 기능을 단계별로 나누어,
+                                실제 게임 프로젝트에 바로 연결할 수 있는 형태의 UI 구조를 만드는 데 초점을 맞췄습니다.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div id="architecture" class="tab-panel">
+                        <div class="tab-section-title">
+                            <h2>설계 포인트</h2>
+                        </div>
+                        <div class="article-card">
+                            <h3>씬 단위 UX 흐름 분리</h3>
+                            <p>
+                                타이틀, 다운로드, 로딩, 메인 메뉴, 게임 진입 단계를 각각 독립된 흐름으로 나누어 설계했습니다. 단순히 버튼 클릭으로 화면만 바꾸는 것이 아니라, 사용자가
+                                자연스럽게 다음 단계로 이동하도록 UX 관점에서 구조를 정리했습니다.
+                            </p>
+                        </div>
+
+                        <div class="article-card">
+                            <h3>UI 입력과 게임 입력 분리</h3>
+                            <p>
+                                게임 플레이 입력과 UI 조작 입력이 섞이면 유지보수와 디버깅이 어려워질 수 있기 때문에, Input System 기반으로 상태를 나누고 상황에 따라 입력
+                                영역을 분리하는 방향으로 구조를 잡았습니다.
+                            </p>
+                        </div>
+
+                        <div class="article-card">
+                            <h3>팝업 공통 구조 설계</h3>
+                            <p>
+                                팝업은 기능이 늘어날수록 중복 코드가 빠르게 생기기 때문에, BasePopup 기반 공통 구조와 중앙 관리 방식을 기준으로 확장 가능한 형태를 의식해
+                                설계했습니다.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div id="problem-solving" class="tab-panel">
+                        <div class="tab-section-title">
+                            <h2>문제 해결</h2>
+                        </div>
+                        <div class="article-card">
+                            <h3>문제 1. UI를 화면 단위로만 보면 흐름이 끊김</h3>
+                            <p>
+                                처음에는 각 화면을 개별 UI로만 보게 되어 다운로드, 로딩, 진입 흐름이 따로 노는 문제가 있었습니다. 이를 UX 흐름 단위로 다시 정리하면서 단계별 역할을
+                                분리하는 방식으로 구조를 개선했습니다.
+                            </p>
+                        </div>
+
+                        <div class="article-card">
+                            <h3>문제 2. UI 입력과 게임 입력 충돌 가능성</h3>
+                            <p>
+                                메뉴 조작과 게임 조작이 동시에 열려 있으면 예기치 않은 입력 충돌이 발생할 수 있습니다. 이를 막기 위해 상황에 따라 어떤 입력이 활성화되는지 명확히 나누는
+                                구조를 우선적으로 설계했습니다.
+                            </p>
+                        </div>
+
+                        <div class="article-card">
+                            <h3>문제 3. 팝업 확장 시 중복 코드 증가</h3>
+                            <p>
+                                팝업이 추가될 때마다 열기/닫기/초기화 코드가 반복될 가능성이 있어, 공통 부모 구조와 매니저 중심 관리 방식을 기준으로 확장성을 확보하려고 했습니다.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div id="core-code" class="tab-panel">
+                        <div class="tab-section-title">
+                            <h2>핵심 코드</h2>
+                        </div>
+                        <div class="article-card">
+                            <h2>프로젝트 방향 정의</h2>
+                            <p>
+                                이 프로젝트는 README 단계부터 UI를 단순한 배치가 아니라 전체 UX 흐름으로 정의하고 있습니다. 포트폴리오에서 이 프로젝트를 설명할 때도 화면 구성보다
+                                구조 설계 관점에서 접근하는 것이 핵심입니다.
+                            </p>
+
+                            <div class="code-block">
+                                <pre>## 📌 프로젝트 개요
+UI_Project는 게임 플레이 이전 단계의 사용자 경험을 설계하고,
+이를 실제 게임 흐름으로 연결하는 UI 시스템 프로젝트입니다.
+
+타이틀 → 다운로드 확인 → 로딩 → 메인 메뉴 → 게임 진입
+까지의 전체 흐름을 구조적으로 분리하여 설계했습니다.</pre>
+                            </div>
+                        </div>
+
+                        <div class="article-card">
+                            <h2>핵심 목표 정리</h2>
+                            <p>
+                                README에 명시된 목표는 실제로 이 프로젝트의 강점을 설명하는 문장으로 사용할 수 있습니다. 특히 UI 입력과 게임 입력 분리, 로딩/다운로드 구조화,
+                                재사용 가능한 UI 구조 설계가 핵심 메시지입니다.
+                            </p>
+
+                            <div class="code-block">
+                                <pre>## 🎯 핵심 목표
+
+- 게임 시작 전 전체 UX 흐름 설계
+- UI 입력과 인게임 입력 분리
+- 로딩 및 다운로드 시스템 구조화
+- 재사용 가능한 UI 구조 설계</pre>
+                            </div>
+                        </div>
+
+                        <div class="article-card">
+                            <h2>패키지 구성 근거</h2>
+                            <p>
+                                실제 패키지 구성에서도 Input System, UGUI, URP 사용이 확인됩니다. 따라서 포트폴리오 설명에서 사용 기술 스택을 말할 때 README 설명뿐
+                                아니라 패키지 근거까지 함께 제시할 수 있습니다.
+                            </p>
+
+                            <div class="code-block">
+                                <pre>{
+  "dependencies": {
+    "com.unity.inputsystem": "1.14.0",
+    "com.unity.render-pipelines.universal": "17.0.4",
+    "com.unity.ugui": "2.0.0"
+  }
+}</pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="retrospective" class="tab-panel">
+                        <div class="tab-section-title">
+                            <h2>배운 점</h2>
+                        </div>
+                        <div class="article-card">
+                            <p>
+                                이 프로젝트를 통해 UI는 단순히 화면을 예쁘게 구성하는 작업이 아니라, 사용자가 게임에 진입하기까지의 흐름 전체를 설계하는 일이라는 점을 다시 정리할 수
+                                있었습니다. 특히 다운로드·로딩·입력 상태처럼 플레이 이전 단계의 경험도 시스템적으로 다뤄야 한다는 점이 중요했습니다.
+                            </p>
+                        </div>
+
+                        <div class="article-card">
+                            <h2>개선 방향</h2>
+                            <p>
+                                앞으로는 이 구조를 실제 코드 단위 상태머신이나 UI 상태 컨트롤러와 더 명확하게 연결하고, 팝업과 로딩 흐름을 데이터 기반으로 관리할 수 있는 구조로
+                                확장해볼 계획입니다. 또한 프로젝트 규모가 커질수록 UI 테스트와 상태 추적이 쉬운 형태로 일반화하는 것도 개선 방향입니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
     </div>
 
-    <header class="site-header">
-        <div class="container nav">
-            <a href="../index.html" class="logo">Byeongchan Ahn</a>
-            <nav>
-                <a href="../index.html">홈</a>
-                <a href="#overview">개요</a>
-                <a href="#structure">구조</a>
-                <a href="#core-code">핵심 코드</a>
-            </nav>
-        </div>
-    </header>
+    <script>
+        (function () {
+            const navLinks = Array.from(document.querySelectorAll('.project-sidebar .nav-link'));
+            const panels = Array.from(document.querySelectorAll('.tab-panel'));
 
-    <main>
-        <section class="page-hero container">
-            <div class="page-hero-inner">
-                <article class="glass-card hero-panel">
-                    <p class="eyebrow">Project Detail</p>
-                    <h1>UI Project</h1>
-                    <p>
-                        게임 플레이 이전 구간의 사용자 경험을 구조적으로 설계한 UI 시스템 프로젝트입니다.
-                        단순히 화면을 배치하는 수준이 아니라,
-                        타이틀 화면부터 다운로드 확인, 로딩, 메인 메뉴, 게임 진입까지의 흐름을
-                        각각의 역할 단위로 나누어 연결하는 데 집중했습니다.
-                    </p>
-                    <p>개발기간 : 3 일</p>
-                    <div class="link-actions">
-                        <a class="btn btn-primary" href="https://github.com/eggmoney1073/UI_Project" target="_blank"
-                            rel="noopener noreferrer">
-                            GitHub 바로가기
-                        </a>
-                        <a class="btn btn-secondary" href="https://www.youtube.com/watch?v=WGttEoOuF08" target="_blank"
-                            rel="noopener noreferrer">
-                            영상 바로가기
-                        </a>
-                    </div>
-                </article>
+            const showPanel = function (panelId) {
+                panels.forEach(function (panel) {
+                    panel.classList.toggle('active', panel.id === panelId);
+                });
 
-                <div class="image-frame">
-                    <img src="../images/uiproject-main.png" alt="UI Project 대표 이미지" />
-                </div>
-            </div>
-        </section>
+                navLinks.forEach(function (link) {
+                    const isActive = link.getAttribute('data-tab') === panelId;
+                    link.classList.toggle('active', isActive);
+                });
 
-        <section id="overview" class="container page-section">
-            <div class="section-title-wrap">
-                <p class="eyebrow">Overview</p>
-                <h2>프로젝트 개요</h2>
-            </div>
+                if (window.location.hash !== '#' + panelId) {
+                    history.replaceState(null, '', '#' + panelId);
+                }
+            };
 
-            <div class="metric-grid detail-metric-grid">
-                <article class="metric-card">
-                    <span class="mini-label">핵심 목적</span>
-                    <h3>UI 흐름 설계</h3>
-                    <p>게임 시작 전 구간을 하나의 UX 흐름으로 연결하고 각 단계를 분리해 관리할 수 있도록 설계했습니다.</p>
-                </article>
-                <article class="metric-card">
-                    <span class="mini-label">입력 구조</span>
-                    <h3>입력 상태 분리</h3>
-                    <p>UI 조작과 인게임 조작을 분리해 입력 충돌을 줄이고 상황에 맞는 전환이 가능하도록 구성했습니다.</p>
-                </article>
-                <article class="metric-card">
-                    <span class="mini-label">UI 관리</span>
-                    <h3>Manager 기반 구조</h3>
-                    <p>SceneManager, UIManager, PopUpManager처럼 역할 단위로 책임을 나누는 구조를 목표로 했습니다.</p>
-                </article>
-                <article class="metric-card">
-                    <span class="mini-label">확장성</span>
-                    <h3>재사용 가능한 UI</h3>
-                    <p>팝업과 흐름을 공통 구조로 묶어 이후 기능 추가 시 기존 코드 수정 범위를 줄이는 방향으로 접근했습니다.</p>
-                </article>
-            </div>
+            navLinks.forEach(function (link) {
+                link.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    const panelId = link.getAttribute('data-tab');
+                    showPanel(panelId);
+                });
+            });
 
-            <div class="detail-block" style="margin-top: 18px;">
-                <article class="detail-card">
-                    <h3>설계 방향</h3>
-                    <p>
-                        이 프로젝트는 게임 내부 전투 시스템보다 먼저 사용자가 마주하는 흐름을 어떻게 설계할 것인가에 초점을 둔 프로젝트입니다.
-                        타이틀 화면에서 시작해, 필요한 확인 단계를 거치고, 로딩을 보여주고, 메인 메뉴를 통해 게임으로 진입하는 과정을
-                        각각 독립된 역할로 분리하면 유지보수가 쉬워지고 이후 기능 추가도 더 안정적으로 진행할 수 있습니다.
-                    </p>
-                    <p>
-                        또한 UI 조작과 실제 플레이 입력을 같은 상태로 다루면 충돌이 생기기 쉬우므로,
-                        입력 상태를 분리하고 상황에 따라 전환할 수 있는 구조를 잡는 것이 핵심 포인트였습니다.
-                    </p>
-                </article>
-            </div>
-        </section>
+            const initialHash = window.location.hash ? window.location.hash.substring(1) : 'overview';
+            const hasInitialPanel = panels.some(function (panel) {
+                return panel.id === initialHash;
+            });
 
-        <section id="structure" class="container page-section">
-            <div class="section-title-wrap">
-                <p class="eyebrow">Structure</p>
-                <h2>구조와 흐름</h2>
-            </div>
+            showPanel(hasInitialPanel ? initialHash : 'overview');
 
-            <div class="detail-block">
-                <article class="detail-card">
-                    <h3>전체 흐름</h3>
-                    <p>
-                        이 프로젝트는 README 기준으로
-                        <strong>타이틀 → 다운로드 확인 → 로딩 → 메인 메뉴 → 게임 진입</strong>
-                        흐름을 중심으로 설계되어 있습니다.
-                        중요한 점은 각 화면이 단순 전환이 아니라,
-                        사용자에게 현재 어떤 단계인지 명확히 전달하는 역할을 가진다는 점입니다.
-                    </p>
-                </article>
+            window.addEventListener('hashchange', function () {
+                const panelId = window.location.hash ? window.location.hash.substring(1) : 'overview';
+                const exists = panels.some(function (panel) {
+                    return panel.id === panelId;
+                });
 
-                <article class="detail-card">
-                    <h3>매니저 역할 분리</h3>
-                    <p>
-                        UI 흐름을 한 클래스에 몰아넣는 대신,
-                        씬 전환, UI 표시, 팝업 제어를 각각 다른 책임으로 나누는 구조를 지향했습니다.
-                        이렇게 역할을 분리하면 특정 기능을 수정할 때 영향 범위를 줄일 수 있고,
-                        새 팝업이나 새 메뉴를 추가할 때도 기존 구조를 유지한 채 확장하기 쉬워집니다.
-                    </p>
-                </article>
-
-                <article class="detail-card">
-                    <h3>입력 상태 전환</h3>
-                    <p>
-                        메뉴를 조작하는 상황과 실제 게임을 조작하는 상황은 요구되는 입력이 다릅니다.
-                        이 프로젝트는 그 차이를 구조적으로 분리해,
-                        메뉴 탐색 중에는 UI 입력만, 게임 진입 이후에는 인게임 입력만 활성화하는 방식으로
-                        사용자 경험을 더 명확하게 만드는 방향을 보여줍니다.
-                    </p>
-                </article>
-            </div>
-        </section>
-
-        <section id="core-code" class="container page-section">
-            <div class="section-title-wrap">
-                <p class="eyebrow">Core Code</p>
-                <h2>핵심 코드 설명</h2>
-            </div>
-
-            <div class="code-detail-grid">
-                <article class="code-detail-card">
-                    <div class="code-detail-header">
-                        <p class="code-label">Flow Design</p>
-                        <h3>단계별 UI 흐름 분리</h3>
-                        <p>
-                            타이틀, 확인, 로딩, 메뉴, 진입 과정을 하나의 흐름으로 연결하되
-                            각 단계의 책임을 나누는 방식입니다.
-                        </p>
-                    </div>
-                    <div class="code-detail-body">
-                        <div class="reason-box">
-                            <strong>왜 이렇게 설계했는가?</strong><br>
-                            UI를 단일 화면 단위로만 보면 확장성이 낮아집니다.
-                            게임 시작 전 구간도 하나의 시스템으로 보고 단계별 책임을 나누면,
-                            나중에 새 화면을 끼워 넣거나 특정 흐름을 수정할 때 훨씬 유리합니다.
-                        </div>
-                        <div class="summary-box">
-                            <strong>핵심 포인트</strong><br>
-                            UI를 “화면”이 아니라 “흐름”으로 설계했다는 점이 핵심입니다.
-                        </div>
-                        <pre class="line-numbers"><code class="language-csharp">public enum BootFlowStep
-{
-    Title,
-    DownloadCheck,
-    Loading,
-    MainMenu,
-    EnterGame
-}
-
-public class BootFlowController : MonoBehaviour
-{
-    private BootFlowStep _currentStep;
-
-    public void MoveNext()
-    {
-        if (_currentStep == BootFlowStep.Title)
-        {
-            _currentStep = BootFlowStep.DownloadCheck;
-            return;
-        }
-
-        if (_currentStep == BootFlowStep.DownloadCheck)
-        {
-            _currentStep = BootFlowStep.Loading;
-            return;
-        }
-
-        if (_currentStep == BootFlowStep.Loading)
-        {
-            _currentStep = BootFlowStep.MainMenu;
-            return;
-        }
-
-        if (_currentStep == BootFlowStep.MainMenu)
-        {
-            _currentStep = BootFlowStep.EnterGame;
-        }
-    }
-}</code></pre>
-                    </div>
-                </article>
-
-                <article class="code-detail-card">
-                    <div class="code-detail-header">
-                        <p class="code-label">Input Separation</p>
-                        <h3>UI 입력과 인게임 입력 분리</h3>
-                        <p>
-                            상황에 따라 입력 상태를 전환해 메뉴 조작과 게임 조작이 서로 충돌하지 않도록 하는 구조입니다.
-                        </p>
-                    </div>
-                    <div class="code-detail-body">
-                        <div class="reason-box">
-                            <strong>왜 이렇게 설계했는가?</strong><br>
-                            메뉴를 여는 키와 인게임 액션 키가 동시에 반응하면 UX가 불안정해집니다.
-                            입력 상태를 분리하면 현재 사용자가 어느 컨텍스트에 있는지 명확하게 관리할 수 있습니다.
-                        </div>
-                        <div class="summary-box">
-                            <strong>핵심 포인트</strong><br>
-                            UI 조작과 플레이 조작을 같은 계층에서 섞지 않고 상태 전환으로 관리하는 구조입니다.
-                        </div>
-                        <pre class="line-numbers"><code class="language-csharp">public enum InputMode
-{
-    UI,
-    InGame
-}
-
-public class InputStateController : MonoBehaviour
-{
-    private InputMode _currentMode;
-
-    public void ChangeMode(InputMode mode)
-    {
-        _currentMode = mode;
-
-        if (_currentMode == InputMode.UI)
-        {
-            EnableUIInput();
-            DisableInGameInput();
-            return;
-        }
-
-        EnableInGameInput();
-        DisableUIInput();
-    }
-
-    private void EnableUIInput() { }
-    private void DisableUIInput() { }
-    private void EnableInGameInput() { }
-    private void DisableInGameInput() { }
-}</code></pre>
-                    </div>
-                </article>
-
-                <article class="code-detail-card">
-                    <div class="code-detail-header">
-                        <p class="code-label">Popup System</p>
-                        <h3>공통 Popup 기반 확장 구조</h3>
-                        <p>
-                            개별 팝업이 제각각 동작하는 대신,
-                            공통 베이스를 두고 중앙 매니저가 열고 닫는 방식으로 관리하는 구조입니다.
-                        </p>
-                    </div>
-                    <div class="code-detail-body">
-                        <div class="reason-box">
-                            <strong>왜 이렇게 설계했는가?</strong><br>
-                            팝업이 많아질수록 생성, 표시, 닫기 로직이 흩어지기 쉽습니다.
-                            공통 구조를 만들면 확인창, 경고창, 안내창 등을 같은 규칙으로 관리할 수 있어 유지보수가 쉬워집니다.
-                        </div>
-                        <div class="summary-box">
-                            <strong>핵심 포인트</strong><br>
-                            공통 베이스 + 중앙 관리 방식으로 UI 확장 비용을 줄이는 접근입니다.
-                        </div>
-                        <pre class="line-numbers"><code class="language-csharp">public abstract class BasePopup : MonoBehaviour
-{
-    public virtual void Open()
-    {
-        gameObject.SetActive(true);
-    }
-
-    public virtual void Close()
-    {
-        gameObject.SetActive(false);
-    }
-}
-
-public class PopupManager : MonoBehaviour
-{
-    public void Show(BasePopup popup)
-    {
-        if (popup == null)
-        {
-            return;
-        }
-
-        popup.Open();
-    }
-
-    public void Hide(BasePopup popup)
-    {
-        if (popup == null)
-        {
-            return;
-        }
-
-        popup.Close();
-    }
-}</code></pre>
-                    </div>
-                </article>
-
-                <article class="code-detail-card">
-                    <div class="code-detail-header">
-                        <p class="code-label">Loading UX</p>
-                        <h3>로딩 진행과 사용자 대기 흐름</h3>
-                        <p>
-                            단순히 씬만 바꾸는 것이 아니라,
-                            사용자가 현재 준비 중인 상태를 인지할 수 있게 만드는 로딩 흐름 설계입니다.
-                        </p>
-                    </div>
-                    <div class="code-detail-body">
-                        <div class="reason-box">
-                            <strong>왜 이렇게 설계했는가?</strong><br>
-                            로딩은 기술 처리 구간이지만, 사용자 입장에서는 경험의 일부입니다.
-                            진행률과 대기 상태를 UI로 전달하면 체감 품질이 좋아지고 흐름이 끊기지 않습니다.
-                        </div>
-                        <div class="summary-box">
-                            <strong>핵심 포인트</strong><br>
-                            로딩 자체보다 “사용자가 지금 무엇을 기다리는지 알 수 있게 한다”는 UX 설계가 중요합니다.
-                        </div>
-                        <pre class="line-numbers"><code class="language-csharp">using UnityEngine;
-using UnityEngine.UI;
-
-public class LoadingPresenter : MonoBehaviour
-{
-    [SerializeField] private Slider progressBar;
-    [SerializeField] private GameObject continuePanel;
-
-    public void UpdateProgress(float value)
-    {
-        if (progressBar != null)
-        {
-            progressBar.value = value;
-        }
-    }
-
-    public void ShowContinue()
-    {
-        if (continuePanel != null)
-        {
-            continuePanel.SetActive(true);
-        }
-    }
-}</code></pre>
-                    </div>
-                </article>
-            </div>
-            <a class="back-link" href="../index.html">← 홈으로 돌아가기</a>
-        </section>
-
-        <div class="footer-spacer"></div>
-    </main>
-
-    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-csharp.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-highlight/prism-line-highlight.min.js"></script>
+                if (exists) {
+                    showPanel(panelId);
+                }
+            });
+        }());
+    </script>
 </body>
 
 </html>
