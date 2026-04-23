@@ -17,7 +17,7 @@
 
             <nav class="nav-section">
                 <p class="nav-title">NAVIGATION</p>
-                <a href="#home" class="nav-link">Home</a>
+                <a href="#home" class="nav-link active">Home</a>
                 <a href="#about" class="nav-link">About</a>
                 <a href="#projects" class="nav-link">Projects</a>
                 <a href="#strength" class="nav-link">Strength</a>
@@ -46,7 +46,7 @@
         </aside>
 
         <main class="main-panel">
-            <header id="home" class="panel hero-panel">
+            <header id="home" class="panel hero-panel scroll-section">
                 <div class="panel-header">
                     <span class="window-dot red"></span>
                     <span class="window-dot yellow"></span>
@@ -91,7 +91,7 @@
                 </div>
             </header>
 
-            <section id="about" class="panel">
+            <section id="about" class="panel scroll-section">
                 <div class="panel-header">
                     <span class="window-dot red"></span>
                     <span class="window-dot yellow"></span>
@@ -123,7 +123,7 @@
                 </div>
             </section>
 
-            <section id="projects" class="panel">
+            <section id="projects" class="panel scroll-section">
                 <div class="panel-header">
                     <span class="window-dot red"></span>
                     <span class="window-dot yellow"></span>
@@ -206,7 +206,7 @@
                 </div>
             </section>
 
-            <section id="strength" class="panel">
+            <section id="strength" class="panel scroll-section">
                 <div class="panel-header">
                     <span class="window-dot red"></span>
                     <span class="window-dot yellow"></span>
@@ -233,7 +233,7 @@
                 </div>
             </section>
 
-            <section id="contact" class="panel">
+            <section id="contact" class="panel scroll-section">
                 <div class="panel-header">
                     <span class="window-dot red"></span>
                     <span class="window-dot yellow"></span>
@@ -265,5 +265,57 @@
             </section>
         </main>
     </div>
+
+    <script>
+        (function () {
+            const navLinks = Array.from(document.querySelectorAll('.sidebar .nav-link'));
+            const sections = navLinks
+                .map(function (link) {
+                    const id = link.getAttribute('href');
+                    return document.querySelector(id);
+                })
+                .filter(Boolean);
+
+            const setActiveLink = function (id) {
+                navLinks.forEach(function (link) {
+                    const isActive = link.getAttribute('href') === '#' + id;
+                    link.classList.toggle('active', isActive);
+                });
+            };
+
+            const observer = new IntersectionObserver(function (entries) {
+                let visibleEntry = null;
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        if (!visibleEntry || entry.intersectionRatio > visibleEntry.intersectionRatio) {
+                            visibleEntry = entry;
+                        }
+                    }
+                });
+
+                if (visibleEntry) {
+                    setActiveLink(visibleEntry.target.id);
+                }
+            }, {
+                root: null,
+                rootMargin: '-20% 0px -55% 0px',
+                threshold: [0.2, 0.4, 0.6, 0.8]
+            });
+
+            sections.forEach(function (section) {
+                observer.observe(section);
+            });
+
+            navLinks.forEach(function (link) {
+                link.addEventListener('click', function () {
+                    const href = link.getAttribute('href');
+                    if (href && href.charAt(0) === '#') {
+                        const id = href.substring(1);
+                        setActiveLink(id);
+                    }
+                });
+            });
+        }());
+    </script>
 </body>
 </html>
