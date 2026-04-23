@@ -1,16 +1,17 @@
 <!DOCTYPE html>
+
 <html lang="ko">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Slime Defense | Project Detail</title>
-    <link rel="stylesheet" href="../style.css" />
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.css">
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-highlight/prism-line-highlight.min.css">
+    <link href="../style.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.css"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-highlight/prism-line-highlight.min.css"
+        rel="stylesheet" />
 </head>
 
 <body>
@@ -23,10 +24,9 @@
         <div class="nebula nebula-1"></div>
         <div class="nebula nebula-2"></div>
     </div>
-
     <header class="site-header">
         <div class="container nav">
-            <a href="../index.html" class="logo">Byeongchan Ahn</a>
+            <a class="logo" href="../index.html">Byeongchan Ahn</a>
             <nav>
                 <a href="../index.html">홈</a>
                 <a href="#overview">개요</a>
@@ -35,7 +35,6 @@
             </nav>
         </div>
     </header>
-
     <main>
         <section class="page-hero container">
             <div class="page-hero-inner">
@@ -50,25 +49,22 @@
                     </p>
                     <p>개발기간 : 2026.03 ~ 진행 중</p>
                     <div class="link-actions">
-                        <a class="btn btn-primary" href="https://github.com/eggmoney1073/Slime_Defense" target="_blank"
-                            rel="noopener noreferrer">
+                        <a class="btn btn-primary" href="https://github.com/eggmoney1073/Slime_Defense"
+                            rel="noopener noreferrer" target="_blank">
                             GitHub 바로가기
                         </a>
                     </div>
                 </article>
-
                 <div class="image-frame">
-                    <img src="../images/slime-main.png" alt="Slime Defense 대표 이미지" />
+                    <img alt="Slime Defense 대표 이미지" src="../images/slime-main.png" />
                 </div>
             </div>
         </section>
-
-        <section id="overview" class="container page-section">
+        <section class="container page-section" id="overview">
             <div class="section-title-wrap">
                 <p class="eyebrow">Overview</p>
                 <h2>프로젝트 개요</h2>
             </div>
-
             <div class="metric-grid detail-metric-grid">
                 <article class="metric-card">
                     <span class="mini-label">장르</span>
@@ -91,7 +87,6 @@
                     <p>죽음 판정과 실제 삭제를 분리해 안정적인 흐름을 만들었습니다.</p>
                 </article>
             </div>
-
             <div class="detail-block" style="margin-top: 18px;">
                 <article class="detail-card">
                     <h3>설계 방향</h3>
@@ -104,55 +99,52 @@
                 </article>
             </div>
         </section>
-
-        <section id="capture" class="container page-section">
+        <section class="container page-section" id="capture">
             <div class="section-title-wrap">
                 <p class="eyebrow">Gameplay</p>
                 <h2>인게임 화면</h2>
             </div>
-
             <div class="capture-fade-wrap">
                 <div class="capture-fade-slider portrait" data-interval="2500">
-                    <img src="../images/slime1.png" alt="Slime Defense 이미지 1" class="active">
-                    <img src="../images/slime2.png" alt="Slime Defense 이미지 2">
-                    <img src="../images/slime3.png" alt="Slime Defense 이미지 3">
+                    <img alt="Slime Defense 이미지 1" class="active" src="../images/slime1.png" />
+                    <img alt="Slime Defense 이미지 2" src="../images/slime2.png" />
+                    <img alt="Slime Defense 이미지 3" src="../images/slime3.png" />
                 </div>
                 <div class="capture-caption">
                     세로형 전투 화면과 주요 UI 구성을 자동으로 순환하면서 보여줍니다.
                 </div>
             </div>
         </section>
-
-        <section id="core-code" class="container page-section">
+        <section class="container page-section" id="core-code">
             <div class="section-title-wrap">
                 <p class="eyebrow">Core Code</p>
                 <h2>핵심 코드</h2>
             </div>
-
             <div class="code-detail-grid">
                 <article class="code-detail-card">
-                    <div class="code-detail-header">
-                        <p class="code-label">System Flow</p>
-                        <h3>ECS System Flow</h3>
-                        <p>
-                            게임 전체 흐름을 관리, 생성, 이동, 판정, 계산, 삭제 순서로 고정한 시스템 그룹 구조입니다.
-                        </p>
-                    </div>
+
                     <div class="code-detail-body">
                         <div class="code-split-layout">
                             <div class="code-explain">
+                                <div class="code-detail-header">
+                                    <p class="code-label">System Flow</p>
+                                    <h3>ECS System Flow</h3>
+                                    <p>
+                                        게임 전체 흐름을 관리, 생성, 이동, 판정, 계산, 삭제 순서로 고정한 시스템 그룹 구조입니다.
+                                    </p>
+                                </div>
                                 <div class="reason-box">
-                                    <strong>왜 이렇게 설계했는가?</strong><br>
+                                    <strong>왜 이렇게 설계했는가?</strong><br />
                                     ECS에서는 시스템 수가 늘어날수록 무엇이 먼저 실행되는지가 매우 중요합니다.
                                     그래서 스폰 이후 이동, 이동 이후 판정, 판정 이후 계산처럼 흐름을 그룹으로 고정해
                                     로직 충돌을 줄이고 디버깅하기 쉽게 설계했습니다.
                                 </div>
                                 <div class="summary-box">
-                                    <strong>핵심 포인트</strong><br>
+                                    <strong>핵심 포인트</strong><br />
                                     UpdateAfter를 사용해 시스템 실행 순서를 명시적으로 연결한 구조입니다.
                                 </div>
                             </div>
-                            <div class="code-sample">
+                            <div class="code-copy">
                                 <pre class="line-numbers" data-line="3-4,6-7,9-11,13-15,17-19,21-23,25-27"><code class="language-csharp">using Unity.Entities;
 
 [UpdateInGroup(typeof(SimulationSystemGroup))]
@@ -184,30 +176,30 @@ public partial class DestroySystemGroup : ComponentSystemGroup { }</code></pre>
                         </div>
                     </div>
                 </article>
-
                 <article class="code-detail-card">
-                    <div class="code-detail-header">
-                        <p class="code-label">Collision</p>
-                        <h3>Grid 기반 충돌 판정</h3>
-                        <p>
-                            투사체와 적의 충돌을 전체 비교가 아닌 Grid 셀 기반으로 판정하는 구조입니다.
-                        </p>
-                    </div>
+
                     <div class="code-detail-body">
                         <div class="code-split-layout">
                             <div class="code-explain">
+                                <div class="code-detail-header">
+                                    <p class="code-label">Collision</p>
+                                    <h3>Grid 기반 충돌 판정</h3>
+                                    <p>
+                                        투사체와 적의 충돌을 전체 비교가 아닌 Grid 셀 기반으로 판정하는 구조입니다.
+                                    </p>
+                                </div>
                                 <div class="reason-box">
-                                    <strong>왜 이렇게 설계했는가?</strong><br>
+                                    <strong>왜 이렇게 설계했는가?</strong><br />
                                     적과 투사체 수가 늘어나는 디펜스 게임에서 모든 엔티티를 전수 비교하면 비용이 빠르게 커집니다.
                                     그래서 먼저 Grid에 엔티티를 배치하고, 충돌 검사 시 현재 셀과 주변 셀만 탐색하도록 설계해
                                     충돌 판정 범위를 줄였습니다.
                                 </div>
                                 <div class="summary-box">
-                                    <strong>핵심 포인트</strong><br>
+                                    <strong>핵심 포인트</strong><br />
                                     GridBuild 단계에서 맵을 채우고, Collision 단계에서 주변 3x3 셀만 검사하는 구조가 핵심입니다.
                                 </div>
                             </div>
-                            <div class="code-sample">
+                            <div class="code-copy">
                                 <pre class="line-numbers" data-line="8-9,19-25,30-36,53-59,64-74"><code class="language-csharp">using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
@@ -287,32 +279,32 @@ public partial struct Collision_Job : IJobEntity
                         </div>
                     </div>
                 </article>
-
                 <article class="code-detail-card">
-                    <div class="code-detail-header">
-                        <p class="code-label">Fire System</p>
-                        <h3>무기 발사와 투사체 생성</h3>
-                        <p>
-                            TimeScale을 반영해 발사 쿨다운을 누적하고,
-                            조건이 맞으면 ECS에서 투사체를 생성하는 발사 시스템입니다.
-                        </p>
-                    </div>
+
                     <div class="code-detail-body">
                         <div class="code-split-layout">
                             <div class="code-explain">
+                                <div class="code-detail-header">
+                                    <p class="code-label">Fire System</p>
+                                    <h3>무기 발사와 투사체 생성</h3>
+                                    <p>
+                                        TimeScale을 반영해 발사 쿨다운을 누적하고,
+                                        조건이 맞으면 ECS에서 투사체를 생성하는 발사 시스템입니다.
+                                    </p>
+                                </div>
                                 <div class="reason-box">
-                                    <strong>왜 이렇게 설계했는가?</strong><br>
+                                    <strong>왜 이렇게 설계했는가?</strong><br />
                                     발사 로직을 MonoBehaviour에 두면 ECS 엔티티 흐름과 분리되어 관리 포인트가 늘어납니다.
                                     그래서 무기 상태, 발사 간격, 데미지, 관통 수치까지 ECS 데이터로 처리하고,
                                     발사 순간에 필요한 컴포넌트만 붙여 투사체를 생성하도록 설계했습니다.
                                 </div>
                                 <div class="summary-box">
-                                    <strong>핵심 포인트</strong><br>
+                                    <strong>핵심 포인트</strong><br />
                                     scaledDeltaTime을 사용해 시간 배속 영향을 반영하고,
                                     발사 시 방향, 데미지, 관통 정보, 피격 버퍼를 함께 세팅하는 구조입니다.
                                 </div>
                             </div>
-                            <div class="code-sample">
+                            <div class="code-copy">
                                 <pre class="line-numbers" data-line="7-10,17-21,29-34,36-49,51-55"><code class="language-csharp">using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -369,31 +361,31 @@ partial struct MainFire_System : ISystem
                         </div>
                     </div>
                 </article>
-
                 <article class="code-detail-card">
-                    <div class="code-detail-header">
-                        <p class="code-label">Lifecycle</p>
-                        <h3>LiveTag 기반 생명주기 관리</h3>
-                        <p>
-                            체력이 0 이하가 된 적을 즉시 Destroy하지 않고,
-                            LiveTag를 비활성화한 뒤 삭제 시스템에서 정리하는 구조입니다.
-                        </p>
-                    </div>
+
                     <div class="code-detail-body">
                         <div class="code-split-layout">
                             <div class="code-explain">
+                                <div class="code-detail-header">
+                                    <p class="code-label">Lifecycle</p>
+                                    <h3>LiveTag 기반 생명주기 관리</h3>
+                                    <p>
+                                        체력이 0 이하가 된 적을 즉시 Destroy하지 않고,
+                                        LiveTag를 비활성화한 뒤 삭제 시스템에서 정리하는 구조입니다.
+                                    </p>
+                                </div>
                                 <div class="reason-box">
-                                    <strong>왜 이렇게 설계했는가?</strong><br>
+                                    <strong>왜 이렇게 설계했는가?</strong><br />
                                     판정 중간에 즉시 삭제하면 같은 프레임 안에서 다른 시스템과 충돌할 수 있습니다.
                                     그래서 죽음 판정과 실제 삭제를 분리해,
                                     먼저 비활성 상태로 전환하고 마지막 단계에서 안전하게 제거하도록 설계했습니다.
                                 </div>
                                 <div class="summary-box">
-                                    <strong>핵심 포인트</strong><br>
+                                    <strong>핵심 포인트</strong><br />
                                     LiveTag를 끄는 단계와, WithDisabled 조건으로 엔티티를 정리하는 단계를 나눈 구조입니다.
                                 </div>
                             </div>
-                            <div class="code-sample">
+                            <div class="code-copy">
                                 <pre class="line-numbers" data-line="3,8-18,21-27"><code class="language-csharp">using Unity.Entities;
 
 public struct LiveTag : IComponentData, IEnableableComponent { }
@@ -426,31 +418,31 @@ public partial struct EntityDestroy_Job : IJobEntity
                         </div>
                     </div>
                 </article>
-
                 <article class="code-detail-card">
-                    <div class="code-detail-header">
-                        <p class="code-label">Time Management</p>
-                        <h3>TimeScale 관리 시스템</h3>
-                        <p>
-                            일반 DeltaTime이 아니라 게임 시간 배속을 반영한 scaledDeltaTime을 만들어
-                            전체 시스템이 같은 기준으로 시간을 사용하도록 만든 구조입니다.
-                        </p>
-                    </div>
+
                     <div class="code-detail-body">
                         <div class="code-split-layout">
                             <div class="code-explain">
+                                <div class="code-detail-header">
+                                    <p class="code-label">Time Management</p>
+                                    <h3>TimeScale 관리 시스템</h3>
+                                    <p>
+                                        일반 DeltaTime이 아니라 게임 시간 배속을 반영한 scaledDeltaTime을 만들어
+                                        전체 시스템이 같은 기준으로 시간을 사용하도록 만든 구조입니다.
+                                    </p>
+                                </div>
                                 <div class="reason-box">
-                                    <strong>왜 이렇게 설계했는가?</strong><br>
+                                    <strong>왜 이렇게 설계했는가?</strong><br />
                                     일시정지, 슬로우 모션, 배속 같은 기능을 later 넣을 때,
                                     각 시스템이 제각각 시간을 계산하면 관리가 어려워집니다.
                                     그래서 공용 TimeScaleData를 두고 모든 시스템이 같은 시간 기준을 보도록 설계했습니다.
                                 </div>
                                 <div class="summary-box">
-                                    <strong>핵심 포인트</strong><br>
+                                    <strong>핵심 포인트</strong><br />
                                     timeScale, scaledDeltaTime, unscaledDeltaTime을 함께 관리하는 공용 시간 구조입니다.
                                 </div>
                             </div>
-                            <div class="code-sample">
+                            <div class="code-copy">
                                 <pre class="line-numbers" data-line="8-18,21-28,30-34"><code class="language-csharp">using Unity.Burst;
 using Unity.Entities;
 
@@ -491,18 +483,14 @@ partial struct TimeManager_System : ISystem
                     </div>
                 </article>
             </div>
-
             <a class="back-link" href="../index.html">← 홈으로 돌아가기</a>
         </section>
-
         <div class="footer-spacer"></div>
     </main>
-
     <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-csharp.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-highlight/prism-line-highlight.min.js"></script>
-
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const sliders = document.querySelectorAll(".capture-fade-slider");
