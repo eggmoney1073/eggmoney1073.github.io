@@ -864,3 +864,89 @@ ul {
     font-family: "Consolas", "D2Coding", monospace;
     white-space: pre;
 }
+
+/* ===== 상세페이지 코드 2단 + 설명 sticky 개선 ===== */
+:root {
+    --max-width: 1680px;
+}
+
+.container {
+    width: min(calc(100% - 20px), var(--max-width));
+}
+
+.page-section#core-code .container,
+#core-code.container {
+    width: min(calc(100% - 20px), 1720px);
+}
+
+.code-detail-body {
+    padding: 22px 24px 24px;
+}
+
+.code-split-layout {
+    display: grid;
+    grid-template-columns: minmax(300px, 0.82fr) minmax(0, 1.68fr);
+    gap: 18px;
+    align-items: start;
+}
+
+.code-explain {
+    position: sticky;
+    top: 96px;
+    align-self: start;
+}
+
+.code-sample {
+    min-width: 0;
+}
+
+.reason-box,
+.summary-box {
+    padding: 13px 15px;
+}
+
+.code-detail-card pre[class*="language-"] {
+    padding: 16px;
+    font-size: 0.86rem;
+    line-height: 1.62;
+}
+
+.code-detail-card .line-numbers.line-numbers {
+    padding-left: 3.6em;
+}
+
+.code-detail-card .line-numbers .line-numbers-rows {
+    width: 3em;
+}
+
+@media (max-width: 1280px) {
+    .code-split-layout {
+        grid-template-columns: minmax(260px, 0.9fr) minmax(0, 1.45fr);
+    }
+}
+
+@media (max-width: 980px) {
+    .code-split-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .code-explain {
+        position: static;
+        top: auto;
+    }
+}
+
+@media (max-width: 640px) {
+    .container {
+        width: min(calc(100% - 16px), var(--max-width));
+    }
+
+    .code-detail-body {
+        padding: 18px;
+    }
+
+    .code-detail-card pre[class*="language-"] {
+        font-size: 0.82rem;
+        padding: 14px;
+    }
+}
