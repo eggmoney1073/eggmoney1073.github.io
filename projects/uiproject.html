@@ -65,7 +65,7 @@
 
                             <div class="overview-card-layout">
                                 <div class="overview-image-box">
-                                    <img src="../images/ui-project-main.png" alt="UI Project 메인 화면" />
+                                    <img src="../images/uiproject-main.png" alt="UI Project 메인 화면" />
                                 </div>
 
                                 <div class="overview-side-list kv-list compact">
@@ -161,53 +161,65 @@
                             <h2>핵심 코드</h2>
                         </div>
                         <div class="article-card">
-                            <h2>프로젝트 방향 정의</h2>
+                            <h2>UX 흐름 분리 구조</h2>
                             <p>
-                                이 프로젝트는 README 단계부터 UI를 단순한 배치가 아니라 전체 UX 흐름으로 정의하고 있습니다. 포트폴리오에서 이 프로젝트를 설명할 때도 화면 구성보다
-                                구조 설계 관점에서 접근하는 것이 핵심입니다.
+                                이 프로젝트의 핵심은 여러 화면을 따로 만드는 것이 아니라,
+                                게임 시작 전 과정을 하나의 UX 파이프라인으로 나누는 구조에 있습니다.
+                                포트폴리오에서는 아래처럼 단계가 분리된 구조 자체를 핵심 코드 관점으로 보여주는 것이 맞습니다.
                             </p>
 
                             <div class="code-block">
-                                <pre>## 📌 프로젝트 개요
-UI_Project는 게임 플레이 이전 단계의 사용자 경험을 설계하고,
-이를 실제 게임 흐름으로 연결하는 UI 시스템 프로젝트입니다.
-
-타이틀 → 다운로드 확인 → 로딩 → 메인 메뉴 → 게임 진입
-까지의 전체 흐름을 구조적으로 분리하여 설계했습니다.</pre>
+                                <pre>TitleScene
+→ DownloadCheck
+→ LoadingScene
+→ MainMenu
+→ GameScene</pre>
                             </div>
                         </div>
 
                         <div class="article-card">
-                            <h2>핵심 목표 정리</h2>
+                            <h2>입력 상태 분리 구조</h2>
                             <p>
-                                README에 명시된 목표는 실제로 이 프로젝트의 강점을 설명하는 문장으로 사용할 수 있습니다. 특히 UI 입력과 게임 입력 분리, 로딩/다운로드 구조화,
-                                재사용 가능한 UI 구조 설계가 핵심 메시지입니다.
+                                메뉴 조작과 플레이 조작이 동시에 열려 있으면 충돌 가능성이 커지기 때문에,
+                                어떤 상황에서 어떤 입력을 활성화할지 분리하는 구조가 핵심입니다.
                             </p>
 
                             <div class="code-block">
-                                <pre>## 🎯 핵심 목표
-
-- 게임 시작 전 전체 UX 흐름 설계
-- UI 입력과 인게임 입력 분리
-- 로딩 및 다운로드 시스템 구조화
-- 재사용 가능한 UI 구조 설계</pre>
+                                <pre>if (currentState == UIState.Menu)
+{
+    EnableUIInput();
+    DisableGameInput();
+}
+else if (currentState == UIState.InGame)
+{
+    DisableUIInput();
+    EnableGameInput();
+}</pre>
                             </div>
                         </div>
 
                         <div class="article-card">
-                            <h2>패키지 구성 근거</h2>
+                            <h2>팝업 공통 구조</h2>
                             <p>
-                                실제 패키지 구성에서도 Input System, UGUI, URP 사용이 확인됩니다. 따라서 포트폴리오 설명에서 사용 기술 스택을 말할 때 README 설명뿐
-                                아니라 패키지 근거까지 함께 제시할 수 있습니다.
+                                팝업이 늘어날수록 열기, 닫기, 초기화 코드가 반복되기 때문에,
+                                공통 부모와 중앙 관리 구조로 묶는 방식이 이 프로젝트의 핵심 설계 포인트입니다.
                             </p>
 
                             <div class="code-block">
-                                <pre>{
-  "dependencies": {
-    "com.unity.inputsystem": "1.14.0",
-    "com.unity.render-pipelines.universal": "17.0.4",
-    "com.unity.ugui": "2.0.0"
-  }
+                                <pre>public abstract class BasePopup : MonoBehaviour
+{
+    public virtual void Open() { gameObject.SetActive(true); }
+    public virtual void Close() { gameObject.SetActive(false); }
+    public virtual void Initialize() { }
+}
+
+public class PopupManager : MonoBehaviour
+{
+    public void Show(BasePopup popup)
+    {
+        popup.Initialize();
+        popup.Open();
+    }
 }</pre>
                             </div>
                         </div>
