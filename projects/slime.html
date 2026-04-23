@@ -168,33 +168,33 @@
                                 UpdateAfter를 사용해 단계별 실행 순서를 고정했습니다.
                             </p>
                             
-<div class="code-block"><pre><span class="code-line"><span class="tok-keyword">using</span> <span class="tok-type">Unity.Entities</span>;</span>
-
-<span class="code-line"><span class="tok-attribute">[UpdateInGroup(typeof(SimulationSystemGroup))]</span></span>
-<span class="code-line"><span class="tok-keyword">public partial class</span> <span class="tok-type">SlimeDefenseSystemGroup</span> <span class="tok-operator">:</span> <span class="tok-type">ComponentSystemGroup</span> { }</span>
-
-<span class="code-line"><span class="tok-attribute">[UpdateInGroup(typeof(SlimeDefenseSystemGroup))]</span></span>
-<span class="code-line"><span class="tok-keyword">public partial class</span> <span class="tok-type">ManageSystemGroup</span> <span class="tok-operator">:</span> <span class="tok-type">ComponentSystemGroup</span> { }</span>
-
-<span class="code-line"><span class="tok-attribute">[UpdateInGroup(typeof(SlimeDefenseSystemGroup))]</span></span>
-<span class="code-line"><span class="tok-attribute">[UpdateAfter(typeof(ManageSystemGroup))]</span></span>
-<span class="code-line"><span class="tok-keyword">public partial class</span> <span class="tok-type">SpawnSystemGroup</span> <span class="tok-operator">:</span> <span class="tok-type">ComponentSystemGroup</span> { }</span>
-
-<span class="code-line"><span class="tok-attribute">[UpdateInGroup(typeof(SlimeDefenseSystemGroup))]</span></span>
-<span class="code-line"><span class="tok-attribute">[UpdateAfter(typeof(SpawnSystemGroup))]</span></span>
-<span class="code-line"><span class="tok-keyword">public partial class</span> <span class="tok-type">MoveSystemGroup</span> <span class="tok-operator">:</span> <span class="tok-type">ComponentSystemGroup</span> { }</span>
-
-<span class="code-line"><span class="tok-attribute">[UpdateInGroup(typeof(SlimeDefenseSystemGroup))]</span></span>
-<span class="code-line"><span class="tok-attribute">[UpdateAfter(typeof(MoveSystemGroup))]</span></span>
-<span class="code-line"><span class="tok-keyword">public partial class</span> <span class="tok-type">JudgementSystemGroup</span> <span class="tok-operator">:</span> <span class="tok-type">ComponentSystemGroup</span> { }</span>
-
-<span class="code-line"><span class="tok-attribute">[UpdateInGroup(typeof(SlimeDefenseSystemGroup))]</span></span>
-<span class="code-line"><span class="tok-attribute">[UpdateAfter(typeof(JudgementSystemGroup))]</span></span>
-<span class="code-line"><span class="tok-keyword">public partial class</span> <span class="tok-type">CalculateSystemGroup</span> <span class="tok-operator">:</span> <span class="tok-type">ComponentSystemGroup</span> { }</span>
-
-<span class="code-line"><span class="tok-attribute">[UpdateInGroup(typeof(SlimeDefenseSystemGroup))]</span></span>
-<span class="code-line"><span class="tok-attribute">[UpdateAfter(typeof(CalculateSystemGroup))]</span></span>
-<span class="code-line"><span class="tok-keyword">public partial class</span> <span class="tok-type">DestroySystemGroup</span> <span class="tok-operator">:</span> <span class="tok-type">ComponentSystemGroup</span> { }</span></pre></div>
+<div class="code-block"><div class="code-block-header"><span class="code-lang">C#</span><span>core system excerpt</span></div><pre><span class="code-line"><span class="line-no">1</span><span><span class="code-line"><span class="tok-keyword">using</span> <span class="tok-type">Unity.Entities</span>;</span></span></span>
+<span class="code-line"><span class="line-no">2</span><span>&nbsp;</span></span>
+<span class="code-line"><span class="line-no">3</span><span><span class="code-line"><span class="tok-attribute">[UpdateInGroup(typeof(SimulationSystemGroup))]</span></span></span></span>
+<span class="code-line"><span class="line-no">4</span><span><span class="code-line"><span class="tok-keyword">public partial class</span> <span class="tok-type">SlimeDefenseSystemGroup</span> <span class="tok-operator">:</span> <span class="tok-type">ComponentSystemGroup</span> { }</span></span></span>
+<span class="code-line"><span class="line-no">5</span><span>&nbsp;</span></span>
+<span class="code-line"><span class="line-no">6</span><span><span class="code-line"><span class="tok-attribute">[UpdateInGroup(typeof(SlimeDefenseSystemGroup))]</span></span></span></span>
+<span class="code-line"><span class="line-no">7</span><span><span class="code-line"><span class="tok-keyword">public partial class</span> <span class="tok-type">ManageSystemGroup</span> <span class="tok-operator">:</span> <span class="tok-type">ComponentSystemGroup</span> { }</span></span></span>
+<span class="code-line"><span class="line-no">8</span><span>&nbsp;</span></span>
+<span class="code-line"><span class="line-no">9</span><span><span class="code-line"><span class="tok-attribute">[UpdateInGroup(typeof(SlimeDefenseSystemGroup))]</span></span></span></span>
+<span class="code-line"><span class="line-no">10</span><span><span class="code-line"><span class="tok-attribute">[UpdateAfter(typeof(ManageSystemGroup))]</span></span></span></span>
+<span class="code-line"><span class="line-no">11</span><span><span class="code-line"><span class="tok-keyword">public partial class</span> <span class="tok-type">SpawnSystemGroup</span> <span class="tok-operator">:</span> <span class="tok-type">ComponentSystemGroup</span> { }</span></span></span>
+<span class="code-line"><span class="line-no">12</span><span>&nbsp;</span></span>
+<span class="code-line"><span class="line-no">13</span><span><span class="code-line"><span class="tok-attribute">[UpdateInGroup(typeof(SlimeDefenseSystemGroup))]</span></span></span></span>
+<span class="code-line"><span class="line-no">14</span><span><span class="code-line"><span class="tok-attribute">[UpdateAfter(typeof(SpawnSystemGroup))]</span></span></span></span>
+<span class="code-line"><span class="line-no">15</span><span><span class="code-line"><span class="tok-keyword">public partial class</span> <span class="tok-type">MoveSystemGroup</span> <span class="tok-operator">:</span> <span class="tok-type">ComponentSystemGroup</span> { }</span></span></span>
+<span class="code-line"><span class="line-no">16</span><span>&nbsp;</span></span>
+<span class="code-line"><span class="line-no">17</span><span><span class="code-line"><span class="tok-attribute">[UpdateInGroup(typeof(SlimeDefenseSystemGroup))]</span></span></span></span>
+<span class="code-line"><span class="line-no">18</span><span><span class="code-line"><span class="tok-attribute">[UpdateAfter(typeof(MoveSystemGroup))]</span></span></span></span>
+<span class="code-line"><span class="line-no">19</span><span><span class="code-line"><span class="tok-keyword">public partial class</span> <span class="tok-type">JudgementSystemGroup</span> <span class="tok-operator">:</span> <span class="tok-type">ComponentSystemGroup</span> { }</span></span></span>
+<span class="code-line"><span class="line-no">20</span><span>&nbsp;</span></span>
+<span class="code-line"><span class="line-no">21</span><span><span class="code-line"><span class="tok-attribute">[UpdateInGroup(typeof(SlimeDefenseSystemGroup))]</span></span></span></span>
+<span class="code-line"><span class="line-no">22</span><span><span class="code-line"><span class="tok-attribute">[UpdateAfter(typeof(JudgementSystemGroup))]</span></span></span></span>
+<span class="code-line"><span class="line-no">23</span><span><span class="code-line"><span class="tok-keyword">public partial class</span> <span class="tok-type">CalculateSystemGroup</span> <span class="tok-operator">:</span> <span class="tok-type">ComponentSystemGroup</span> { }</span></span></span>
+<span class="code-line"><span class="line-no">24</span><span>&nbsp;</span></span>
+<span class="code-line"><span class="line-no">25</span><span><span class="code-line"><span class="tok-attribute">[UpdateInGroup(typeof(SlimeDefenseSystemGroup))]</span></span></span></span>
+<span class="code-line"><span class="line-no">26</span><span><span class="code-line"><span class="tok-attribute">[UpdateAfter(typeof(CalculateSystemGroup))]</span></span></span></span>
+<span class="code-line"><span class="line-no">27</span><span><span class="code-line"><span class="tok-keyword">public partial class</span> <span class="tok-type">DestroySystemGroup</span> <span class="tok-operator">:</span> <span class="tok-type">ComponentSystemGroup</span> { }</span></span></span></pre></div>
 
                         </div>
 
@@ -206,27 +206,27 @@
                                 위치를 Grid에 저장하고 투사체는 자신의 주변 3x3 셀만 탐색하도록 설계해 검사량을 줄였습니다.
                             </p>
                             
-<div class="code-block"><pre><span class="code-line"><span class="tok-keyword">using</span> <span class="tok-type">Unity.Burst</span>;</span>
-<span class="code-line"><span class="tok-keyword">using</span> <span class="tok-type">Unity.Collections</span>;</span>
-<span class="code-line"><span class="tok-keyword">using</span> <span class="tok-type">Unity.Entities</span>;</span>
-<span class="code-line"><span class="tok-keyword">using</span> <span class="tok-type">Unity.Mathematics</span>;</span>
-
-<span class="code-line"><span class="tok-attribute">[BurstCompile]</span></span>
-<span class="code-line"><span class="tok-attribute">[WithAll(typeof(ProjectileTag))]</span></span>
-<span class="code-line"><span class="tok-keyword">public partial struct</span> <span class="tok-type">Collision_Job</span> <span class="tok-operator">:</span> <span class="tok-type">IJobEntity</span></span>
-<span class="code-line">{</span>
-<span class="code-line">    <span class="tok-keyword">public int</span> <span class="tok-field">_gridWidth</span>;</span>
-<span class="code-line">    <span class="tok-keyword">public float</span> <span class="tok-field">_cellSize</span>;</span>
-
-<span class="code-line">    <span class="tok-keyword">public void</span> <span class="tok-method">Execute</span>(<span class="tok-type">Entity</span> <span class="tok-field">projectileEntity</span>, <span class="tok-keyword">in</span> <span class="tok-type">LocalTransform</span> <span class="tok-field">transform</span>, <span class="tok-keyword">in</span> <span class="tok-type">Collision</span> <span class="tok-field">collider</span>, <span class="tok-keyword">in</span> <span class="tok-type">ProjectileDamage</span> <span class="tok-field">projectileDamage</span>)</span>
-<span class="code-line">    {</span>
-<span class="code-line">        <span class="tok-type">float3</span> <span class="tok-field">position</span> <span class="tok-operator">=</span> transform.Position;</span>
-<span class="code-line">        <span class="tok-keyword">int</span> <span class="tok-field">centerX</span> <span class="tok-operator">=</span> (<span class="tok-keyword">int</span>)math.floor(position.x <span class="tok-operator">/</span> _cellSize) <span class="tok-operator">+</span> (_gridWidth <span class="tok-operator">/</span> <span class="tok-number">2</span>);</span>
-<span class="code-line">        <span class="tok-keyword">int</span> <span class="tok-field">centerY</span> <span class="tok-operator">=</span> (<span class="tok-keyword">int</span>)math.floor(position.z <span class="tok-operator">/</span> _cellSize) <span class="tok-operator">+</span> (_gridWidth <span class="tok-operator">/</span> <span class="tok-number">2</span>);</span>
-
-<span class="code-line">        <span class="tok-comment">// 주변 3x3 셀만 검사</span></span>
-<span class="code-line">    }</span>
-<span class="code-line">}</span></pre></div>
+<div class="code-block"><div class="code-block-header"><span class="code-lang">C#</span><span>core system excerpt</span></div><pre><span class="code-line"><span class="line-no">1</span><span><span class="code-line"><span class="tok-keyword">using</span> <span class="tok-type">Unity.Burst</span>;</span></span></span>
+<span class="code-line"><span class="line-no">2</span><span><span class="code-line"><span class="tok-keyword">using</span> <span class="tok-type">Unity.Collections</span>;</span></span></span>
+<span class="code-line"><span class="line-no">3</span><span><span class="code-line"><span class="tok-keyword">using</span> <span class="tok-type">Unity.Entities</span>;</span></span></span>
+<span class="code-line"><span class="line-no">4</span><span><span class="code-line"><span class="tok-keyword">using</span> <span class="tok-type">Unity.Mathematics</span>;</span></span></span>
+<span class="code-line"><span class="line-no">5</span><span>&nbsp;</span></span>
+<span class="code-line"><span class="line-no">6</span><span><span class="code-line"><span class="tok-attribute">[BurstCompile]</span></span></span></span>
+<span class="code-line"><span class="line-no">7</span><span><span class="code-line"><span class="tok-attribute">[WithAll(typeof(ProjectileTag))]</span></span></span></span>
+<span class="code-line"><span class="line-no">8</span><span><span class="code-line"><span class="tok-keyword">public partial struct</span> <span class="tok-type">Collision_Job</span> <span class="tok-operator">:</span> <span class="tok-type">IJobEntity</span></span></span></span>
+<span class="code-line"><span class="line-no">9</span><span><span class="code-line">{</span></span></span>
+<span class="code-line"><span class="line-no">10</span><span><span class="code-line">    <span class="tok-keyword">public int</span> <span class="tok-field">_gridWidth</span>;</span></span></span>
+<span class="code-line"><span class="line-no">11</span><span><span class="code-line">    <span class="tok-keyword">public float</span> <span class="tok-field">_cellSize</span>;</span></span></span>
+<span class="code-line"><span class="line-no">12</span><span>&nbsp;</span></span>
+<span class="code-line"><span class="line-no">13</span><span><span class="code-line">    <span class="tok-keyword">public void</span> <span class="tok-method">Execute</span>(<span class="tok-type">Entity</span> <span class="tok-field">projectileEntity</span>, <span class="tok-keyword">in</span> <span class="tok-type">LocalTransform</span> <span class="tok-field">transform</span>, <span class="tok-keyword">in</span> <span class="tok-type">Collision</span> <span class="tok-field">collider</span>, <span class="tok-keyword">in</span> <span class="tok-type">ProjectileDamage</span> <span class="tok-field">projectileDamage</span>)</span></span></span>
+<span class="code-line"><span class="line-no">14</span><span><span class="code-line">    {</span></span></span>
+<span class="code-line"><span class="line-no">15</span><span><span class="code-line">        <span class="tok-type">float3</span> <span class="tok-field">position</span> <span class="tok-operator">=</span> transform.Position;</span></span></span>
+<span class="code-line"><span class="line-no">16</span><span><span class="code-line">        <span class="tok-keyword">int</span> <span class="tok-field">centerX</span> <span class="tok-operator">=</span> (<span class="tok-keyword">int</span>)math.floor(position.x <span class="tok-operator">/</span> _cellSize) <span class="tok-operator">+</span> (_gridWidth <span class="tok-operator">/</span> <span class="tok-number">2</span>);</span></span></span>
+<span class="code-line"><span class="line-no">17</span><span><span class="code-line">        <span class="tok-keyword">int</span> <span class="tok-field">centerY</span> <span class="tok-operator">=</span> (<span class="tok-keyword">int</span>)math.floor(position.z <span class="tok-operator">/</span> _cellSize) <span class="tok-operator">+</span> (_gridWidth <span class="tok-operator">/</span> <span class="tok-number">2</span>);</span></span></span>
+<span class="code-line"><span class="line-no">18</span><span>&nbsp;</span></span>
+<span class="code-line"><span class="line-no">19</span><span><span class="code-line">        <span class="tok-comment">// 주변 3x3 셀만 검사</span></span></span></span>
+<span class="code-line"><span class="line-no">20</span><span><span class="code-line">    }</span></span></span>
+<span class="code-line"><span class="line-no">21</span><span><span class="code-line">}</span></span></span></pre></div>
 
                         </div>
 
@@ -237,19 +237,19 @@
                                 죽음 판정과 실제 삭제를 분리해 참조 충돌을 줄였습니다.
                             </p>
                             
-<div class="code-block"><pre><span class="code-line"><span class="tok-keyword">using</span> <span class="tok-type">Unity.Entities</span>;</span>
-
-<span class="code-line"><span class="tok-keyword">public struct</span> <span class="tok-type">LiveTag</span> <span class="tok-operator">:</span> <span class="tok-type">IComponentData</span>, <span class="tok-type">IEnableableComponent</span> { }</span>
-
-<span class="code-line"><span class="tok-attribute">[WithAll(typeof(EnemyTag))]</span></span>
-<span class="code-line"><span class="tok-keyword">partial struct</span> <span class="tok-type">EnemyDead_System</span> <span class="tok-operator">:</span> <span class="tok-type">ISystem</span></span>
-<span class="code-line">{</span>
-<span class="code-line">    <span class="tok-keyword">public void</span> <span class="tok-method">OnUpdate</span>(<span class="tok-keyword">ref</span> <span class="tok-type">SystemState</span> <span class="tok-field">state</span>)</span>
-<span class="code-line">    {</span>
-<span class="code-line">        <span class="tok-comment">// 죽음 판정은 먼저 비활성 처리</span></span>
-<span class="code-line">        <span class="tok-comment">// 실제 삭제는 Destroy 단계에서 일괄 수행</span></span>
-<span class="code-line">    }</span>
-<span class="code-line">}</span></pre></div>
+<div class="code-block"><div class="code-block-header"><span class="code-lang">C#</span><span>core system excerpt</span></div><pre><span class="code-line"><span class="line-no">1</span><span><span class="code-line"><span class="tok-keyword">using</span> <span class="tok-type">Unity.Entities</span>;</span></span></span>
+<span class="code-line"><span class="line-no">2</span><span>&nbsp;</span></span>
+<span class="code-line"><span class="line-no">3</span><span><span class="code-line"><span class="tok-keyword">public struct</span> <span class="tok-type">LiveTag</span> <span class="tok-operator">:</span> <span class="tok-type">IComponentData</span>, <span class="tok-type">IEnableableComponent</span> { }</span></span></span>
+<span class="code-line"><span class="line-no">4</span><span>&nbsp;</span></span>
+<span class="code-line"><span class="line-no">5</span><span><span class="code-line"><span class="tok-attribute">[WithAll(typeof(EnemyTag))]</span></span></span></span>
+<span class="code-line"><span class="line-no">6</span><span><span class="code-line"><span class="tok-keyword">partial struct</span> <span class="tok-type">EnemyDead_System</span> <span class="tok-operator">:</span> <span class="tok-type">ISystem</span></span></span></span>
+<span class="code-line"><span class="line-no">7</span><span><span class="code-line">{</span></span></span>
+<span class="code-line"><span class="line-no">8</span><span><span class="code-line">    <span class="tok-keyword">public void</span> <span class="tok-method">OnUpdate</span>(<span class="tok-keyword">ref</span> <span class="tok-type">SystemState</span> <span class="tok-field">state</span>)</span></span></span>
+<span class="code-line"><span class="line-no">9</span><span><span class="code-line">    {</span></span></span>
+<span class="code-line"><span class="line-no">10</span><span><span class="code-line">        <span class="tok-comment">// 죽음 판정은 먼저 비활성 처리</span></span></span></span>
+<span class="code-line"><span class="line-no">11</span><span><span class="code-line">        <span class="tok-comment">// 실제 삭제는 Destroy 단계에서 일괄 수행</span></span></span></span>
+<span class="code-line"><span class="line-no">12</span><span><span class="code-line">    }</span></span></span>
+<span class="code-line"><span class="line-no">13</span><span><span class="code-line">}</span></span></span></pre></div>
 
                         </div>
                     </div>
