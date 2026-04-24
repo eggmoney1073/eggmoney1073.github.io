@@ -214,7 +214,11 @@
                                 UpdateAfter를 사용해 단계별 실행 순서를 고정했습니다.
                             </p>
 
-                            <div class="code-block">
+                            <div class="code-with-diagram">
+                                <figure class="code-diagram-box">
+                                    <img src="../images/slime-diagram1.png" alt="ECS 전투 파이프라인 다이어그램" />
+                                </figure>
+                                <div class="code-block">
                                 <pre>using Unity.Entities;
 
 [UpdateInGroup(typeof(SimulationSystemGroup))]
@@ -242,6 +246,7 @@ public partial class CalculateSystemGroup : ComponentSystemGroup { }
 [UpdateInGroup(typeof(SlimeDefenseSystemGroup))]
 [UpdateAfter(typeof(CalculateSystemGroup))]
 public partial class DestroySystemGroup : ComponentSystemGroup { }</pre>
+                                </div>
                             </div>
                         </div>
 
@@ -254,7 +259,11 @@ public partial class DestroySystemGroup : ComponentSystemGroup { }</pre>
                                 위치를 Grid에 저장하고 투사체는 자신의 주변 3x3 셀만 탐색하도록 설계했습니다.
                             </p>
 
-                            <div class="code-block">
+                            <div class="code-with-diagram code-with-diagram-tall">
+                                <figure class="code-diagram-box">
+                                    <img src="../images/slime-diagram2.png" alt="Grid 기반 충돌 최적화 다이어그램" />
+                                </figure>
+                                <div class="code-block">
                                 <pre>using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
@@ -327,6 +336,7 @@ public partial struct Collision_Job : IJobEntity
         }
     }
 }</pre>
+                                </div>
                             </div>
                         </div>
 
@@ -338,7 +348,11 @@ public partial struct Collision_Job : IJobEntity
                                 죽음 판정과 실제 삭제를 분리했고 Destroy 단계에서 일괄 제거하도록 설계했습니다.
                             </p>
 
-                            <div class="code-block">
+                            <div class="code-with-diagram">
+                                <figure class="code-diagram-box">
+                                    <img src="../images/slime-diagram3.png" alt="LiveTag 생명주기 관리 다이어그램" />
+                                </figure>
+                                <div class="code-block">
                                 <pre>using Unity.Entities;
 
 public struct LiveTag : IComponentData, IEnableableComponent { }
@@ -366,6 +380,7 @@ public partial struct EntityDestroy_Job : IJobEntity
 {
     public EntityCommandBuffer.ParallelWriter ecbWriter;
 }</pre>
+                                </div>
                             </div>
                         </div>
                     </div>
